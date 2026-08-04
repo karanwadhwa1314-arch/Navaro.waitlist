@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USMCA/CUSMA/T-MEC Certificate of Origin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            padding: 20px;
+            line-height: 1.5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 25px 30px;
+            border-bottom: 5px solid #e63946;
+        }
+        
+        .header h1 {
+            font-size: 26px;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+        
+        .header h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+        
+        .header p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .certificate-form {
+            padding: 30px;
+        }
+        
+        .form-section {
+            margin-bottom: 30px;
+            border: 1px solid #e1e5eb;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .section-title {
+            background-color: #f8f9fa;
+            padding: 12px 20px;
+            font-weight: 600;
+            color: #1e3c72;
+            border-bottom: 1px solid #e1e5eb;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            color: #2a5298;
+        }
+        
+        .section-content {
+            padding: 20px;
+        }
+        
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .four-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 14px;
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #d1d9e6;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: border 0.3s;
+        }
+        
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #2a5298;
+            box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
+        }
+        
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .table-section {
+            margin-top: 10px;
+        }
+        
+        .table-section table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .table-section th, .table-section td {
+            border: 1px solid #d1d9e6;
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 14px;
+        }
+        
+        .table-section th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .table-section input {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #d1d9e6;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .signature-section {
+            margin-top: 20px;
+        }
+        
+        .signature-box {
+            border: 2px dashed #d1d9e6;
+            border-radius: 4px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .signature-box:hover {
+            background-color: #f8f9fa;
+            border-color: #2a5298;
+        }
+        
+        .signature-box i {
+            font-size: 24px;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+        }
+        
+        .signature-box p {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .signature-box.signed {
+            border-style: solid;
+            border-color: #27ae60;
+            background-color: #f0f9f0;
+        }
+        
+        .signature-box.signed i {
+            color: #27ae60;
+        }
+        
+        .signature-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .signature-details input {
+            padding: 10px 12px;
+            border: 1px solid #d1d9e6;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #e1e5eb;
+        }
+        
+        .btn {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-primary {
+            background-color: #2a5298;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1e3c72;
+        }
+        
+        .btn-success {
+            background-color: #27ae60;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #219653;
+        }
+        
+        .btn-secondary {
+            background-color: #7f8c8d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #6c7b7d;
+        }
+        
+        .goods-table {
+            overflow-x: auto;
+        }
+        
+        .add-line-btn {
+            background-color: #f8f9fa;
+            border: 1px dashed #d1d9e6;
+            color: #2a5298;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        .add-line-btn:hover {
+            background-color: #e3f2fd;
+            border-color: #2a5298;
+        }
+        
+        .delete-line-btn {
+            background-color: #fef2f2;
+            border: 1px solid #fee2e2;
+            color: #dc2626;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .delete-line-btn:hover {
+            background-color: #fee2e2;
+        }
+        
+        .required::after {
+            content: " *";
+            color: #e63946;
+        }
+        
+        .blanket-period {
+            background-color: #f0f7ff;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid #d1e3ff;
+            margin-bottom: 20px;
+        }
+        
+        .blanket-period-table {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .blanket-period-table label {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .declaration-text {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            border-left: 4px solid #2a5298;
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .certifier-role {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .certifier-role-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .certifier-role-option input {
+            width: auto;
+        }
+        
+        .certifier-role-option label {
+            font-weight: normal;
+            margin-bottom: 0;
+        }
+        
+        .document-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .document-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-end;
+        }
+        
+        .logo {
+            font-weight: 700;
+            color: #e63946;
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+        
+        @media (max-width: 992px) {
+            .two-columns, .four-columns, .signature-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .blanket-period-table {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .footer-note {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #7f8c8d;
+            border: 1px solid #e1e5eb;
+        }
+        
+        .declaration-section {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .party-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .party-types {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .certification-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e1e5eb;
+        }
+        
+        .certification-header h3 {
+            color: #1e3c72;
+            font-size: 20px;
+        }
+        
+        .origin-criteria-info {
+            background-color: #f0f7ff;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 10px;
+            font-size: 13px;
+            color: #2c3e50;
+        }
+        
+        .origin-criteria-info ul {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+        
+        .origin-criteria-info li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="certificate-form-container">
+        <div class="header">
+            <h1>CERTIFICATE OF ORIGIN</h1>
+            <h2>USMCA / CUSMA / T-MEC</h2>
+            <p>For goods exported between the United States, Mexico, and Canada under the United States-Mexico-Canada Agreement</p>
+            <div style="margin-top: 15px; font-size: 13px;">
+                <span class="logo">USMCA COO</span>
+                <span style="margin-left: 20px;">Official Trade Document</span>
+            </div>
+        </div>
+        
+        <div class="certificate-form">
+            <!-- Document Header -->
+            <div class="document-header">
+                <div>
+                    <div class="form-group" style="margin-bottom: 5px;">
+                        <label>Certificate Reference No.</label>
+                        <input type="text" id="certificate-ref" placeholder="COO reference number" style="max-width: 300px;">
+                    </div>
+                </div>
+                <div class="document-info">
+                    <div style="font-weight: 600; color: #1e3c77;">USMCA/CUSMA/T-MEC Form</div>
+                    <div style="font-size: 13px;">Version 1.0</div>
+                </div>
+            </div>
+            
+            <!-- Section 1: Parties Information -->
+            <div class="form-section">
+                <div class="section-title">
+                    <i class="fas fa-users"></i>
+                    Parties Information
+                </div>
+                <div class="section-content">
+                    <div class="party-types">
+                        <div class="form-group">
+                            <label class="required">Certifier</label>
+                            <textarea id="certifier" placeholder="Name, address, country of certifier..."></textarea>
+                            <small style="color: #666; font-size: 12px;">The party completing this certificate</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="required">Exporter</label>
+                            <textarea id="exporter" placeholder="Name, address, country of exporter..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Producer</label>
+                            <textarea id="producer" placeholder="Name, address, country of producer..."></textarea>
+                            <small style="color: #666; font-size: 12px;">If different from exporter</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Importer</label>
+                            <textarea id="importer" placeholder="Name, address, country of importer..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 2: Blanket Period -->
+            <div class="form-section">
+                <div class="section-title">
+                    <i class="fas fa-calendar-alt"></i>
+                    Blanket Period (if applicable)
+                </div>
+                <div class="section-content">
+                    <div class="blanket-period">
+                        <div class="blanket-period-table">
+                            <label>From:</label>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="date" id="blanket-from">
+                                </div>
+                            </div>
+                            
+                            <label>To:</label>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="date" id="blanket-to">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Additional Information</label>
+                            <textarea id="blanket-info" placeholder="Type something here..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Description of Goods</label>
+                        <div class="origin-criteria-info">
+                            <p><strong>Origin Criterion Key:</strong></p>
+                            <ul>
+                                <li><strong>A</strong>: Wholly obtained or produced entirely in the territory</li>
+                                <li><strong>B</strong>: Produced entirely in the territory with non-originating materials</li>
+                                <li><strong>C</strong>: Produced entirely in the territory with regional value content</li>
+                                <li><strong>D</strong>: Tariff shift rule</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="table-section">
+                        <div class="goods-table">
+                            <table id="goods-table">
+                                <thead>
+                                    <tr>
+                                        <th>Description of Goods</th>
+                                        <th>HS Tariff Classification</th>
+                                        <th>Origin Criterion</th>
+                                        <th>Net Cost (USD)</th>
+                                        <th>Country of Origin</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="goods-table-body">
+                                    <tr>
+                                        <td><input type="text" class="goods-input" placeholder="Description of goods"></td>
+                                        <td><input type="text" class="goods-input" placeholder="HS Code"></td>
+                                        <td>
+                                            <select class="goods-input">
+                                                <option value="">Select</option>
+                                                <option value="A">A - Wholly obtained</option>
+                                                <option value="B">B - Produced entirely</option>
+                                                <option value="C">C - Regional value content</option>
+                                                <option value="D">D - Tariff shift</option>
+                                            </select>
+                                        </td>
+                                        <td><input type="number" step="0.01" class="goods-input net-cost" placeholder="0.00" value="0.00"></td>
+                                        <td>
+                                            <select class="goods-input">
+                                                <option value="">Select</option>
+                                                <option value="US">United States</option>
+                                                <option value="CA">Canada</option>
+                                                <option value="MX">Mexico</option>
+                                            </select>
+                                        </td>
+                                        <td><button type="button" class="delete-line-btn" onclick="deleteGoodsLine(this)">Delete</button></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3" style="text-align: right; font-weight: 600;">
+                                            Total Net Cost (USD):
+                                        </td>
+                                        <td>
+                                            <input type="number" step="0.01" id="total-net-cost" value="0.00" readonly style="background-color: #f0f0f0; font-weight: 600; text-align: center;">
+                                        </td>
+                                        <td colspan="2"></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <button type="button" class="add-line-btn" onclick="addGoodsLine()">
+                                <i class="fas fa-plus"></i> Add another line
+                            </button>
+                            <button type="button" class="add-line-btn" style="margin-left: 10px;" onclick="importGoodsLines()">
+                                <i class="fas fa-file-import"></i> Import lines
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 3: Certification/Declaration -->
+            <div class="form-section">
+                <div class="certification-header">
+                    <h3>Certification / Declaration</h3>
+                </div>
+                <div class="section-content">
+                    <div class="declaration-text">
+                        <p>I certify that the goods described in this document qualify as originating and the information contained in this document is true and accurate. I assume responsibility for proving such representations and agree to maintain and present upon request or to make available during a verification visit, documentation necessary to support this certification.</p>
+                    </div>
+                    
+                    <div class="two-columns">
+                        <div class="form-group">
+                            <label>Place and Date of Issue</label>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" id="issue-place" placeholder="Place of Issue">
+                                </div>
+                                <div class="form-group">
+                                    <input type="date" id="issue-date">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Signatory Company Declaration</label>
+                            <input type="text" id="company-name" placeholder="Company name">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Name of Authorized Signatory</label>
+                        <div class="signature-details">
+                            <input type="text" id="signatory-first-name" placeholder="First Name">
+                            <input type="text" id="signatory-last-name" placeholder="Last Name">
+                        </div>
+                    </div>
+                    
+                    <div class="certifier-role">
+                        <p style="font-weight: 600; margin-bottom: 10px;">I further certify that I am the:</p>
+                        <div class="certifier-role-option">
+                            <input type="radio" id="role-exporter" name="certifier-role" value="exporter" checked>
+                            <label for="role-exporter">Exporter of the goods</label>
+                        </div>
+                        <div class="certifier-role-option">
+                            <input type="radio" id="role-producer" name="certifier-role" value="producer">
+                            <label for="role-producer">Producer of the goods</label>
+                        </div>
+                        <div class="certifier-role-option">
+                            <input type="radio" id="role-importer" name="certifier-role" value="importer">
+                            <label for="role-importer">Importer of the goods</label>
+                        </div>
+                        <div class="certifier-role-option">
+                            <input type="radio" id="role-agent" name="certifier-role" value="agent">
+                            <label for="role-agent">Authorized agent for the exporter or producer</label>
+                        </div>
+                    </div>
+                    
+                    <div class="signature-section">
+                        <div class="signature-box" id="signature-box" onclick="signDocument()">
+                            <i class="fas fa-signature"></i>
+                            <p>Signature of Authorized Signatory</p>
+                            <p><small>Click here to sign</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-note">
+                <p><strong>USMCA/CUSMA/T-MEC Note:</strong> This certificate may be used for multiple shipments of identical goods within the blanket period specified above. Falsification of information may result in penalties under the laws of the United States, Mexico, and Canada.</p>
+                <p style="margin-top: 10px; font-size: 12px;">Generated by USMCA COO e-Form System | Compliant with USMCA Article 5.2</p>
+            </div>
+            
+            <div class="actions">
+                <button type="button" class="btn btn-secondary" onclick="clearForm()">
+                    <i class="fas fa-trash-alt"></i> Clear Form
+                </button>
+                <button type="button" class="btn btn-primary" onclick="saveForm()">
+                    <i class="fas fa-save"></i> Save Draft
+                </button>
+                <button type="button" class="btn btn-success" onclick="exportToPDF()">
+                    <i class="fas fa-file-pdf"></i> Export as PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add goods line to the table
+        function addGoodsLine() {
+            const tableBody = document.getElementById('goods-table-body');
+            const newRow = document.createElement('tr');
+            
+            newRow.innerHTML = `
+                <td><input type="text" class="goods-input" placeholder="Description of goods"></td>
+                <td><input type="text" class="goods-input" placeholder="HS Code"></td>
+                <td>
+                    <select class="goods-input">
+                        <option value="">Select</option>
+                        <option value="A">A - Wholly obtained</option>
+                        <option value="B">B - Produced entirely</option>
+                        <option value="C">C - Regional value content</option>
+                        <option value="D">D - Tariff shift</option>
+                    </select>
+                </td>
+                <td><input type="number" step="0.01" class="goods-input net-cost" placeholder="0.00" value="0.00" oninput="calculateTotalNetCost()"></td>
+                <td>
+                    <select class="goods-input">
+                        <option value="">Select</option>
+                        <option value="US">United States</option>
+                        <option value="CA">Canada</option>
+                        <option value="MX">Mexico</option>
+                    </select>
+                </td>
+                <td><button type="button" class="delete-line-btn" onclick="deleteGoodsLine(this)">Delete</button></td>
+            `;
+            
+            tableBody.appendChild(newRow);
+        }
+        
+        // Import goods lines (simulated)
+        function importGoodsLines() {
+            if (confirm("This would import goods lines from a file. In a real application, this would open a file picker. For demo purposes, we'll add 3 sample lines.")) {
+                for (let i = 0; i < 3; i++) {
+                    addGoodsLine();
+                }
+                
+                // Fill sample data
+                const rows = document.querySelectorAll('#goods-table-body tr');
+                const sampleData = [
+                    {desc: "Automotive Parts - Engine Components", hs: "8407.31", criterion: "C", cost: "1250.50", country: "US"},
+                    {desc: "Aluminum Sheets", hs: "7606.11", criterion: "B", cost: "875.25", country: "CA"},
+                    {desc: "Plastic Resin Pellets", hs: "3901.10", criterion: "D", cost: "620.75", country: "MX"}
+                ];
+                
+                rows.forEach((row, index) => {
+                    if (index < 3) {
+                        const inputs = row.querySelectorAll('input, select');
+                        if (inputs.length >= 5) {
+                            inputs[0].value = sampleData[index].desc;
+                            inputs[1].value = sampleData[index].hs;
+                            inputs[2].value = sampleData[index].criterion;
+                            inputs[3].value = sampleData[index].cost;
+                            inputs[4].value = sampleData[index].country;
+                        }
+                    }
+                });
+                
+                calculateTotalNetCost();
+                alert("3 sample goods lines have been added.");
+            }
+        }
+        
+        // Delete goods line from table
+        function deleteGoodsLine(button) {
+            const row = button.closest('tr');
+            // Don't delete the last row
+            if (document.querySelectorAll('#goods-table-body tr').length > 1) {
+                row.remove();
+                calculateTotalNetCost();
+            } else {
+                alert("You must have at least one goods line in the table.");
+            }
+        }
+        
+        // Calculate total net cost
+        function calculateTotalNetCost() {
+            const costInputs = document.querySelectorAll('.net-cost');
+            let totalCost = 0;
+            
+            costInputs.forEach(input => {
+                totalCost += parseFloat(input.value) || 0;
+            });
+            
+            document.getElementById('total-net-cost').value = totalCost.toFixed(2);
+        }
+        
+        // Sign document function
+        function signDocument() {
+            const signatureBox = document.getElementById('signature-box');
+            const firstName = document.getElementById('signatory-first-name').value;
+            const lastName = document.getElementById('signatory-last-name').value;
+            const companyName = document.getElementById('company-name').value;
+            
+            if (!firstName || !lastName) {
+                alert("Please enter the signatory's first and last name before signing.");
+                return;
+            }
+            
+            if (!companyName) {
+                if (!confirm("No company name has been entered. Do you want to sign without a company name?")) {
+                    return;
+                }
+            }
+            
+            const fullName = `${firstName} ${lastName}`;
+            
+            signatureBox.classList.add('signed');
+            signatureBox.innerHTML = `
+                <i class="fas fa-check-circle"></i>
+                <p><strong>${fullName}</strong></p>
+                <p>${companyName || 'Not specified'}</p>
+                <p><small>Signed on ${new Date().toLocaleDateString()}</small></p>
+            `;
+            
+            // Don't allow re-signing
+            signatureBox.onclick = null;
+        }
+        
+        // Clear form function
+        function clearForm() {
+            if (confirm("Are you sure you want to clear the entire form? All data will be lost.")) {
+                document.querySelectorAll('input, textarea, select').forEach(element => {
+                    if (element.type !== 'button' && element.type !== 'radio') {
+                        element.value = '';
+                    }
+                });
+                
+                // Set default radio button
+                document.getElementById('role-exporter').checked = true;
+                
+                // Reset signature box
+                const signatureBox = document.getElementById('signature-box');
+                signatureBox.className = 'signature-box';
+                signatureBox.innerHTML = `
+                    <i class="fas fa-signature"></i>
+                    <p>Signature of Authorized Signatory</p>
+                    <p><small>Click here to sign</small></p>
+                `;
+                
+                // Reattach click event
+                signatureBox.onclick = function() { signDocument(); };
+                
+                // Reset goods table to one row
+                const tableBody = document.getElementById('goods-table-body');
+                tableBody.innerHTML = `
+                    <tr>
+                        <td><input type="text" class="goods-input" placeholder="Description of goods"></td>
+                        <td><input type="text" class="goods-input" placeholder="HS Code"></td>
+                        <td>
+                            <select class="goods-input">
+                                <option value="">Select</option>
+                                <option value="A">A - Wholly obtained</option>
+                                <option value="B">B - Produced entirely</option>
+                                <option value="C">C - Regional value content</option>
+                                <option value="D">D - Tariff shift</option>
+                            </select>
+                        </td>
+                        <td><input type="number" step="0.01" class="goods-input net-cost" placeholder="0.00" value="0.00" oninput="calculateTotalNetCost()"></td>
+                        <td>
+                            <select class="goods-input">
+                                <option value="">Select</option>
+                                <option value="US">United States</option>
+                                <option value="CA">Canada</option>
+                                <option value="MX">Mexico</option>
+                            </select>
+                        </td>
+                        <td><button type="button" class="delete-line-btn" onclick="deleteGoodsLine(this)">Delete</button></td>
+                    </tr>
+                `;
+                
+                // Reset total cost
+                document.getElementById('total-net-cost').value = '0.00';
+                
+                // Set today's date for date fields
+                const today = new Date().toISOString().split('T')[0];
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 30);
+                const tomorrowStr = tomorrow.toISOString().split('T')[0];
+                
+                const dateFields = ['blanket-from', 'blanket-to', 'issue-date'];
+                dateFields.forEach(fieldId => {
+                    const field = document.getElementById(fieldId);
+                    if (field) field.value = fieldId === 'blanket-from' ? today : 
+                                          fieldId === 'blanket-to' ? tomorrowStr : today;
+                });
+                
+                alert("Form cleared successfully!");
+            }
+        }
+        
+        // Save form function (simulated)
+        function saveForm() {
+            // Validate required fields
+            const requiredFields = [
+                {id: 'certifier', name: 'Certifier'},
+                {id: 'exporter', name: 'Exporter'},
+                {id: 'certificate-ref', name: 'Certificate Reference Number'}
+            ];
+            
+            let missingFields = [];
+            requiredFields.forEach(field => {
+                if (!document.getElementById(field.id).value.trim()) {
+                    missingFields.push(field.name);
+                }
+            });
+            
+            if (missingFields.length > 0) {
+                alert(`Please fill in the following required fields:\n\n• ${missingFields.join('\n• ')}`);
+                return;
+            }
+            
+            // In a real application, this would save to a database or localStorage
+            const formData = {
+                certifier: document.getElementById('certifier').value,
+                exporter: document.getElementById('exporter').value,
+                certificateRef: document.getElementById('certificate-ref').value,
+                // ... collect all other form data
+            };
+            
+            // For demo purposes, we'll just show an alert
+            alert("USMCA Certificate of Origin saved as draft! (In a real application, data would be saved to a database)");
+        }
+        
+        // Export to PDF function
+        function exportToPDF() {
+            // Validate required fields
+            const requiredFields = [
+                {id: 'certifier', name: 'Certifier'},
+                {id: 'exporter', name: 'Exporter'},
+                {id: 'certificate-ref', name: 'Certificate Reference Number'}
+            ];
+            
+            let missingFields = [];
+            requiredFields.forEach(field => {
+                if (!document.getElementById(field.id).value.trim()) {
+                    missingFields.push(field.name);
+                }
+            });
+            
+            if (missingFields.length > 0) {
+                alert(`Please fill in the following required fields:\n\n• ${missingFields.join('\n• ')}`);
+                return;
+            }
+            
+            // Check if signature is present
+            const signatureBox = document.getElementById('signature-box');
+            if (!signatureBox.classList.contains('signed')) {
+                if (!confirm("No signature has been added. Do you want to export the PDF without a signature?")) {
+                    return;
+                }
+            }
+            
+            // Show loading message
+            const originalButtonText = document.querySelector('.btn-success i').parentElement.innerHTML;
+            document.querySelector('.btn-success').innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
+            document.querySelector('.btn-success').disabled = true;
+            
+            // Configure PDF options
+            const element = document.getElementById('certificate-form-container');
+            const opt = {
+                margin: [10, 10, 10, 10],
+                filename: `USMCA_COO_${document.getElementById('certificate-ref').value || 'Certificate'}_${new Date().toISOString().slice(0, 10)}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { 
+                    scale: 2,
+                    useCORS: true,
+                    logging: false
+                },
+                jsPDF: { 
+                    unit: 'mm', 
+                    format: 'a4', 
+                    orientation: 'portrait' 
+                }
+            };
+            
+            // Generate PDF
+            html2pdf().set(opt).from(element).save().then(() => {
+                // Restore button
+                document.querySelector('.btn-success').innerHTML = originalButtonText;
+                document.querySelector('.btn-success').disabled = false;
+                
+                alert("USMCA Certificate of Origin PDF exported successfully!");
+            });
+        }
+        
+        // Initialize form on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set today's date for date fields
+            const today = new Date().toISOString().split('T')[0];
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 30);
+            const tomorrowStr = tomorrow.toISOString().split('T')[0];
+            
+            document.getElementById('blanket-from').value = today;
+            document.getElementById('blanket-to').value = tomorrowStr;
+            document.getElementById('issue-date').value = today;
+            
+            // Attach cost calculation to existing cost inputs
+            document.querySelectorAll('.net-cost').forEach(input => {
+                input.addEventListener('input', calculateTotalNetCost);
+            });
+            
+            // Generate a sample certificate reference
+            const refNum = `USMCA-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
+            document.getElementById('certificate-ref').value = refNum;
+        });
+    </script>
+</body>
+</html>

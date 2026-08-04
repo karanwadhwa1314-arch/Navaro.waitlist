@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verified Gross Mass Declaration (VGM)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f2f5;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            border-radius: 4px 4px 0 0;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+        
+        .form-section {
+            padding: 20px;
+        }
+        
+        .shipper-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 20px;
+        }
+        
+        .shipper-info {
+            flex: 1;
+        }
+        
+        .pages-info {
+            text-align: right;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .search-box {
+            margin-bottom: 15px;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .input-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .input-group {
+            flex: 1;
+        }
+        
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .method-selection {
+            margin: 25px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .method-selection-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .method-options {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .method-option {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+        
+        .method-option:hover {
+            border-color: #3498db;
+            background: #f0f7ff;
+        }
+        
+        .method-option.selected {
+            border-color: #2c3e50;
+            background: #e8f4ff;
+        }
+        
+        .method-option input[type="radio"] {
+            width: 18px;
+            height: 18px;
+        }
+        
+        .method-option label {
+            font-weight: 600;
+            color: #2c3e50;
+            cursor: pointer;
+            flex: 1;
+            margin: 0;
+        }
+        
+        .method-description {
+            background: white;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .method-description.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .method-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+        
+        .method-text {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .table-container {
+            margin: 25px 0;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        table th {
+            background: #2c3e50;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+            border: 1px solid #2c3e50;
+        }
+        
+        table td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        
+        table input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        .add-container-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .add-container-btn:hover {
+            background: #219653;
+        }
+        
+        .remove-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            width: 100%;
+        }
+        
+        .remove-btn:hover {
+            background: #c0392b;
+        }
+        
+        .declaration-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 25px 0;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .declaration-text {
+            font-style: italic;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .signature-section {
+            margin-top: 20px;
+        }
+        
+        .signature-box {
+            border: 2px dashed #95a5a6;
+            border-radius: 4px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            background: white;
+            margin-top: 10px;
+        }
+        
+        .signature-box:hover {
+            border-color: #3498db;
+            background: #f8f9fa;
+        }
+        
+        .signature-box i {
+            font-size: 32px;
+            color: #95a5a6;
+            margin-bottom: 10px;
+        }
+        
+        .signature-box p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .signature-preview {
+            display: none;
+            margin-top: 15px;
+            text-align: center;
+        }
+        
+        .signature-preview canvas {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .button-group {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .btn-reset {
+            background: #95a5a6;
+            color: white;
+        }
+        
+        .btn-reset:hover {
+            background: #7f8c8d;
+        }
+        
+        .btn-download {
+            background: #2c3e50;
+            color: white;
+        }
+        
+        .btn-download:hover {
+            background: #1a252f;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 12px;
+        }
+        
+        .required {
+            color: #e74c3c;
+        }
+        
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .shipper-section {
+                flex-direction: column;
+            }
+            
+            .pages-info {
+                text-align: left;
+                margin-top: 10px;
+            }
+            
+            .method-options {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container" id="vgm-form">
+        <div class="header">
+            <h1>VERIFIED GROSS MASS DECLARATION</h1>
+        </div>
+        
+        <div class="form-section">
+            <div class="shipper-section">
+                <div class="shipper-info">
+                    <div class="search-box">
+                        <input type="text" id="search-contacts" placeholder="Search contacts">
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>Shipper Reference <span class="required">*</span></label>
+                            <input type="text" id="shipper-reference" placeholder="Enter shipper reference">
+                        </div>
+                        <div class="input-group">
+                            <label>Certificate Number <span class="required">*</span></label>
+                            <input type="text" id="certificate-number" placeholder="Enter certificate number">
+                        </div>
+                    </div>
+                </div>
+                <div class="pages-info">
+                    <div>Pages</div>
+                    <div>1 of 1</div>
+                </div>
+            </div>
+            
+            <div class="method-selection">
+                <div class="method-selection-title">Select Weighing Method <span class="required">*</span></div>
+                
+                <div class="method-options">
+                    <div class="method-option" id="method1-option">
+                        <input type="radio" id="method1" name="weighing-method" value="method1">
+                        <label for="method1">METHOD 1</label>
+                    </div>
+                    <div class="method-option" id="method2-option">
+                        <input type="radio" id="method2" name="weighing-method" value="method2">
+                        <label for="method2">METHOD 2</label>
+                    </div>
+                </div>
+                
+                <div class="method-description" id="method1-description">
+                    <div class="method-title">METHOD 1</div>
+                    <div class="method-text">
+                        Weighing the packed container using calibrated and certified weighing equipment (e.g. weighbridges, load cell sensing technologies etc).
+                    </div>
+                </div>
+                
+                <div class="method-description" id="method2-description">
+                    <div class="method-title">METHOD 2</div>
+                    <div class="method-text">
+                        Weighing all packages and cargo items, including the mass of pallets, dunnage and other securing material to be packed in the container and adding the tare mass of the container to the sum of the single masses, using a certified method approved by the Country competent Authority (Marine and Coastguard Agency (MCA) or its authorized body).
+                    </div>
+                </div>
+            </div>
+            
+            <div id="container-section">
+                <button class="add-container-btn" id="add-container">
+                    <i class="fas fa-plus"></i> Add Container
+                </button>
+                
+                <div class="table-container">
+                    <table id="container-table">
+                        <thead>
+                            <tr>
+                                <th>Container Number</th>
+                                <th>Container Tare (kg)</th>
+                                <th>Cargo Weight (kg)</th>
+                                <th>Gross Weight (kg)</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="container-body">
+                            <tr>
+                                <td><input type="text" class="container-no" placeholder="e.g. MSCU1234567"></td>
+                                <td><input type="number" class="tare-weight" value="0" min="0" step="0.01"></td>
+                                <td><input type="number" class="cargo-weight" value="0" min="0" step="0.01"></td>
+                                <td><input type="number" class="gross-weight" value="0" readonly></td>
+                                <td><button class="remove-btn" onclick="removeContainer(this)"><i class="fas fa-trash"></i> Remove</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="declaration-section">
+                <div class="declaration-text">
+                    In accordance with the International Maritime Organization (IMO) Safety of Life at Sea (SOLAS) convention under regulation 2 of chapter VI which mandates the declaration of the Verified Gross Mass (VGM), the shipper hereby certifies all information on this Verified Gross Mass declaration is true and correct.
+                </div>
+                
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label>Place of Issue <span class="required">*</span></label>
+                        <input type="text" id="place-issue" placeholder="Enter place of issue">
+                    </div>
+                    <div class="input-group">
+                        <label>Date of Issue <span class="required">*</span></label>
+                        <input type="date" id="date-issue">
+                    </div>
+                    <div class="input-group">
+                        <label>Signatory Company <span class="required">*</span></label>
+                        <input type="text" id="signatory-company" placeholder="Enter company name">
+                    </div>
+                    <div class="input-group">
+                        <label>First Name <span class="required">*</span></label>
+                        <input type="text" id="first-name" placeholder="First name">
+                    </div>
+                    <div class="input-group">
+                        <label>Last Name <span class="required">*</span></label>
+                        <input type="text" id="last-name" placeholder="Last name">
+                    </div>
+                </div>
+                
+                <div class="signature-section">
+                    <div class="input-group">
+                        <label>Signature <span class="required">*</span></label>
+                        <div class="signature-box" id="signature-trigger">
+                            <i class="fas fa-signature"></i>
+                            <p>CLICK TO SIGN</p>
+                        </div>
+                        <div class="signature-preview" id="signature-preview">
+                            <canvas id="signature-canvas" width="300" height="100"></canvas>
+                            <p style="margin-top: 10px;"><a href="#" id="clear-signature" style="color: #e74c3c; text-decoration: none;">Clear Signature</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="button-group">
+                <button class="btn btn-reset" id="reset-btn">
+                    <i class="fas fa-redo"></i> Reset Form
+                </button>
+                <button class="btn btn-download" id="download-btn">
+                    <i class="fas fa-file-pdf"></i> Download PDF
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>IMO SOLAS Convention - Chapter VI, Regulation 2</p>
+        <p>© 2023 Verified Gross Mass Declaration System</p>
+    </div>
+
+    <!-- Signature Modal -->
+    <div id="signature-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+        <div style="background: white; padding: 30px; border-radius: 8px; width: 90%; max-width: 600px;">
+            <h3 style="margin-bottom: 20px; color: #2c3e50;">Draw Your Signature</h3>
+            <div style="border: 1px solid #ddd; margin-bottom: 20px;">
+                <canvas id="signature-pad" width="540" height="200" style="cursor: crosshair; width: 100%; height: 200px;"></canvas>
+            </div>
+            <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                <button id="clear-signature-pad" style="padding: 10px 20px; background: #95a5a6; color: white; border: none; border-radius: 4px; cursor: pointer;">Clear</button>
+                <button id="cancel-signature" style="padding: 10px 20px; background: #e74c3c; color: white; border: none; border-radius: 4px; cursor: pointer;">Cancel</button>
+                <button id="save-signature" style="padding: 10px 20px; background: #27ae60; color: white; border: none; border-radius: 4px; cursor: pointer;">Save Signature</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set default date
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('date-issue').value = today;
+            
+            // Initialize signature
+            initSignature();
+            
+            // Method selection functionality
+            initMethodSelection();
+            
+            // Add container functionality
+            document.getElementById('add-container').addEventListener('click', addContainer);
+            
+            // Calculate gross weight on input
+            document.addEventListener('input', function(e) {
+                if (e.target.classList.contains('tare-weight') || e.target.classList.contains('cargo-weight')) {
+                    calculateGrossWeight(e.target);
+                }
+            });
+            
+            // Reset form
+            document.getElementById('reset-btn').addEventListener('click', resetForm);
+            
+            // Download PDF
+            document.getElementById('download-btn').addEventListener('click', generatePDF);
+            
+            // Initial calculation
+            document.querySelectorAll('.tare-weight, .cargo-weight').forEach(input => {
+                calculateGrossWeight(input);
+            });
+        });
+        
+        function initMethodSelection() {
+            const method1Option = document.getElementById('method1-option');
+            const method2Option = document.getElementById('method2-option');
+            const method1Radio = document.getElementById('method1');
+            const method2Radio = document.getElementById('method2');
+            const method1Desc = document.getElementById('method1-description');
+            const method2Desc = document.getElementById('method2-description');
+            
+            // Click handlers for method options
+            method1Option.addEventListener('click', function() {
+                method1Radio.checked = true;
+                method1Option.classList.add('selected');
+                method2Option.classList.remove('selected');
+                method1Desc.classList.add('active');
+                method2Desc.classList.remove('active');
+            });
+            
+            method2Option.addEventListener('click', function() {
+                method2Radio.checked = true;
+                method2Option.classList.add('selected');
+                method1Option.classList.remove('selected');
+                method2Desc.classList.add('active');
+                method1Desc.classList.remove('active');
+            });
+            
+            // Radio button change handlers
+            method1Radio.addEventListener('change', function() {
+                if (this.checked) {
+                    method1Option.classList.add('selected');
+                    method2Option.classList.remove('selected');
+                    method1Desc.classList.add('active');
+                    method2Desc.classList.remove('active');
+                }
+            });
+            
+            method2Radio.addEventListener('change', function() {
+                if (this.checked) {
+                    method2Option.classList.add('selected');
+                    method1Option.classList.remove('selected');
+                    method2Desc.classList.add('active');
+                    method1Desc.classList.remove('active');
+                }
+            });
+        }
+        
+        function calculateGrossWeight(input) {
+            const row = input.closest('tr');
+            const tare = parseFloat(row.querySelector('.tare-weight').value) || 0;
+            const cargo = parseFloat(row.querySelector('.cargo-weight').value) || 0;
+            const gross = row.querySelector('.gross-weight');
+            
+            gross.value = (tare + cargo).toFixed(2);
+        }
+        
+        function addContainer() {
+            const tbody = document.getElementById('container-body');
+            const newRow = document.createElement('tr');
+            
+            newRow.innerHTML = `
+                <td><input type="text" class="container-no" placeholder="e.g. MSCU1234567"></td>
+                <td><input type="number" class="tare-weight" value="0" min="0" step="0.01"></td>
+                <td><input type="number" class="cargo-weight" value="0" min="0" step="0.01"></td>
+                <td><input type="number" class="gross-weight" value="0" readonly></td>
+                <td><button class="remove-btn" onclick="removeContainer(this)"><i class="fas fa-trash"></i> Remove</button></td>
+            `;
+            
+            tbody.appendChild(newRow);
+        }
+        
+        function removeContainer(button) {
+            const row = button.closest('tr');
+            const tbody = document.getElementById('container-body');
+            const rows = tbody.querySelectorAll('tr');
+            
+            if (rows.length > 1) {
+                row.remove();
+            } else {
+                alert('At least one container row must remain.');
+            }
+        }
+        
+        function resetForm() {
+            if (confirm('Are you sure you want to reset the form? All data will be lost.')) {
+                // Clear all inputs
+                document.querySelectorAll('input').forEach(input => {
+                    if (input.type === 'date') {
+                        input.value = new Date().toISOString().split('T')[0];
+                    } else if (input.classList.contains('gross-weight')) {
+                        input.value = '0';
+                    } else if (input.classList.contains('tare-weight') || input.classList.contains('cargo-weight')) {
+                        input.value = '0';
+                    } else if (input.type === 'radio') {
+                        input.checked = false;
+                    } else {
+                        input.value = '';
+                    }
+                });
+                
+                // Reset method selection
+                document.getElementById('method1-option').classList.remove('selected');
+                document.getElementById('method2-option').classList.remove('selected');
+                document.getElementById('method1-description').classList.remove('active');
+                document.getElementById('method2-description').classList.remove('active');
+                
+                // Reset signature
+                const signatureCanvas = document.getElementById('signature-canvas');
+                const ctx = signatureCanvas.getContext('2d');
+                ctx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
+                document.getElementById('signature-preview').style.display = 'none';
+                
+                // Reset to one container row
+                const tbody = document.getElementById('container-body');
+                const rows = tbody.querySelectorAll('tr');
+                
+                for (let i = rows.length - 1; i > 0; i--) {
+                    rows[i].remove();
+                }
+                
+                // Remove error highlights
+                document.querySelectorAll('input').forEach(input => {
+                    input.style.borderColor = '#ddd';
+                });
+            }
+        }
+        
+        let signaturePadCtx;
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+        let selectedMethod = '';
+        
+        function initSignature() {
+            const signatureTrigger = document.getElementById('signature-trigger');
+            const signatureModal = document.getElementById('signature-modal');
+            const signaturePad = document.getElementById('signature-pad');
+            const saveBtn = document.getElementById('save-signature');
+            const cancelBtn = document.getElementById('cancel-signature');
+            const clearBtn = document.getElementById('clear-signature-pad');
+            const clearSignature = document.getElementById('clear-signature');
+            
+            signaturePadCtx = signaturePad.getContext('2d');
+            signaturePadCtx.lineWidth = 2;
+            signaturePadCtx.lineJoin = 'round';
+            signaturePadCtx.lineCap = 'round';
+            signaturePadCtx.strokeStyle = '#2c3e50';
+            
+            // Open signature modal
+            signatureTrigger.addEventListener('click', () => {
+                signatureModal.style.display = 'flex';
+                signaturePadCtx.clearRect(0, 0, signaturePad.width, signaturePad.height);
+            });
+            
+            // Drawing functionality
+            signaturePad.addEventListener('mousedown', (e) => {
+                isDrawing = true;
+                [lastX, lastY] = [e.offsetX, e.offsetY];
+            });
+            
+            signaturePad.addEventListener('mousemove', (e) => {
+                if (!isDrawing) return;
+                signaturePadCtx.beginPath();
+                signaturePadCtx.moveTo(lastX, lastY);
+                signaturePadCtx.lineTo(e.offsetX, e.offsetY);
+                signaturePadCtx.stroke();
+                [lastX, lastY] = [e.offsetX, e.offsetY];
+            });
+            
+            signaturePad.addEventListener('mouseup', () => isDrawing = false);
+            signaturePad.addEventListener('mouseout', () => isDrawing = false);
+            
+            // Clear signature pad
+            clearBtn.addEventListener('click', () => {
+                signaturePadCtx.clearRect(0, 0, signaturePad.width, signaturePad.height);
+            });
+            
+            // Cancel signature
+            cancelBtn.addEventListener('click', () => {
+                signatureModal.style.display = 'none';
+            });
+            
+            // Save signature
+            saveBtn.addEventListener('click', () => {
+                const dataURL = signaturePad.toDataURL();
+                const previewCanvas = document.getElementById('signature-canvas');
+                const previewCtx = previewCanvas.getContext('2d');
+                
+                // Clear and draw signature on preview
+                previewCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
+                
+                const img = new Image();
+                img.onload = () => {
+                    previewCtx.drawImage(img, 0, 0, previewCanvas.width, previewCanvas.height);
+                };
+                img.src = dataURL;
+                
+                document.getElementById('signature-preview').style.display = 'block';
+                signatureModal.style.display = 'none';
+            });
+            
+            // Clear signature preview
+            clearSignature.addEventListener('click', (e) => {
+                e.preventDefault();
+                const previewCanvas = document.getElementById('signature-canvas');
+                const previewCtx = previewCanvas.getContext('2d');
+                previewCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
+                document.getElementById('signature-preview').style.display = 'none';
+            });
+            
+            // Close modal when clicking outside
+            signatureModal.addEventListener('click', (e) => {
+                if (e.target === signatureModal) {
+                    signatureModal.style.display = 'none';
+                }
+            });
+        }
+        
+        async function generatePDF() {
+            // Validate form
+            const requiredFields = [
+                'shipper-reference',
+                'certificate-number',
+                'place-issue',
+                'date-issue',
+                'signatory-company',
+                'first-name',
+                'last-name'
+            ];
+            
+            let isValid = true;
+            requiredFields.forEach(id => {
+                const field = document.getElementById(id);
+                if (!field.value.trim()) {
+                    field.style.borderColor = '#e74c3c';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '#ddd';
+                }
+            });
+            
+            // Check method selection
+            const method1 = document.getElementById('method1');
+            const method2 = document.getElementById('method2');
+            if (!method1.checked && !method2.checked) {
+                alert('Please select a weighing method (Method 1 or Method 2).');
+                isValid = false;
+            }
+            
+            // Check containers
+            const containers = document.querySelectorAll('.container-no');
+            let hasContainerData = false;
+            containers.forEach(container => {
+                if (container.value.trim()) hasContainerData = true;
+            });
+            
+            if (!hasContainerData) {
+                alert('Please add at least one container with a container number.');
+                return;
+            }
+            
+            // Check signature
+            const signatureCanvas = document.getElementById('signature-canvas');
+            const signatureCtx = signatureCanvas.getContext('2d');
+            const signatureData = signatureCtx.getImageData(0, 0, signatureCanvas.width, signatureCanvas.height);
+            let hasSignature = false;
+            
+            // Check if canvas has any non-transparent pixels
+            for (let i = 3; i < signatureData.data.length; i += 4) {
+                if (signatureData.data[i] > 0) {
+                    hasSignature = true;
+                    break;
+                }
+            }
+            
+            if (!hasSignature) {
+                alert('Please provide a signature before downloading.');
+                document.getElementById('signature-trigger').style.borderColor = '#e74c3c';
+                isValid = false;
+            } else {
+                document.getElementById('signature-trigger').style.borderColor = '#ddd';
+            }
+            
+            if (!isValid) {
+                return;
+            }
+            
+            // Show loading
+            const downloadBtn = document.getElementById('download-btn');
+            const originalText = downloadBtn.innerHTML;
+            downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
+            downloadBtn.disabled = true;
+            
+            try {
+                // Create a new jsPDF instance
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF('p', 'mm', 'a4');
+                
+                // Set initial position
+                let yPos = 20;
+                
+                // Add header
+                doc.setFontSize(20);
+                doc.setFont('helvetica', 'bold');
+                doc.text('VERIFIED GROSS MASS DECLARATION', 105, yPos, { align: 'center' });
+                yPos += 15;
+                
+                // Add shipper info
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'normal');
+                doc.text(`Shipper Reference: ${document.getElementById('shipper-reference').value}`, 20, yPos);
+                doc.text(`Certificate Number: ${document.getElementById('certificate-number').value}`, 120, yPos);
+                yPos += 10;
+                
+                // Add selected method
+                const selectedMethod = document.querySelector('input[name="weighing-method"]:checked').value;
+                doc.setFontSize(12);
+                doc.setFont('helvetica', 'bold');
+                
+                if (selectedMethod === 'method1') {
+                    doc.text('METHOD 1', 20, yPos);
+                    yPos += 7;
+                    
+                    doc.setFontSize(10);
+                    doc.setFont('helvetica', 'normal');
+                    const method1Text = "Weighing the packed container using calibrated and certified weighing equipment (e.g. weighbridges, load cell sensing technologies etc).";
+                    const method1Lines = doc.splitTextToSize(method1Text, 170);
+                    doc.text(method1Lines, 20, yPos);
+                    yPos += method1Lines.length * 5 + 10;
+                } else {
+                    doc.text('METHOD 2', 20, yPos);
+                    yPos += 7;
+                    
+                    doc.setFontSize(10);
+                    doc.setFont('helvetica', 'normal');
+                    const method2Text = "Weighing all packages and cargo items, including the mass of pallets, dunnage and other securing material to be packed in the container and adding the tare mass of the container to the sum of the single masses, using a certified method approved by the Country competent Authority (Marine and Coastguard Agency (MCA) or its authorized body).";
+                    const method2Lines = doc.splitTextToSize(method2Text, 170);
+                    doc.text(method2Lines, 20, yPos);
+                    yPos += method2Lines.length * 5 + 10;
+                }
+                
+                // Add container table
+                const containerRows = document.querySelectorAll('#container-body tr');
+                const tableData = [];
+                
+                // Add table headers
+                tableData.push([
+                    'Container Number',
+                    'Container Tare (kg)',
+                    'Cargo Weight (kg)',
+                    'Gross Weight (kg)'
+                ]);
+                
+                // Add container data
+                containerRows.forEach(row => {
+                    const containerNo = row.querySelector('.container-no').value || '';
+                    const tareWeight = row.querySelector('.tare-weight').value || '0';
+                    const cargoWeight = row.querySelector('.cargo-weight').value || '0';
+                    const grossWeight = row.querySelector('.gross-weight').value || '0';
+                    
+                    tableData.push([
+                        containerNo,
+                        parseFloat(tareWeight).toFixed(2),
+                        parseFloat(cargoWeight).toFixed(2),
+                        parseFloat(grossWeight).toFixed(2)
+                    ]);
+                });
+                
+                // Draw table
+                doc.autoTable({
+                    startY: yPos,
+                    head: [tableData[0]],
+                    body: tableData.slice(1),
+                    theme: 'grid',
+                    headStyles: { fillColor: [44, 62, 80] },
+                    margin: { left: 20, right: 20 }
+                });
+                
+                yPos = doc.lastAutoTable.finalY + 15;
+                
+                // Add declaration
+                doc.setFontSize(11);
+                doc.setFont('helvetica', 'italic');
+                const declarationText = "In accordance with the International Maritime Organization (IMO) Safety of Life at Sea (SOLAS) convention under regulation 2 of chapter VI which mandates the declaration of the Verified Gross Mass (VGM), the shipper hereby certifies all information on this Verified Gross Mass declaration is true and correct.";
+                const declarationLines = doc.splitTextToSize(declarationText, 170);
+                doc.text(declarationLines, 20, yPos);
+                yPos += declarationLines.length * 7 + 10;
+                
+                // Add place and date
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'normal');
+                doc.text(`Place of Issue: ${document.getElementById('place-issue').value}`, 20, yPos);
+                doc.text(`Date of Issue: ${document.getElementById('date-issue').value}`, 120, yPos);
+                yPos += 10;
+                
+                // Add signatory info
+                doc.text(`Signatory Company: ${document.getElementById('signatory-company').value}`, 20, yPos);
+                yPos += 10;
+                
+                doc.text(`Name of Authorized Signatory: ${document.getElementById('first-name').value} ${document.getElementById('last-name').value}`, 20, yPos);
+                yPos += 15;
+                
+                // Add signature
+                doc.text('Signature:', 20, yPos);
+                yPos += 5;
+                
+                // Add signature image
+                const signatureDataURL = signatureCanvas.toDataURL('image/png');
+                doc.addImage(signatureDataURL, 'PNG', 20, yPos, 60, 25);
+                
+                // Add footer
+                doc.setFontSize(8);
+                doc.setTextColor(100);
+                doc.text('IMO SOLAS Convention - Chapter VI, Regulation 2', 105, 280, { align: 'center' });
+                
+                // Save the PDF
+                const fileName = `VGM_Declaration_${document.getElementById('certificate-number').value || 'document'}.pdf`;
+                doc.save(fileName);
+                
+            } catch (error) {
+                console.error('Error generating PDF:', error);
+                alert('Error generating PDF. Please try again.');
+            } finally {
+                // Reset button
+                downloadBtn.innerHTML = originalText;
+                downloadBtn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

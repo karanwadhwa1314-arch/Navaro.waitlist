@@ -1,0 +1,1837 @@
+*,
+*::after,
+*::before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --dark: #080707;
+  --primary: #19D769;
+}
+html {
+  font-size: 10px;
+}
+
+body {
+  line-height: 1.4;
+  font-family: "TASA Orbiter Deck";
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #F9F9F9;
+  color: var(--dark);
+  font-weight: 400;
+  font-size: 2.3rem;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+form,
+input,
+select,
+textarea {
+  width: 100%;
+}
+ul:not(.list-none),
+ol:not(.list-none) {
+  padding-left: 2rem;
+}
+h1,
+.large-title,
+.h1 {
+  font-size: 22rem;
+  line-height: 1;
+  font-weight: 700;
+  font-family: "TASA Orbiter Deck";
+  letter-spacing: -1rem;
+  word-spacing: -1rem;
+}
+.large-title {
+  letter-spacing: -0.7rem;
+  word-spacing: -2rem;
+}
+h1,h2,h3,h4,h5 {
+  font-family: "TASA Orbiter Deck";
+}
+h2,
+.h2,
+h4,
+.h4 {
+  line-height: 1.2;
+  font-weight: 600;
+}
+h2,
+.h2 {
+  font-size: 6.3rem;
+}
+h4,
+.h4 {
+  font-size: 4rem;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+  font-size: inherit;
+  transition: all 0.5s ease;
+}
+img {
+  max-width: 100%;
+  transition: all 0.5s ease;
+}
+.col-third {
+  width: calc(100% / 3);
+}
+.w-10 {
+  width: 10%;
+}
+.w-20 {
+  width: 20%;
+}
+.col-forth {
+  width: calc(100% / 4);
+}
+.w-25 {
+  width: 25%;
+}
+.w-30 {
+  width: 30%;
+}
+.w-33 {
+  width: 33%;
+}
+.w-35 {
+  width: 35%;
+}
+.w-40 {
+  width: 40%;
+}
+.w-45 {
+  width: 45%;
+}
+.w-47 {
+  width: 47%;
+}
+.w-48 {
+  width: 48%;
+}
+.w-50 {
+  width: 50%;
+}
+.w-55 {
+  width: 55%;
+}
+.w-60 {
+  width: 60%;
+}
+.w-65 {
+  width: 65%;
+}
+.w-70 {
+  width: 70%;
+}
+.w-75 {
+  width: 75%;
+}
+.w-80 {
+  width: 80%;
+}
+.w-85 {
+  width: 85%;
+}
+.w-90 {
+  width: 90%;
+}
+.w-95 {
+  width: 95%;
+}
+
+.full-box,
+.w-100,
+.w-full {
+  width: 100%;
+}
+.w-max {
+  width: max-content;
+}
+.object-cover {
+  object-fit: cover;
+}
+.object-contain {
+  object-fit: contain;
+}
+.h-full,
+.h-100 {
+  height: 100%;
+}
+.h-auto {
+  height: auto;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.capitalize {
+  text-transform: capitalize;
+}
+.relative {
+  position: relative;
+}
+.bg-white {
+  background-color: var(--white);
+}
+.bg-black {
+  background-color: var(--black);
+}
+.bg-dark {
+  background-color: var(--dark);
+}
+.bg-primary {
+  background-color: var(--primary);
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.align-end {
+  align-items: flex-end;
+}
+.align-center {
+  align-items: center;
+}
+.flex-box {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.flex-1 {
+  flex: 1;
+}
+.space-between,
+.justify-between {
+  justify-content: space-between;
+}
+.justify-center {
+  justify-content: center;
+}
+.box-center {
+  align-items: center;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+
+@font-face {
+  font-family: 'TASA Orbiter Display';
+  src: url('../font/TASAOrbiterDeck-Bold-BF64891cba35ec7.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap; 
+}
+@font-face {
+  font-family: 'TASA Orbiter Deck';
+  src: url('../font/TASAOrbiterDeck-Regular-BF64891cba23854.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap; 
+}
+.container {
+  max-width: 1415px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+.cloudsquare g:hover, .cloudsquare g:hover path, .cloudsquare g:hover mask, .cloudsquare g:hover mask path {
+  fill: #fff !important;
+  opacity: 1 !important;
+  stroke: #fff !important;
+}
+.cloudsquare {
+  background: #DCB7EB;
+}
+.cloudsquare g {
+  z-index: 111;
+  position: relative;
+}
+
+.cloudsquare path {
+  position: relative;
+  z-index: -1;
+}
+
+.cloudsquare svg {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+.cloudsquare g, .cloudsquare g path, .cloudsquare g mask, .cloudsquare g mask path {
+  transition: 0.2s;
+  position: relative;
+  z-index: 999;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.siteheader .row {
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.menuwrapper .menuwrap ul {
+  display: flex;
+}
+
+ul {
+  padding-left: 0px;
+  list-style: none;
+}
+
+.menuwrapper .menuwrap ul li a {
+  font-family: "TASA Orbiter Deck";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  color: #1E1E1E;
+  text-align: center;
+  display: inline-block;
+  padding: 0 16px;
+}
+
+.buttonwrap a {
+  display: flex;
+  align-items: center;
+}
+
+.buttonwrap a span {
+  font-family: "TASA Orbiter Deck";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  color: #000;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: #C780ED;
+}
+.buttonwrap a span:last-child {
+  line-height: 0;
+}
+
+.buttonwrap {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.login-signup-btn {
+  font-family: "TASA Orbiter Deck";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  color: #000;
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid #1E1E1E;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+.login-signup-btn:hover {
+  background-color: #1E1E1E;
+  color: #fff;
+}
+header.siteheader {
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #F9F9F9;
+}
+.logo img {
+  width: 230px;
+  height: 72px;
+  object-fit: contain;
+}
+.mobile-menu-buttons {
+  display: none;
+}
+
+.bannercontentinner h1 {
+  font-family: "TASA Orbiter Deck";
+  font-size: 80px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -3.2px;
+  text-transform: uppercase;
+  color: #054742;
+}
+
+span.blue  {
+  color: #62B6FF;
+}
+.bannercontent {
+  text-align: center;
+  padding: 120px 0 0;
+  max-width: 840px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+span.orange  {
+  color: #F9DB5E;
+}
+.bannercontentinner p {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  color: #054742;
+  margin: 12px 0px 36px;
+}
+.btn {
+  font-family: "TASA Orbiter Deck";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  color: #000;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: #C780ED;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 5px;
+}
+
+.btn.whitebtn {
+  background: #fff;
+  border: 1px solid rgba(30, 30, 30, 0.80);
+}
+.bannervideowrap {
+  position: relative;
+  margin-top: -120px;
+}
+
+.bannervideowrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.08;
+}
+.bannervideowrap .vector1 {
+  position: absolute;
+  top: 200px;
+}
+
+.bannervideowrap .vector2 {
+  position: absolute;
+  top: 80px;
+  right: 40px;
+}
+
+.bannervideowrap img {
+  object-fit: contain;
+}
+
+.bannervideowrap .vector3 {
+  position: absolute;
+  left: 120px;
+  bottom: 0;
+}
+
+.bannervideowrap .vector4 {
+  position: absolute;
+  right: 120px;
+  bottom: 0;
+}
+
+.mainbanner .blurbg {
+  height: 257px;
+  margin-top: -80px;
+}
+.bordersepleftright {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(30, 30, 30, 0.15);
+  max-width: 850px;
+  margin: 0 auto;
+  right: 0;
+  z-index: 1;
+}
+.onesystemtotal .gradientbox {
+  text-align: center;
+  padding: 120px 0 0;
+}
+
+.onesystemtotal .gradientbox h2 span {
+  background: linear-gradient(to right, #054742, #054742);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'TASA Orbiter Display';
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.onesystemtotal .gradientbox h2 {
+  line-height: 0.8;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.onesystemtotalrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.onesystemtotalrow .onesystemtitlevideo {
+  width: 422px;
+}
+
+.onesystemtotalrow .onesystemtitlevideo video, .media-box video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.onesystemtotaltitle h3 {
+  color: #E2D8E6;
+  font-family: "TASA Orbiter Display";
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 90%;
+  text-transform: capitalize;
+}
+.titlebox {
+  max-width: 850px;
+  margin: 0 auto;
+}
+.stepsguidesec {
+  padding: 200px 0;
+}
+.stepsguidesec {
+  position: relative;
+  z-index: 1;
+}
+
+.titlebox h6 {
+  border-top: 1px solid rgba(30, 30, 30, 0.15);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+  color: #054742;
+  letter-spacing: -0.64px;
+  text-transform: capitalize;
+  border-bottom: 1px solid rgba(30, 30, 30, 0.15);
+  padding: 15px;
+  margin-bottom: 64px;
+  text-align: center;
+}
+
+.titlebox h2, .titlebox p {
+  max-width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.titlebox h2 {
+  text-align: center;
+  font-family: "TASA Orbiter Deck";
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: -0.96px;
+  text-transform: uppercase;
+  color: #054742;
+}
+
+.titlebox p {
+  font-family: "TASA Orbiter Deck";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  color: #054742;
+  margin: 12px auto 64px;
+}
+.stepsguidesec .row .col-third {
+  padding: 26px;
+}
+
+.stepsguidesec .row .col-inner {
+  padding: 36px 25px;border-radius: 12px;height: 100%;
+}
+
+
+.stepsguidesec .row .col-third h6 {
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%;
+  color: #054742;
+  font-family: 'TASA Orbiter Display';
+}
+
+.stepsguidesec .row .col-third h4 {
+  color: #054742;
+  font-size: 35.822px;
+  font-family: 'TASA Orbiter Display';
+  font-weight: 700;
+  line-height: 150%;
+  letter-spacing: -1.075px;
+  text-transform: uppercase;
+}
+
+.stepsguidesec .row .col-third img {
+  margin: 62px 0;
+}
+
+.stepsguidesec .row .col-third p {
+  font-family: "TASA Orbiter Deck";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  color: #054742;
+}
+.keyfeaturesec {
+  border: 1px solid rgba(30, 30, 30, 0.20);
+  background: #f9f9f9;
+  position: relative;
+  z-index: 1;
+}
+
+.keyfeaturesec .counterbox {
+  text-align: center;
+  padding: 35px;
+}
+
+.keyfeaturesec .col-forth:not(:last-child) .counterbox {border-right: 1px solid rgba(30, 30, 30, 0.20);}
+
+.keyfeaturesec .counterbox h2 {
+  color: rgba(0, 0, 0, 0.80);
+  text-align: center;
+  font-family: "TASA Orbiter Display";
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: -1.44px;
+  text-transform: uppercase;
+}
+
+.keyfeaturesec .counterbox p {
+  font-family: "TASA Orbiter Deck";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  color: rgba(30, 30, 30, 0.70);
+  text-align: center;
+  margin-top: 12px;
+}
+.whonavarosec {
+  padding: 200px 0;
+  position: relative;
+  z-index: 1;
+}
+.col-half {
+  width: calc(100% / 2 );
+}
+
+.whonavarosec .row .col-half {
+  padding: 25px;
+}
+
+.whonavarosec .imagwwithcontent {
+  padding: 50px;
+  border-radius: 15px;
+}
+
+.whonavarosec .imagwwithcontent h3 {
+  color: #054742;
+  font-family: "TASA Orbiter Display";
+  font-size: 44px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  text-transform: uppercase;
+}
+
+.whonavarosec .imagwwithcontent img {
+  margin: 40px 0;
+  width: 100%;
+  border-radius: 10px;
+  height: 220px;
+  object-fit: cover;
+}
+
+.whonavarosec .imagwwithcontent  ul {
+  padding-left: 0;
+  margin-bottom: 50px;
+}
+
+.whonavarosec .imagwwithcontent ul li {
+  display: flex;
+  align-items: center;
+  font-family: 'TASA Orbiter Deck';
+  font-size: 20px;
+  font-weight: 400;
+  color: #054742;
+  letter-spacing: -0.44px;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.whonavarosec .imagwwithcontent a span {
+  background: #fff;
+}
+
+.whonavarosec .imagwwithcontent a span:last-child {
+  background: #000;
+}
+
+.whonavarosec .imagwwithcontent a span:last-child svg path {
+  stroke: #fff;
+}
+.realcustomersliderinner {
+  padding: 90px 0 200px;
+  position: relative;
+  z-index: 1;
+}
+.realcustomersliderinner .cloudsquare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+  height: 100%;
+}
+
+.realcustomersliderinner .cloudsquare svg {
+  width: 100%;
+  height: 100%;
+}
+
+
+.realcustomerslide {
+  padding: 0 40px;
+}
+
+.customerslideinner {
+  background: #FFFBF3;
+  padding: 30px;
+  text-align: center;
+  border-radius: 15px;
+}
+
+.customerslideinner p {
+  font-size: 30.42px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #054742;
+  letter-spacing: -1.086px;
+  margin-bottom: 80px;
+  font-family: 'TASA Orbiter Deck';
+}
+
+.customerslideinner  .info {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.customerslideinner .info .infoimage {
+  border-radius: 8px;
+  width: 50px;
+  height: 60px;
+  overflow: hidden;
+}
+
+.customerslideinner .info .infoimage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.customerslideinner .info h6 {
+  font-size: 18.469px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 23.087px;
+  font-family: 'TASA Orbiter Deck';
+  text-align: left;
+}
+.realcustomerslider  button.slick-arrow {
+  left: 0;
+  right: -110px;
+  margin: 0 auto;
+  top: auto;
+  bottom: -86px;
+}
+
+.realcustomerslider button.slick-arrow svg {
+  width: 40px;
+  height: auto;
+}
+
+.realcustomerslider button.slick-arrow:before {
+  display: none;
+}
+
+.realcustomerslider button.slick-prev {
+  left: -110px;
+}
+.customerslideinner .info p {
+  font-size: 16.296px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20.371px;
+  color: #333231;
+  margin-bottom: 0px;
+  letter-spacing: 0;
+}
+.trynavarotools {
+  padding: 200px 0;
+}
+.trynavarotools .row {
+  position: relative;
+  z-index: 1;
+  background: #f9f9f9;
+}
+.trynavarotools .col-third {
+  padding: 20px;
+}
+
+.trynavarotools .col-third .image {
+  border-radius: 20px;
+  height: 260px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.trynavarotools .col-third .image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.trynavarotools .col-third .contentnavaro {
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.trynavarotools .col-third .contentnavaro h6 span {
+  font-family: "TASA Orbiter Deck";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: -0.48px;
+  text-transform: capitalize;
+  border-radius: 2.5px;
+  padding: 2px 10px;
+}
+.trynavarotools .col-third .contentnavaro h2 {
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%;
+  color: #054742;
+  margin: 6px 0 30px;
+  font-family: "TASA Orbiter display";
+}
+.trynavarotools .col-third .contentnavaro p {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+.trynavarotools .col-third .contentnavaro p span {
+  color: #054742;
+  font-family: "TASA Orbiter deck";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 110%; 
+  width: 160px;
+  min-height: 60px;
+}
+.trynavarotools .col-third .contentnavaro p .btn {
+  font-size: 16px;
+  background: #fff;
+}
+.faqsec {
+  position: relative;
+  z-index: 1;
+}
+.faqsec .titlebox h2 {
+  max-width: 100%;
+  margin-bottom: 64px;
+}
+.faqinnerboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.faqitem {
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  padding: 10px 20px;
+  background: #f7f5f2;
+  transition: all 0.3s ease;
+  width: 49%;
+}
+
+.question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.question h2 {
+  font-size: 22px;
+  margin: 10px 0 0;
+  color: #0b4b3f;
+}
+
+/* PLUS ICON */
+.question::after {
+  content: "+";
+  width: 28px;
+  height: 28px;
+  border: 1px solid #999;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+/* ACTIVE STATE */
+.faqitem.active .question::after {
+  content: "-";
+  background: #d9c2e9;
+  border-color: #d9c2e9;
+}
+
+/* ANSWER */
+.answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  font-size: 18px;
+  color: #555;
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+.faqitem.active .answer {
+  max-height: 300px;
+}
+.call-toaction {
+  padding: 200px 0;
+}
+.call-toaction .call-toactioninner  {
+  background-image: url('../img/bg1.png');
+  background-color: #054742;
+  background-size: cover;
+  position: relative;
+  z-index: 1;
+}
+.call-toaction .call-toactioninner .call-toactioncontent {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 200px 0;
+  text-align: center;
+}
+.call-toaction .call-toactioninner .call-toactioncontent  h3 {
+  font-family: "TASA Orbiter Deck";
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  color: #FFFBF3;
+  letter-spacing: -0.96px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.call-toaction .call-toactioninner .call-toactioncontent p {
+  color: #FFFBF3;
+  font-family: "TASA Orbiter Deck";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  margin-bottom: 28px;
+  line-height: 120%; 
+}
+.call-toaction .call-toactioninner .call-toactioncontent .oulinebtn {
+  color: #D1CEC9;
+  border: 1px solid #D1CEC9;
+  background-color: #054742;
+}
+footer {
+  background: #f9f9f9;
+  position: relative;
+  z-index: 1;
+}
+footer .footertop {
+  border-top: 1.02px solid #D1CEC9;
+  border-bottom: 1.02px solid #D1CEC9;
+}
+.sitefooter .col-third {
+  padding: 60px 0;
+}
+.footerheading h4 {
+  font-family: "TASA Orbiter Deck";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%; 
+  color: #000;
+  text-transform: uppercase;
+  margin-bottom: 47px;
+}
+footer .uselinks li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "TASA Orbiter Deck";
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 25.498px;
+  margin-bottom: 15px;
+  text-transform: capitalize;
+  color: #666462;
+}
+
+footer .uselinks ul {
+  padding-left: 0 !important;
+}
+
+.sitefooter .row .col-third:not(:last-child) {
+  border-right: 1.02px solid #D1CEC9;
+}
+
+.sitefooter .row .col-third:not(:first-child) {
+  padding-left: 60px;
+}
+
+.newlettersignup .input {
+  display: flex;
+  gap: 10px;
+}
+.footercopyright p {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 40px;
+  font-family: 'TASA Orbiter Deck';
+  font-size: 12.749px;
+  font-style: normal;
+  font-weight: 400;
+  color: #333231;
+}
+.newlettersignup .input input {
+  font-family: "TASA Orbiter Deck";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 110%;
+  color: #AFA79D;
+  letter-spacing: -0.6px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #9A9894;
+}
+.bottomlogo {
+  padding: 70px 0 40px;
+  text-align: center;
+}
+.onesystemtotal .container {
+  overflow: hidden;
+}
+.onesystemtotal, .mainbanner {
+  position: relative;
+  z-index: 1;
+}
+.onesystemtotalheight {
+  height: 200px;
+}
+.onesystemtotaltitle {
+  overflow: hidden;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.onesystemtitlevideo {
+  flex-shrink: 0;
+}
+.cloudsquare svg g rect,
+.cloudsquare svg g path {
+  transition: fill 0.2s ease;
+}
+/* Our Stakeholders Css */
+.ourstakholderssec {
+  position: relative;
+  z-index: 1;
+}
+.stackholderslider  .slick-slide {
+  transition: transform 0.6s ease, opacity 0.6s ease;
+  opacity: 0.5;
+  padding-right: 0px;
+}
+.stackholderslider  .slick-slide.slick-current {
+  opacity: 1;
+}
+
+/* center slide bigger */
+.stackholderslider .slick-slide {
+  transform: rotate(4deg) scale(0.75);
+  z-index: 1;
+}
+.stackholderslider .slick-center .slideinnr {
+  opacity: 1;
+}
+.stackholderslider .slick-slide:not(.slick-center) .slideinnr {
+  opacity: 0.6;
+}
+.stackholderslider .slick-slide.slick-active .slideinnr {
+  opacity: 1;
+}
+.stackholderslider .slick-slide.slick-current, .stackholderslider .slick-slide.slick-active, .stackholderslider .slick-slide.prev, .stackholderslider .slick-slide.next {
+  transform: rotate(0deg) scale(1);opacity: 1;
+}
+.stackholderslider .slick-slide.prev .slideinnr, .stackholderslider .slick-slide.next .slideinnr {
+  transform: rotate(0deg) scale(1);opacity: 1;
+}
+.stackholderslider  {
+  margin-bottom: 10rem;
+}
+.stackholderslider {
+  width: 100%;
+}
+.stackholderslide .slideinnr {
+    padding: 60px;
+    border-radius: 30px;
+}
+
+.stackholderslide .slideinnr .topcontent {
+    text-align: center;
+}
+
+.stackholderslide .slideinnr .topcontent h3 {
+    font-family: "TASA Orbiter Deck";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+    color: rgba(0, 0, 0, 0.80);
+    letter-spacing: -0.96px;
+    text-transform: uppercase;
+    margin: 16px 0 28px;
+}
+
+.stackholderslide .slideinnr .topcontent p {
+    font-family: "TASA Orbiter Deck";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    color: rgba(30, 30, 30, 0.70);
+}
+
+.stackholderslide .slideinnr 
+.middleimage {
+    margin: 40px -60px;
+    text-align: center;
+}
+
+.stackholderslide {padding: 0 30px;}
+
+.stackholderslide .bottomcontent {
+    text-align: center;
+}
+
+.stackholderslide .bottomcontent a.btn.whitebtn {
+    border-color: #ddd;
+    color: rgba(30, 30, 30, 0.80);
+}
+/* Services Css  */
+.stackholderslider, .pin-stager {
+  background-image: url(../img/Ellipse6.png);
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.prev-section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.prev-section p { font-size: 1rem; color: #555; letter-spacing: 0.05em; }
+
+.pin-wrap {
+  position: relative;
+  height: 250vh;
+}
+.pin-inner {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-left,
+.text-right {
+  position: absolute;
+  top: 50%;
+  white-space: nowrap;
+  z-index: 2;
+  transform: translateY(-50%);
+}
+.text-left  { left: 0; }
+.text-right { right: 0; }
+
+.media-box {
+  width: 40vw;
+  max-width: 460px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 0px;
+  z-index: 1;
+}
+.media-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.pin-wrapper { position: relative; height: 400vh; }
+
+  .pin-stager {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .card {
+    position: absolute;
+    width: 480px;
+    height: 600px;
+    border-radius: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 48px 60px;
+    transform-origin: bottom center;
+    will-change: transform;
+  }
+
+  .card-1 { background: #7ecec4; }
+  .card-2 { background: #f5d97e; }
+  .card-3 { background: #c9a0e8; }
+
+  .card-title {
+    font-size: 1.55rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: rgba(0,0,0,0.78);
+    text-align: center;
+  }
+  .card-body {
+    font-size: 0.85rem;
+    color: rgba(0,0,0,0.45);
+    text-align: center;
+    max-width: 300px;
+    line-height: 1.65;
+  }
+  .card-btn {
+    margin-top: 28px;
+    padding: 13px 34px;
+    background: #fff;
+    border: none;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: #222;
+  }
+  .card.stackholderslide .slideinnr {
+    padding: 0px !important;
+  }
+  .aboutbanner .container {
+    position: relative;
+  }
+  .aboutbanner .bannervideowrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 0;
+  }
+  .aboutbanner .blurbg {
+    height: 257px;
+    margin-top: 100px;
+  }
+@media(max-width: 1025px) {
+  .bannercontent {
+    padding: 80px 0 0;
+    max-width: 840px;
+  }
+  .bannercontentinner h1 {
+    font-size: 60px;
+  }
+  .bannercontentinner p, .btn, .buttonwrap a span,.menuwrapper .menuwrap ul li a,
+  .stackholderslide .slideinnr .topcontent p, .titlebox p, .stepsguidesec .row .col-third p,
+  .answer, .whonavarosec .imagwwithcontent ul li {
+    font-size: 16px;
+  }
+  .bannervideowrap {
+    position: relative;
+    margin-top: -50px;
+  }
+  .bannervideowrap .vector1 {
+    position: absolute;
+    top: 120px;
+  }
+  .mainbanner .blurbg {
+    height: 100px;
+    margin-top: -80px;
+  }
+  .onesystemtotal .gradientbox h2 span, .stackholderslide .slideinnr .topcontent h3, .titlebox h2, 
+  .whonavarosec .imagwwithcontent h3, .call-toaction .call-toactioninner .call-toactioncontent h3 {
+    font-size: 34px;
+  }
+  .onesystemtotalrow h3 {
+    font-size: 40px;
+  }
+  .stackholderslide {
+    padding: 0 10px;
+  }
+  .stackholderslide .slideinnr {
+    padding: 50px 20px;
+    border-radius: 30px;
+  }
+  .stackholderslide .slideinnr .middleimage {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+  .stackholderslide .slideinnr .topcontent h3 {
+    margin-bottom: 10px;
+  }
+  .stepsguidesec .row .col-third h4 {
+    font-size: 28px;
+  }
+  .stepsguidesec .row .col-third h6, .customerslideinner p, .trynavarotools .col-third .contentnavaro h2 {
+    font-size: 20px;
+  }
+  .stepsguidesec .row .col-third {
+    padding: 26px 10px;
+  }
+  .whonavarosec .imagwwithcontent {
+    padding: 30px;
+    border-radius: 15px;
+  }
+  .whonavarosec .row .col-half {
+    padding: 10px;
+  }
+  .whonavarosec .imagwwithcontent {
+    height: 100%;
+  }
+  .trynavarotools .col-third .contentnavaro p span {
+    width: 100%;min-height: auto;
+  }
+  .trynavarotools .col-third .contentnavaro p {
+    flex-wrap: wrap;
+  }
+  .trynavarotools .col-third {
+    padding: 20px 10px;
+  }
+  .trynavarotools, .call-toaction .call-toactioninner .call-toactioncontent, .call-toaction,
+  .whonavarosec, .stepsguidesec {
+    padding: 150px 0;
+  }
+  .question h2, footer .uselinks li a {
+    font-size: 18px;
+  }
+  .trynavarotools .col-third .contentnavaro h2 {
+    margin-bottom: 10px;
+  }
+  .faqitem {
+    width: 46%;
+  }
+  .sitefooter .col-third {
+    padding: 40px 0;
+  }
+  .footerheading h4 {
+    margin-bottom: 20px;
+  }
+  .sitefooter .row .col-third:not(:first-child) {
+    padding-left: 30px;
+  }
+  .onesystemtotaltitle h3 {
+    font-size: 40px;
+  }
+}
+
+@media(max-width: 800px) {
+  .pin-wrap {
+    position: relative;
+    height: 100vh;
+  }
+  .bordersepleftright {
+    max-width: 600px;
+  }
+  .buttonwrap a span svg {
+    width: 20px;
+    height: 20px;
+  }
+  .buttonwrap a span:last-child {
+    /* padding: 7px 10px; */
+  }
+  .bannercontentinner h1 {
+    font-size: 50px;
+  }
+  .bannervideowrap .vector1,
+  .bannervideowrap .vector2 {
+    display: none;
+  }
+  .bannervideowrap .vector3 {
+    position: absolute;
+    left: 20px;
+    bottom: 0;
+  }
+  .onesystemtotal .gradientbox h2 span, .stackholderslide .slideinnr .topcontent h3, .titlebox h2, .whonavarosec .imagwwithcontent h3, .call-toaction .call-toactioninner .call-toactioncontent h3 {
+    font-size: 30px;
+  }
+  .onesystemtotal .gradientbox h2 {
+    line-height: 0.6;
+  }
+  .onesystemtotalrow h3 {
+    font-size: 30px;
+  }
+  .onesystemtotalrow .onesystemtitlevideo {
+    width: 300px;
+  }
+  .onesystemtotalheight {
+    height: 150px;
+  }
+  .titlebox {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .stepsguidesec .row .col-third {
+    padding: 10px;
+  }
+  .col-third {
+    width: calc(100% / 2);
+  }
+  .trynavarotools, .call-toaction .call-toactioninner .call-toactioncontent, .call-toaction, .whonavarosec, .stepsguidesec {
+    padding: 100px 0;
+  }
+  .col-forth {
+    width: calc(100% / 2);
+  }
+  .keyfeaturesec .col-forth:nth-child(2) .counterbox {
+    border-right: none;
+  }
+  .keyfeaturesec .col-forth:nth-child(2) .counterbox, .keyfeaturesec .col-forth:nth-child(1) .counterbox {
+    border-bottom: 1px solid #ddd;
+  }
+  .titlebox h6,.titlebox p {
+    margin-bottom: 30px;
+  }
+  .stackholdersliderdesktop {
+    display: none;
+  }
+  .stackholderslidermobile {
+    display: block !important;
+  }
+  .humburgurmenu {
+    display: block !important;
+  }
+  .menuwrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #c780ed;
+    height: 100vh;
+    z-index: 999;
+    display: none;
+  }
+  .menuwrapper .menuwrapperinner {
+    display: flex;
+    justify-content: left;
+    height: 100%;
+    align-items: center;
+    padding: 0 24px;
+  }
+  .menuwrapper .menuwrapperinner ul {
+    display: block;
+  }
+  .menuwrapper .menuwrapperinner ul li {
+    margin-bottom: 10px;
+  }
+  .menuwrapper .menuwrapperinner ul li a {
+    color: #fff;
+    font-size: 20px;
+    display: block;
+  }
+  .menuwrapper .closemenu {
+    display: block !important;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+  .menuwrapper .closemenu svg path {fill: #fff;}
+  .mobile-menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 30px;
+  }
+  .mobile-getstarted-btn {
+    font-family: "TASA Orbiter Deck";
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 120%;
+    color: #000;
+    padding: 12px 20px;
+    border-radius: 12px;
+    background: #fff;
+    text-decoration: none;
+    text-align: center;
+  }
+  .mobile-login-btn {
+    font-family: "TASA Orbiter Deck";
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 120%;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: 1px solid #fff;
+    text-decoration: none;
+    text-align: center;
+  }
+  .buttonwrap {
+    gap: 8px;
+  }
+  .login-signup-btn {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+  .logo img {
+    width: 170px;
+    height: auto;
+  }
+  .onesystemtotaltitle h3 {
+    font-size: 24px;
+  }
+}
+
+@media(max-width: 500px) {
+  header .logo img {
+    width: 120px;
+    height: auto;
+  }
+  header .buttonwrap a span {
+    font-size: 11px;
+    padding: 7px 8px;
+  }
+  header .buttonwrap a span svg {
+    width: 14px;
+    height: 14px;
+  }
+  header .login-signup-btn {
+    font-size: 11px;
+    padding: 7px 8px;
+  }
+  .buttonwrap {
+    gap: 5px;
+  }
+  .siteheader .container {
+    padding: 0 10px;
+  }
+  .bordersepleftright {
+    max-width: 320px;
+  }
+  .bannercontentinner h1 {
+    font-size: 34px;
+    letter-spacing: 0;
+    word-spacing: normal;
+  }
+  .onesystemtotal .gradientbox h2 span, .stackholderslide .slideinnr .topcontent h3, .titlebox h2, .whonavarosec .imagwwithcontent h3, .call-toaction .call-toactioninner .call-toactioncontent h3 {
+    letter-spacing: 0;
+    word-spacing: normal;
+  }
+  .bannervideowrap .vector3, .onesystemtotaltitle {
+    display: none;
+  }
+  .bannervideowrap video {
+    /* width: 100%; */
+    height: 390px;
+  }
+  .bannervideowrap .vector4 {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 50%;
+  }
+  .onesystemtotal .gradientbox {
+    text-align: center;
+    padding: 60px 0 0;
+  }
+  .onesystemtotal .gradientbox h2 span, .stackholderslide .slideinnr .topcontent h3, .titlebox h2, .whonavarosec .imagwwithcontent h3, .call-toaction .call-toactioninner .call-toactioncontent h3 {
+    font-size: 24px;
+  }
+  .onesystemtotal .gradientbox h2 {
+    line-height: 0.4;
+  }
+  .onesystemtotalrow {
+    justify-content: center;
+  }
+  .titlebox {
+    max-width: 320px;
+  }
+  .titlebox h2, .titlebox p {
+    max-width: 88%;
+  }
+  .col-third,
+  .col-forth,
+  .col-half {
+    width: calc(100% / 1);
+  }
+  .stepsguidesec .row .col-third img {
+    margin: 22px 0;
+  }
+  .stackholderslide .slideinnr .middleimage {
+    margin: 40px 0;
+    text-align: center;
+  }
+  .onesystemtotalheight {
+    height: 100px;
+  }
+  .trynavarotools, .call-toaction .call-toactioninner .call-toactioncontent, .call-toaction, .whonavarosec, .stepsguidesec {
+    padding: 60px 0;
+  }
+  .stackholderslider {
+    margin-bottom: 0;
+  }
+  .keyfeaturesec .col-forth:not(:last-child) .counterbox {
+    border-right: none !important
+  }
+  .keyfeaturesec .col-forth:last-child .counterbox {
+    border-top: 1px solid #ddd;
+  }
+  .keyfeaturesec .container{
+    padding: 0;
+  }
+  .keyfeaturesec .counterbox {
+    padding: 20px 15px;
+  }
+  .keyfeaturesec .counterbox h2 {
+    font-size: 28px;
+  }
+  .keyfeaturesec .counterbox p, .customerslideinner .info h6 {
+    font-size: 16px;
+  }
+  .bannercontentinner p, .customerslideinner .info p, .btn, .buttonwrap a span, .menuwrapper .menuwrap ul li a, .stackholderslide .slideinnr .topcontent p, .titlebox p, .stepsguidesec .row .col-third p, .answer, .whonavarosec .imagwwithcontent ul li {
+    font-size: 14px;
+  }
+  .realcustomerslide {
+    padding: 0 10px;
+  }
+  .customerslideinner p {
+    font-size: 16px;
+    letter-spacing: 0;
+    word-spacing: normal;
+    margin-bottom: 20px;
+  }
+  .infocontent {
+    text-align: left;
+  }
+  .infocontent p {
+    line-height: 1;
+  }
+  .faqitem {
+    width: 100%;
+  }
+  .question h2 {
+    font-size: 14px;
+  }
+  .faqinnerboxes {
+    gap: 10px;
+  }
+  .sitefooter .row .col-third:not(:last-child) {
+    border-right: none;
+    border-bottom: 1.02px solid #D1CEC9;
+  }
+  .sitefooter .row .col-third:not(:first-child) {
+    padding-left: 0;
+  }
+  .sitefooter .col-third {
+    padding: 30px 0;
+  }
+  .newlettersignup .input input {
+    height: 38px;
+  }
+  .logofooter img {
+    width: 80%;
+  }
+  .bottomlogo {
+    padding: 40px 0 30px;
+  }
+  .stackholderslide {
+    padding: 0 0px;
+  }
+  .stackholderslider, .pin-stager {
+    background-position: center;
+  }
+  .bannercontentinner h1 br {
+    display: none;
+  }
+  .titlebox h6 {
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 14px;
+  }
+  .menuwrapper .menuwrap ul li a {
+    font-size: 20px;
+  }
+  .btn {
+    margin:  0 2px;
+  }
+  .pin-wrap {
+    height: 400px;
+    margin-top: 60px;
+  }
+  .pin-inner {
+    height: 100%;
+  }
+  div#mediaBox {
+    width: 100%;
+    height: 100%;
+  }
+  .call-toaction .call-toactioninner .call-toactioncontent {
+    padding: 60px 20px;
+  }
+  .call-toaction .call-toactioninner .call-toactioncontent h3 {
+    line-height: 1.3;
+  }
+  .call-toaction .call-toactioninner .call-toactioncontent .explorecourse .btn {
+    margin: 8px 0;
+  }
+  .stackholderslide .slideinnr .middleimage {
+    margin: 40px -20px;
+    text-align: center;
+  }
+  .customerslideinner {
+    padding: 20px;
+  }
+  .cloudsquare svg {
+    display: none;
+  }
+  .realcustomerslider button.slick-arrow {
+    right: -30px;
+    bottom: -66px;
+  }
+  .realcustomersliderinner {
+    padding: 50px 0 140px;
+  }
+  .titlebox h2,
+  .bannercontentinner h1 {
+    font-weight: 700;
+  }
+  .stackholderslide .slideinnr {
+    padding: 30px 20px;
+    border-radius: 30px;
+  }
+  .stackholderslide .slideinnr .middleimage {
+    margin: 20px -20px;
+    text-align: center;
+  }
+  .titlebox h6 {
+    letter-spacing: 0;
+    word-spacing: normal;
+  }
+  .stackholderslide .slideinnr .topcontent svg {
+    width: 30px;
+  }
+  .stackholderslide .slideinnr .topcontent h3 {
+    margin-top: 0;
+  }
+}
+
+@media(max-width: 360px) {
+  header .logo img {
+    width: 100px;
+    height: auto;
+  }
+  header .buttonwrap a span {
+    font-size: 10px;
+    padding: 6px 6px;
+  }
+  header .buttonwrap a span svg {
+    width: 12px;
+    height: 12px;
+  }
+  header .login-signup-btn {
+    font-size: 10px;
+    padding: 6px 6px;
+  }
+  .buttonwrap {
+    gap: 4px;
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm -v)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(break)",
+      "Bash(curl -s -o /dev/null -w \"status=%{http_code} time=%{time_total}s\\\\n\" http://localhost:3001/)",
+      "Bash(curl -s http://localhost:3001/)",
+      "Bash(grep -oE '<title>[^<]*</title>|<h1[^>]*>[^<]{0,120}')",
+      "Bash(npx tsc *)",
+      "Bash(npx next *)",
+      "Bash(openssl genpkey *)",
+      "Bash(node -e ' *)",
+      "Bash(node *)",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(curl -s -w \" [%{http_code}]\\\\n\" -X POST http://localhost:3000/api/waitlist -H 'Content-Type: application/json' -d '{\"first_name\":\"\",\"last_name\":\"User\",\"email\":\"a@b.com\"}')",
+      "Bash(curl -s -w \" [%{http_code}]\\\\n\" -X POST http://localhost:3000/api/waitlist -H 'Content-Type: application/json' -d '{\"first_name\":\"Test\",\"last_name\":\"User\",\"email\":\"not-an-email\"}')",
+      "Bash(curl -s -w \" [%{http_code}]\\\\n\" -X POST http://localhost:3000/api/waitlist -H 'Content-Type: application/json' -d '{\"first_name\":\"   \",\"last_name\":\"User\",\"email\":\"a@b.com\"}')",
+      "Bash(curl -s -w \" [%{http_code}]\\\\n\" -X POST http://localhost:3000/api/waitlist -H 'Content-Type: application/json' -d 'not json')",
+      "Bash(curl -s -w \" [%{http_code}]\\\\n\" -X POST http://localhost:3000/api/waitlist -H 'Content-Type: application/json' -d '{\"first_name\":\"Test\",\"last_name\":\"User\",\"email\":\"test@example.com\"}')",
+      "Bash(curl -s -w \" [%{http_code}]\\\\n\" http://localhost:3000/api/admin/waitlist/export)",
+      "Bash(curl -s -w \" [%{http_code}]\\\\n\" http://localhost:3000/api/admin/waitlist/export -H \"Cookie: navaro_waitlist_admin=99999999999999.deadbeef\")",
+      "Bash(curl -s -w \" [%{http_code}]\\\\n\" -X POST http://localhost:3000/api/admin/waitlist/login -H 'Content-Type: application/json' -d '{\"password\":\"wrong\"}')",
+      "Bash(curl -s -c /tmp/adm_cookies.txt -w \" [%{http_code}]\\\\n\" -X POST http://localhost:3000/api/admin/waitlist/login -H 'Content-Type: application/json' -d '{\"password\":\"test-admin-password-123\"}')",
+      "Read(//tmp/**)",
+      "Bash(awk '{print $6, \"HttpOnly=\"\\($1 ~ /^#HttpOnly/ ? \"yes\":\"see-prefix\"\\)}')",
+      "Bash(curl -s -b /tmp/adm_cookies.txt -w \"\\\\n[%{http_code}]\\\\n\" http://localhost:3000/api/admin/waitlist/export)"
+    ]
+  }
+}

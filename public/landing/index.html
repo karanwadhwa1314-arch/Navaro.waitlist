@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Resolve css/, js/, img/ relative to /landing/ when served from Next.js public/ -->
+    <base href="/landing/" />
+    <title>Homepage | Navaro</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"
+    />
+    <link rel="stylesheet" href="/landing/css/main.css" />
+  </head>
+  <body>
+    
+    <!-- Header Start -->
+    <header class="siteheader">
+      <div class="container">
+        <div class="row">          
+          <div class="humburgurmenu" style="display: none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="13" viewBox="0 0 19 13" fill="none">
+            <path d="M0.713794 0.714844H17.8567H0.713794ZM0.710938 6.42913H17.8495H0.710938ZM0.713794 12.1434H17.8495H0.713794Z" fill="#080707"/>
+            <path d="M0.713794 0.714844H17.8567M0.710938 6.42913H17.8495M0.713794 12.1434H17.8495" stroke="#080707" stroke-width="1.42857" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="menuwrapper">
+            <div class="closemenu" style="display: none;">
+              <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z" fill="#0F1729"/>
+              </svg>
+            </div>
+            <div class="menuwrapperinner">
+              <div class="menuwrap">
+                <ul>
+                  <li><a href="/course">NavLearn</a></li>
+                  <li><a href="/dashboard">NavTools</a></li>
+                  <li><a href="/navfinance">NavFinance</a></li>
+                  <li><a href="/about">About</a></li>
+                </ul>
+                <div class="mobile-menu-buttons">
+                  <a href="/dashboard" class="mobile-getstarted-btn">Get Started</a>
+                  <!-- <a href="/login" class="mobile-login-btn">Login / Signup</a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="logo">
+            <a href="/">
+              <img src="/image/Nav_bar-.png" alt="Navaro Logo" />
+            </a>
+          </div>
+          <div class="buttonwrap">
+            <a href="/dashboard">
+              <span>
+                Get Started
+              </span>
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                <path d="M10.5 4.375L16.625 10.5M16.625 10.5L10.5 16.625M16.625 10.5H4.375" stroke="black" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+            <!-- <a href="/login" class="login-signup-btn">Login / Signup</a> -->
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Header End -->
+
+    <div class="bordersepleftright"></div>
+
+    <!-- Banner Start -->
+    <div class="mainbanner">
+      <div class="container">
+        <div class="bannercontent">
+          <div class="bannercontentinner">
+            <h1>Learn<span class="orange">.</span> Build<span class="blue">.</span> Ship with <br>confidence.</h1>
+            <p>“Navaro combines practical certification courses with shipping calculators, document checkers, and tracking tools so you can ship profitably and error‑free.”</p>
+            <div class="explorecourse">
+              <a href="/" class="btn">
+                Explore our Courses
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M3 7L10 10L17 7" stroke="black" stroke-width="1.56863" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10 18V10" stroke="black" stroke-width="1.56863" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8.27503 2.06706L3.82503 4.53373C2.8167 5.09206 1.9917 6.49206 1.9917 7.64206V12.3504C1.9917 13.5004 2.8167 14.9004 3.82503 15.4587L8.27503 17.9337C9.22503 18.4587 10.7834 18.4587 11.7334 17.9337L16.1834 15.4587C17.1917 14.9004 18.0167 13.5004 18.0167 12.3504V7.64206C18.0167 6.49206 17.1917 5.09206 16.1834 4.53373L11.7334 2.05873C10.775 1.53373 9.22503 1.53373 8.27503 2.06706Z" stroke="black" stroke-width="1.56863" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              <a href="/dashboard" class="btn whitebtn">Learn about Tools</a>
+            </div>
+          </div>
+        </div>
+        <div class="bannervideowrap">
+          <video playsinline="" autoplay="" loop="" muted="" preload="metadata" poster="" class="video" alt="">
+            <source src="img/Radar2.mp4" type="video/mp4">
+          </video>
+          <div class="vector1">
+            <img src="img/vector1.png" alt="Image">
+          </div>
+          <div class="vector2">
+            <img src="img/vector2.png" alt="image">
+          </div>
+          <div class="vector3">
+            <img src="img/vector3.png" alt="Image">
+          </div>
+          <div class="vector4">
+            <img src="img/vector4.png" alt="Image">
+          </div>
+        </div>
+      </div>
+      <div class="blurbg" style="background: #FEFAF4;filter: blur(23.799999237060547px);"></div>
+    </div>
+    <!-- Banner End -->
+
+    <!-- One System. Total Visibility. Start -->
+    <div class="onesystemtotal">
+      <div class="container">
+        <div class="gradientbox">
+          <h2><span>Centralize your shipping workflows into one structured system, bringing documentation, coordination, and tracking together seamlessly.</span></h2>
+        </div>
+        <!-- <div class="onesystemtotalrow">
+          <div class="onesystemtotaltitle onesystemtotaltitleleft">
+            <h3>One System.</h3>
+          </div>
+          <div class="onesystemtitlevideo">            
+            <video playsinline="" autoplay="" loop="" muted="" preload="metadata" poster="" class="video" alt="">
+              <source src="img/animatedvideo.mp4" type="video/mp4">
+            </video>            
+          </div>
+          <div class="onesystemtotaltitle onesystemtotaltitleright">
+            <h3>Total Visibility.</h3>
+          </div>
+        </div> -->
+        
+        <div class="pin-wrap" id="pinWrap">
+          <div class="pin-inner" id="pinInner">
+            <div class="text-left onesystemtotaltitle"  id="textLeft"><h3>One System.</h3></div>
+            <div class="media-box"  id="mediaBox">           
+                <video playsinline="" autoplay="" loop="" muted="" preload="metadata" poster="" class="video" alt="">
+                  <source src="img/animatedvideo.mp4" type="video/mp4">
+                </video> 
+            </div>
+            <div class="text-right onesystemtotaltitle" id="textRight"><h3>Total Visibility.</h3></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- One System. Total Visibility. End -->
+    <div class="onesystemtotalheight"></div>
+    <!-- One Platform Start -->
+    <div class="ourstakholderssec" style="background-image: url('img/Texture.png');"> 
+      <div class="ourstakholderssecinnr">
+        <div class="titlebox text-center ">
+          <h6>THE PRODUCTS THAT HELP YOU SCALE</h6>
+          <h2>Everything you need to ship in one platform</h2>
+          <p>“Navaro combines practical certification courses with shipping calculators, document checkers, and tracking tools so you can ship profitably and error‑free.”</p>
+        </div>
+        <div class="stackholdersliderdesktop">
+          <div class="pin-wrapper" id="pinWrapper">
+            <div class="pin-stager" id="stager">
+
+              <div class="card card-1 stackholderslide" id="c1">
+                <div class="slideinnr">
+                  <div class="topcontent">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
+                      <path d="M34.8215 28H13.8215C12.194 28 11.3802 28 10.7117 28.1785C9.82154 28.4172 9.00987 28.8861 8.35831 29.5379C7.70676 30.1898 7.23829 31.0017 7 31.892" stroke="black" stroke-width="3"/>
+                      <path d="M14 12.25H28M14 18.375H22.75M17.5 38.5C12.551 38.5 10.0748 38.5 8.53825 36.9618C7 35.4253 7 32.949 7 28V14C7 9.051 7 6.57475 8.53825 5.03825C10.0748 3.5 12.551 3.5 17.5 3.5H24.5C29.449 3.5 31.9253 3.5 33.4618 5.03825C35 6.57475 35 9.051 35 14M24.5 38.5C29.449 38.5 31.9253 38.5 33.4618 36.9618C35 35.4253 35 32.949 35 28V21" stroke="black" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                    <h3>Courses you need</h3>
+                    <p>“Navaro combines practical certification courses with shipping calculators, document checkers, and tracking</p>
+                  </div>
+                  <div class="middleimage">
+                    <img src="img/frame1.png" alt="Community Actors">
+                  </div>
+                  <div class="bottomcontent">
+                    <a href="/dashboard" class="btn whitebtn">Learn more</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card card-2 stackholderslide" id="c2">
+                <div class="slideinnr">
+                  <div class="topcontent">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="39" height="39" viewBox="0 0 39 39" fill="none">
+                      <g clip-path="url(#clip0_920_131)">
+                      <path d="M17.714 16.6835L6.41127 21.0222C6.11409 21.1361 5.84227 21.3074 5.61135 21.5264C5.38044 21.7454 5.19496 22.0078 5.06551 22.2986C4.93606 22.5893 4.86519 22.9027 4.85695 23.2209C4.84871 23.539 4.90326 23.8557 5.01747 24.1527C5.24769 24.7522 5.70658 25.2357 6.29322 25.4969C6.87987 25.7581 7.54623 25.7756 8.14577 25.5455L19.4495 21.2046M24.043 23.7335L26.4228 29.9332C26.6529 30.5328 26.6354 31.1991 26.3742 31.7858C26.113 32.3724 25.6295 32.8313 25.03 33.0615C24.4305 33.2916 23.7641 33.2741 23.1775 33.0129C22.5908 32.7517 22.1319 32.2682 21.9017 31.6687L18.0909 21.7435M16.3611 9.84742L13.6649 9.5828L13.0608 4.62831L15.3214 3.76057L18.1882 7.8483L16.3611 9.84742ZM16.3611 9.84742L18.0978 14.3717" stroke="black" stroke-width="1.81631" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M17.7144 16.6841C17.8411 13.8868 19.415 10.8431 22.1967 9.7753C24.9784 8.7075 28.7169 9.86699 30.149 11.9109L25.289 13.7765L23.4438 17.0785L27.024 18.2987L31.8845 16.432C32.1885 18.9108 30.185 22.2735 27.4038 23.3402C24.6221 24.408 21.4169 23.1997 19.451 21.2057" stroke="black" stroke-width="1.81631" stroke-linecap="round" stroke-linejoin="round"/>
+                      </g>
+                      <defs>
+                      <clipPath id="clip0_920_131">
+                      <rect width="29.061" height="29.061" fill="white" transform="translate(11.8203) rotate(24)"/>
+                      </clipPath>
+                      </defs>
+                    </svg>
+                    <h3>Tools that help</h3>
+                    <p>“Navaro combines practical certification courses with shipping calculators, document checkers, and tracking</p>
+                  </div>
+                  <div class="middleimage">
+                    <img src="img/frame2.png" alt="Community Actors">
+                  </div>
+                  <div class="bottomcontent">
+                    <a href="/dashboard" class="btn whitebtn">Learn more</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card card-3 stackholderslide" id="c3">
+                <div class="slideinnr">
+                  <div class="topcontent">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
+                      <path d="M34.8215 28H13.8215C12.194 28 11.3802 28 10.7117 28.1785C9.82154 28.4172 9.00987 28.8861 8.35831 29.5379C7.70676 30.1898 7.23829 31.0017 7 31.892" stroke="black" stroke-width="3"/>
+                      <path d="M14 12.25H28M14 18.375H22.75M17.5 38.5C12.551 38.5 10.0748 38.5 8.53825 36.9618C7 35.4253 7 32.949 7 28V14C7 9.051 7 6.57475 8.53825 5.03825C10.0748 3.5 12.551 3.5 17.5 3.5H24.5C29.449 3.5 31.9253 3.5 33.4618 5.03825C35 6.57475 35 9.051 35 14M24.5 38.5C29.449 38.5 31.9253 38.5 33.4618 36.9618C35 35.4253 35 32.949 35 28V21" stroke="black" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                    <h3>Courses you need</h3>
+                    <p>“Navaro combines practical certification courses with shipping calculators, document checkers, and tracking</p>
+                  </div>
+                  <div class="middleimage">
+                    <img src="img/frame1.png" alt="Community Actors">
+                  </div>
+                  <div class="bottomcontent">
+                    <a href="/dashboard" class="btn whitebtn">Learn more</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="stackholderslidermobile" style="display: none;">
+          <div class="stackholderslider">
+            <div class="stackholderslide">
+              <div class="slideinnr"  style="background-color: #9EE4D7;">
+                <div class="topcontent">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
+                    <path d="M34.8215 28H13.8215C12.194 28 11.3802 28 10.7117 28.1785C9.82154 28.4172 9.00987 28.8861 8.35831 29.5379C7.70676 30.1898 7.23829 31.0017 7 31.892" stroke="black" stroke-width="3"/>
+                    <path d="M14 12.25H28M14 18.375H22.75M17.5 38.5C12.551 38.5 10.0748 38.5 8.53825 36.9618C7 35.4253 7 32.949 7 28V14C7 9.051 7 6.57475 8.53825 5.03825C10.0748 3.5 12.551 3.5 17.5 3.5H24.5C29.449 3.5 31.9253 3.5 33.4618 5.03825C35 6.57475 35 9.051 35 14M24.5 38.5C29.449 38.5 31.9253 38.5 33.4618 36.9618C35 35.4253 35 32.949 35 28V21" stroke="black" stroke-width="3" stroke-linecap="round"/>
+                  </svg>
+                  <h3>Courses you need</h3>
+                  <p>“Navaro combines practical certification courses with shipping calculators, document checkers, and tracking</p>
+                </div>
+                <div class="middleimage">
+                  <img src="img/frame1.png" alt="Community Actors">
+                </div>
+                <div class="bottomcontent">
+                  <a href="/dashboard" class="btn whitebtn">Learn more</a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="stackholderslide">
+              <div class="slideinnr" style="background: #F9DB5F;">
+                <div class="topcontent">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="39" height="39" viewBox="0 0 39 39" fill="none">
+                    <g clip-path="url(#clip0_920_131)">
+                    <path d="M17.714 16.6835L6.41127 21.0222C6.11409 21.1361 5.84227 21.3074 5.61135 21.5264C5.38044 21.7454 5.19496 22.0078 5.06551 22.2986C4.93606 22.5893 4.86519 22.9027 4.85695 23.2209C4.84871 23.539 4.90326 23.8557 5.01747 24.1527C5.24769 24.7522 5.70658 25.2357 6.29322 25.4969C6.87987 25.7581 7.54623 25.7756 8.14577 25.5455L19.4495 21.2046M24.043 23.7335L26.4228 29.9332C26.6529 30.5328 26.6354 31.1991 26.3742 31.7858C26.113 32.3724 25.6295 32.8313 25.03 33.0615C24.4305 33.2916 23.7641 33.2741 23.1775 33.0129C22.5908 32.7517 22.1319 32.2682 21.9017 31.6687L18.0909 21.7435M16.3611 9.84742L13.6649 9.5828L13.0608 4.62831L15.3214 3.76057L18.1882 7.8483L16.3611 9.84742ZM16.3611 9.84742L18.0978 14.3717" stroke="black" stroke-width="1.81631" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M17.7144 16.6841C17.8411 13.8868 19.415 10.8431 22.1967 9.7753C24.9784 8.7075 28.7169 9.86699 30.149 11.9109L25.289 13.7765L23.4438 17.0785L27.024 18.2987L31.8845 16.432C32.1885 18.9108 30.185 22.2735 27.4038 23.3402C24.6221 24.408 21.4169 23.1997 19.451 21.2057" stroke="black" stroke-width="1.81631" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_920_131">
+                    <rect width="29.061" height="29.061" fill="white" transform="translate(11.8203) rotate(24)"/>
+                    </clipPath>
+                    </defs>
+                  </svg>
+                  <h3>Tools that help</h3>
+                  <p>“Navaro combines practical certification courses with shipping calculators, document checkers, and tracking</p>
+                </div>
+                <div class="middleimage">
+                  <img src="img/frame2.png" alt="Community Actors">
+                </div>
+                <div class="bottomcontent">
+                  <a href="/dashboard" class="btn whitebtn">Learn more</a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="stackholderslide">
+              <div class="slideinnr" style="background: #ff9800;">
+                <div class="topcontent">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
+                    <path d="M34.8215 28H13.8215C12.194 28 11.3802 28 10.7117 28.1785C9.82154 28.4172 9.00987 28.8861 8.35831 29.5379C7.70676 30.1898 7.23829 31.0017 7 31.892" stroke="black" stroke-width="3"/>
+                    <path d="M14 12.25H28M14 18.375H22.75M17.5 38.5C12.551 38.5 10.0748 38.5 8.53825 36.9618C7 35.4253 7 32.949 7 28V14C7 9.051 7 6.57475 8.53825 5.03825C10.0748 3.5 12.551 3.5 17.5 3.5H24.5C29.449 3.5 31.9253 3.5 33.4618 5.03825C35 6.57475 35 9.051 35 14M24.5 38.5C29.449 38.5 31.9253 38.5 33.4618 36.9618C35 35.4253 35 32.949 35 28V21" stroke="black" stroke-width="3" stroke-linecap="round"/>
+                  </svg>
+                  <h3>Courses you need</h3>
+                  <p>“Navaro combines practical certification courses with shipping calculators, document checkers, and tracking</p>
+                </div>
+                <div class="middleimage">
+                  <img src="img/frame1.png" alt="Community Actors">
+                </div>
+                <div class="bottomcontent">
+                  <a href="/dashboard" class="btn whitebtn">Learn more</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- One Platform End -->
+
+    <!-- 3-STEP GUIDE Start -->
+    <div class="stepsguidesec">
+      <div class="container">
+        <div class="titlebox">
+          <h6>3-STEP GUIDE</h6>
+          <h2>Why Importers & exporters choose Navaro</h2>
+          <p>Navaro combines practical certification courses with shipping calculators, document checkers, and tracking tools so you can ship profitably and error‑free</p>
+        </div>
+        <div class="row">
+          <div class="col-third">
+            <div class="col-inner" style="background-color: #DCB7EB;">
+              <div class="setpguidbox">
+                <h6>STEP 1</h6>
+                <h4>Navigate</h4>
+                <img src="img/step1.png" alt="step">
+                <p>Learn the way global trade actually works. Navaro's courses are structured around one goal: turning knowledge into readiness. You need to know exactly what to do next.</p>
+              </div>  
+            </div>
+          </div>
+          <div class="col-third">
+            <div class="col-inner" style="background-color: #FBEBA9;">
+              <div class="setpguidbox">
+                <h6>STEP 1</h6>
+                <h4>Execute</h4>
+                <img src="img/step2.png" alt="step">
+                <p>Knowing and doing are two different things. Navaro bridges that gap with real-time tools that calculate duties, clarify compliance, and guide every step of the process.</p>
+              </div>  
+            </div>
+          </div>
+          <div class="col-third">
+            <div class="col-inner" style="background-color: #9EE4D7;">
+              <div class="setpguidbox">
+                <h6>STEP 1</h6>
+                <h4>Grow</h4>
+                <img src="img/step1.png" alt="step">
+                <p>Navaro is built for the long game - connecting you to verified partners, expanding your network, and giving you the infrastructure to move to a fully operational import-export business.</p>
+              </div>  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 3-STEP GUIDE End -->
+
+    <!-- Key Feature Start -->
+    <div class="keyfeaturesec">
+      <div class="container">
+        <div class="row">
+          <div class="col-forth">
+            <div class="counterbox">
+              <h2>500<span style="color: #C67FED;"> +</span></h2>
+              <p>Exporters trained through our core course</p>
+            </div>
+          </div>
+          <div class="col-forth">
+            <div class="counterbox">
+              <h2>$50k<span style="color: #FF976E;"> +</span></h2>
+              <p>In document errors prevented by our AI checker</p>
+            </div>
+          </div>
+          <div class="col-forth">
+            <div class="counterbox">
+              <h2><span style="color: #DBB827;">7 </span>tools</h2>
+              <p>Tools accessible from one dashboard</p>
+            </div>
+          </div>
+          <div class="col-forth">
+            <div class="counterbox">
+              <h2><span style="color: #096E66;">4 </span> Modules</h2>
+              <p>From basics to your first shipment.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Key Feature End -->
+
+    <!-- Who Navaro is for Start -->
+    <div class="whonavarosec">
+      <div class="container">
+        <div class="titlebox">
+          <h6>THE PRODUCTS THAT HELP YOU SCALE</h6>
+          <h2>Who Navaro is for</h2>
+          <p>“Navaro combines practical certification courses with shipping calculators, document checkers, and tracking tools so you can ship profitably and error‑free.”</p>
+        </div>
+        <div class="row">
+          <div class="col-half">
+            <div class="imagwwithcontent" style="background-color: #FFB393;">
+              <div class="imgwithcontentinner">
+                <h3>Students & Aspiring Exporters</h3>
+                <img src="img/image1.png" alt="Image">
+                <ul>
+                  <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                      <path d="M10.625 23.75H10.6375" stroke="#054742" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M7.5 7.5C6.12875 7.56875 5.275 7.7725 4.665 8.3825C3.75 9.29875 3.75 10.775 3.75 13.725V21.2375C3.75 24.1887 3.75 25.665 4.665 26.5825C5.58 27.5 7.05375 27.5 10 27.5H11.25C14.1963 27.5 15.67 27.5 16.585 26.5838C17.5 25.6663 17.5 24.19 17.5 21.2387V18.75" stroke="#054742" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M18.75 5.00042V14.3754M12.22 2.60292C16.4725 1.98792 18.75 4.33917 18.75 4.33917C18.75 4.33917 21.0275 1.98667 25.28 2.60292C25.8525 2.68667 26.25 3.19792 26.25 3.77792V11.8692C26.25 12.6767 25.4913 13.2654 24.6875 13.1967C20.8163 12.8667 18.75 15.0004 18.75 15.0004C18.75 15.0004 16.6837 12.8667 12.8125 13.1967C12.0075 13.2654 11.25 12.6767 11.25 11.8692V3.77542C11.25 3.19667 11.6475 2.68667 12.22 2.60292Z" stroke="#054742" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Learn import-export without prior experience
+                  </li>
+                  <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                    <path d="M10.6807 3.66211C11.785 3.2038 13.0009 3.0825 14.1738 3.31445C15.3462 3.54631 16.4239 4.12036 17.2705 4.96387V4.96484C17.9378 5.63771 18.44 6.45364 18.7402 7.34863L18.8564 7.7373C18.8906 7.87061 18.8981 8.00923 18.8789 8.14551C18.8596 8.28231 18.8134 8.41421 18.7432 8.5332C18.6729 8.65218 18.5801 8.75679 18.4697 8.83984C18.3594 8.92277 18.2333 8.98313 18.0996 9.01758C17.966 9.05195 17.827 9.05933 17.6904 9.04004C17.5536 9.0207 17.4217 8.97452 17.3027 8.9043C17.1838 8.83409 17.0801 8.7412 16.9971 8.63086C16.9141 8.52055 16.8529 8.39537 16.8184 8.26172V8.26074C16.6396 7.57742 16.2862 6.95189 15.793 6.44629L15.791 6.44434C15.2379 5.89203 14.5334 5.51595 13.7666 5.36426C12.9996 5.21255 12.2043 5.29246 11.4824 5.59277C10.7607 5.89311 10.1439 6.40093 9.71094 7.05176C9.27803 7.7026 9.04791 8.46735 9.0498 9.24902V11.9482H19.25C20.1914 11.9482 21.094 12.3227 21.7598 12.9883C22.4255 13.654 22.7998 14.5575 22.7998 15.499V24.249C22.7997 25.1904 22.4254 26.0931 21.7598 26.7588C21.094 27.4244 20.1914 27.7988 19.25 27.7988H6.75C5.80856 27.7988 4.90597 27.4244 4.24023 26.7588C3.57456 26.0931 3.20029 25.1904 3.2002 24.249V15.499C3.2002 14.5575 3.57448 13.654 4.24023 12.9883C4.90596 12.3227 5.80863 11.9482 6.75 11.9482H6.9502V9.24902C6.95045 8.05336 7.30471 6.88396 7.96875 5.88965C8.63273 4.89551 9.57652 4.1204 10.6807 3.66211ZM6.75 14.0488C6.36544 14.0488 5.99654 14.2017 5.72461 14.4736C5.45279 14.7455 5.2998 15.1145 5.2998 15.499V24.249C5.2999 24.6335 5.45276 25.0026 5.72461 25.2744C5.99652 25.5462 6.36552 25.6982 6.75 25.6982H19.25C19.6345 25.6982 20.0035 25.5462 20.2754 25.2744C20.5472 25.0026 20.7001 24.6335 20.7002 24.249V15.499C20.7002 15.1145 20.5472 14.7455 20.2754 14.4736C20.0035 14.2017 19.6346 14.0488 19.25 14.0488H6.75Z" fill="#054742" stroke="#FFB798" stroke-width="0.4"/>
+                    </svg>
+                    Get certified and unlock integrated tools as you progress
+                  </li>
+                  <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                      <path d="M13.7505 2.7002H16.2505C16.5288 2.70031 16.7959 2.811 16.9927 3.00781C17.1895 3.20471 17.3003 3.47162 17.3003 3.75V5.56934L17.4673 5.59766L21.6284 6.29004C22.1652 6.37987 22.6528 6.65686 23.0044 7.07227C23.356 7.48768 23.5484 8.01435 23.5483 8.55859V12.9932L23.686 13.0381L26.2603 13.8955C26.4391 13.9552 26.6039 14.0522 26.7437 14.1787C26.8833 14.3052 26.9957 14.4589 27.0728 14.6309C27.1499 14.8029 27.1904 14.9892 27.1919 15.1777C27.1934 15.3662 27.1559 15.5534 27.0815 15.7266L23.9302 23.0801L23.856 23.2529L24.0239 23.3379L25.4692 24.0615L25.4751 24.0645C25.6026 24.1234 25.7175 24.2075 25.812 24.3115C25.9064 24.4155 25.9794 24.5374 26.0259 24.6699C26.0724 24.8026 26.0914 24.9437 26.0825 25.084C26.0736 25.2242 26.037 25.3616 25.9741 25.4873C25.9113 25.6129 25.8231 25.7242 25.7163 25.8154C25.6094 25.9067 25.4852 25.9762 25.3511 26.0186C25.2171 26.0609 25.0759 26.0757 24.936 26.0625C24.831 26.0526 24.7284 26.0267 24.6313 25.9863L24.5366 25.9414L24.5308 25.9385L21.2065 24.2773C20.832 24.0902 20.4192 23.9923 20.0005 23.9922C19.5816 23.9922 19.1682 24.0902 18.7935 24.2773L17.147 25.1016C16.4806 25.4348 15.7456 25.6083 15.0005 25.6084C14.2552 25.6084 13.5196 25.4349 12.853 25.1016L11.2075 24.2773H11.2065C10.8317 24.09 10.4185 23.9922 9.99951 23.9922C9.58031 23.9922 9.16644 24.0899 8.7915 24.2773L5.46924 25.9395C5.21999 26.0639 4.93175 26.0843 4.66748 25.9961C4.40329 25.9079 4.18456 25.7189 4.06006 25.4697C3.93557 25.2205 3.91519 24.9313 4.00342 24.667C4.09167 24.4029 4.28163 24.185 4.53076 24.0605L6.8208 22.915L7.01025 22.8203L6.90479 22.6367L3.02783 15.8516C2.92793 15.6767 2.8676 15.4821 2.85205 15.2812C2.83653 15.0803 2.86604 14.8778 2.93799 14.6895C3.00991 14.5014 3.12266 14.3317 3.26807 14.1924C3.41365 14.053 3.58855 13.9475 3.77979 13.8838L6.31299 13.0381L6.44971 12.9932V8.55859C6.44962 8.01435 6.64301 7.48768 6.99463 7.07227C7.34627 6.65686 7.83381 6.37984 8.37061 6.29004L12.5327 5.59766L12.6997 5.56934V3.75C12.6997 3.47165 12.8106 3.2047 13.0073 3.00781C13.2042 2.8109 13.472 2.7002 13.7505 2.7002ZM14.937 12.3789L5.52783 15.5137L5.29639 15.5908L5.41748 15.8027L8.88916 21.8809L8.95947 22.0049L9.1001 21.9775C10.1337 21.7803 11.2037 21.9282 12.145 22.3984L13.7905 23.2227C14.1656 23.4103 14.5792 23.5078 14.9985 23.5078C15.418 23.5078 15.8324 23.4104 16.2075 23.2227L17.8521 22.3984C18.4598 22.0947 19.1253 21.924 19.8042 21.8965C20.4831 21.869 21.1602 21.9856 21.7905 22.2393L21.9722 22.3125L22.0493 22.1328L24.7485 15.835L24.8345 15.6348L24.6284 15.5664L15.063 12.3789L15.0005 12.3584L14.937 12.3789ZM21.4497 8.38965L21.2827 8.36133L15.0327 7.32031L15.0005 7.31445L14.9673 7.32031L8.71729 8.36133L8.55029 8.38965V12.2939L8.81299 12.2061L14.272 10.3857C14.7441 10.2283 15.2549 10.2283 15.7271 10.3857L21.187 12.2061L21.4497 12.2939V8.38965Z" fill="#054742" stroke="#FFB799" stroke-width="0.4"/>
+                    </svg>
+                    Build confidence to ship your first order independently
+                  </li>
+                </ul>
+                <div class="buttonwrap">
+                  <a href="/dashboard">
+                    <span>
+                      Start Your Journey
+                    </span>
+                    <span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                      <path d="M10.5 4.375L16.625 10.5M16.625 10.5L10.5 16.625M16.625 10.5H4.375" stroke="black" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-half">
+            <div class="imagwwithcontent" style="background-color: #DCB7EB;">
+              <div class="imgwithcontentinner">
+                <h3>Solopreneurs & New Exporters</h3>
+                <img src="img/image2.png" alt="Image">
+                <ul>
+                  <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                      <path d="M20 3.4375H10C7.58375 3.4375 5.625 5.39625 5.625 7.8125V22.1875C5.625 24.6037 7.58375 26.5625 10 26.5625H20C22.4162 26.5625 24.375 24.6037 24.375 22.1875V7.8125C24.375 5.39625 22.4162 3.4375 20 3.4375Z" stroke="#054742" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M10.625 8.44336H19.375M10.625 13.4434H19.375M10.625 18.4434H15" stroke="#054742" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Understand compliance, documentation, and cost planning
+                  </li>
+                  <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                    <path d="M25 16V14C25 9.75789 25 7.63579 23.5358 6.31789C22.0716 5 19.7147 5 15 5C10.2863 5 7.92842 5 6.46421 6.31789C5 7.63579 5 9.75789 5 14V16C5 20.2421 5 22.3642 6.46421 23.6821C7.92842 25 10.2853 25 15 25C19.7137 25 22.0716 25 23.5358 23.6821C25 22.3642 25 20.2421 25 16Z" stroke="#054742" stroke-width="1.57895"/>
+                    <path d="M21.3157 10.7889H17.1051M19.2104 8.68359V12.8941M21.3157 20.7889H17.1051M21.3157 17.631H17.1051M12.8946 20.7889L11.0525 18.9468M11.0525 18.9468L9.2104 17.1046M11.0525 18.9468L12.8946 17.1046M11.0525 18.9468L9.2104 20.7889M12.8946 10.7889H8.68408" stroke="#054742" stroke-width="1.57895" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Access tools to calculate duties, landed costs, and CBM
+                  </li>
+                  <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                  <path d="M17.2998 3.9502V6.64453L17.4531 6.68164C19.8882 7.27597 21.1391 9.06535 21.2969 11.0498H18.9346C18.8694 10.3166 18.6325 9.67344 18.1309 9.20508C17.587 8.69731 16.7668 8.4248 15.625 8.4248C15.1543 8.42482 14.7152 8.48013 14.3262 8.56836L12.7285 6.9707C13.0707 6.83562 13.42 6.72142 13.79 6.64551L13.9502 6.61328V3.9502H17.2998ZM9.5752 10.8799L5.35742 6.66211L6.83789 5.18262L24.8301 23.1748L23.3496 24.6543L20.582 21.8867L20.4414 22.0146C19.6888 22.6955 18.6382 23.1458 17.4629 23.3662L17.2998 23.3965V26.0498H13.9502V23.376L13.792 23.3418C11.5082 22.8541 9.60039 21.4345 9.36621 18.9502H11.7256C11.827 19.6581 12.1308 20.3 12.7236 20.7725C13.3631 21.282 14.3103 21.5752 15.625 21.5752C17.377 21.5752 18.3394 21.0362 18.8145 20.3516L18.9102 20.2139L18.792 20.0957L14.4043 15.709L14.3682 15.6729L14.3193 15.6582L13.7861 15.4912C12.5726 15.0873 11.573 14.5752 10.8535 13.9111C10.0384 13.1586 9.57529 12.2049 9.5752 10.9629V10.8799Z" fill="#054742" stroke="#E1BFEF" stroke-width="0.4"/>
+                  </svg>
+                    Avoid costly errors with AI-powered document checking
+                  </li>
+                </ul>
+                <div class="buttonwrap">
+                  <a href="/dashboard">
+                    <span>
+                      Explore Courses & Tools
+                    </span>
+                    <span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                      <path d="M10.5 4.375L16.625 10.5M16.625 10.5L10.5 16.625M16.625 10.5H4.375" stroke="black" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-half">
+            <div class="imagwwithcontent" style="background-color: #FBEBA9;">
+              <div class="imgwithcontentinner">
+                <h3>New IEC <br>Registrations</h3>
+                <img src="img/image3.png" alt="Image">
+                <ul>
+                  <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                      <path d="M10.875 9.125C10.375 8.625 9.625 8.625 9.125 9.125C8.625 9.625 8.625 10.375 9.125 10.875L13.25 15L9.125 19.125C8.875 19.375 8.75 19.625 8.75 20C8.75 20.75 9.25 21.25 10 21.25C10.375 21.25 10.625 21.125 10.875 20.875L15.875 15.875C16.375 15.375 16.375 14.625 15.875 14.125L10.875 9.125ZM20 8.75C19.25 8.75 18.75 9.25 18.75 10V20C18.75 20.75 19.25 21.25 20 21.25C20.75 21.25 21.25 20.75 21.25 20V10C21.25 9.25 20.75 8.75 20 8.75Z" fill="#054742"/>
+                    </svg>
+                    Get compliant fast with step-by-step guidance</li>
+                  <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                    <path d="M20 3.4375H10C7.58375 3.4375 5.625 5.39625 5.625 7.8125V22.1875C5.625 24.6037 7.58375 26.5625 10 26.5625H20C22.4162 26.5625 24.375 24.6037 24.375 22.1875V7.8125C24.375 5.39625 22.4162 3.4375 20 3.4375Z" stroke="#054742" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M10.625 8.44336H19.375M10.625 13.4434H19.375M10.625 18.4434H15" stroke="#054742" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Learn customs, duties, and documentation from module 1
+                  </li>
+                  <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                    <path d="M12.4125 16.5256L3.96 12.0331M12.4125 25.7244V16.5281L19.2163 12.6794M19.2163 12.6794L26.0188 8.83062M19.2163 12.6794V22.4031M26.0188 8.83062C25.6738 8.26437 25.18 7.78812 24.5725 7.46562L19.4037 4.71687C18.847 4.42063 18.2246 4.26957 17.5941 4.27765C16.9635 4.28574 16.3452 4.45271 15.7963 4.76312L5.34125 10.6781C4.76 11.0069 4.28875 11.4769 3.96 12.0319C3.6225 12.6006 3.4375 13.2569 3.4375 13.9419V19.2256C3.43751 19.9062 3.62273 20.5739 3.97329 21.1572C4.32386 21.7405 4.82655 22.2175 5.4275 22.5369L10.5963 25.2844C11.155 25.5815 11.7798 25.7325 12.4125 25.7231C13.0408 25.7141 13.6567 25.5473 14.2037 25.2381L19.2163 22.4031M26.0188 8.83062C26.3688 9.40687 26.5625 10.0769 26.5625 10.7756V16.0594C26.5627 16.7234 26.3865 17.3756 26.052 17.9492C25.7175 18.5229 25.2367 18.9974 24.6587 19.3244L19.2163 22.4031" stroke="#054742" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Track shipments and manage logistics with confidence
+                  </li>
+                </ul>
+                <div class="buttonwrap">
+                  <a href="/dashboard">
+                    <span>
+                      Get Started
+                    </span>
+                    <span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                      <path d="M10.5 4.375L16.625 10.5M16.625 10.5L10.5 16.625M16.625 10.5H4.375" stroke="black" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-half">
+            <div class="imagwwithcontent" style="background-color: #9FE4D7;">
+              <div class="imgwithcontentinner">
+                <h3>Working Professionals</h3>
+                <img src="img/image4.png" alt="Image">
+                <ul>
+                  <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                    <path d="M17.8571 10.7143H12.1429V9.28571H17.8571V10.7143ZM15 23.5714H7.85714V20.7143H9.28571V19.2857H7.85714V15.7143H9.28571V14.2857H7.85714V10.7143H9.28571V9.28571H7.85714V6.42857H20.7143V18.5714H22.1429V6.42857C22.1429 5.64286 21.5 5 20.7143 5H7.85714C7.07143 5 6.42857 5.64286 6.42857 6.42857V9.28571H5V10.7143H6.42857V14.2857H5V15.7143H6.42857V19.2857H5V20.7143H6.42857V23.5714C6.42857 24.3571 7.07143 25 7.85714 25H15V23.5714ZM17.8571 14.2857H12.1429V15.7143H17.8571V14.2857ZM20 23L18.1429 21.1429L17.1429 22.1429L20 25L25 20L24 19L20 23Z" fill="#054742"/>
+                    </svg>
+                    Formalize your on-the-job knowledge with certification
+                  </li>
+                  <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                    <path d="M18 8C18 8.79565 17.6839 9.55871 17.1213 10.1213C16.5587 10.6839 15.7956 11 15 11C14.2044 11 13.4413 10.6839 12.8787 10.1213C12.3161 9.55871 12 8.79565 12 8C12 7.20435 12.3161 6.44129 12.8787 5.87868C13.4413 5.31607 14.2044 5 15 5C15.7956 5 16.5587 5.31607 17.1213 5.87868C17.6839 6.44129 18 7.20435 18 8Z" stroke="#054742" stroke-width="1.5"/>
+                    <path d="M15 11V12M15 12C15 12.932 15 13.398 15.178 13.765C15.414 14.255 15.868 14.645 16.44 14.848C16.87 15 17.413 15 18.5 15C19.587 15 20.13 15 20.56 15.152C21.131 15.355 21.586 15.745 21.822 16.235C22 16.602 22 17.068 22 18V19M15 12C15 12.932 15 13.398 14.822 13.765C14.586 14.255 14.132 14.645 13.56 14.848C13.13 15 12.587 15 11.5 15C10.413 15 9.87 15 9.44 15.152C8.869 15.355 8.414 15.745 8.178 16.235C8 16.602 8 17.068 8 18V19" stroke="#054742" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M11 22C11 22.7956 10.6839 23.5587 10.1213 24.1213C9.55871 24.6839 8.79565 25 8 25C7.20435 25 6.44129 24.6839 5.87868 24.1213C5.31607 23.5587 5 22.7956 5 22C5 21.2044 5.31607 20.4413 5.87868 19.8787C6.44129 19.3161 7.20435 19 8 19C8.79565 19 9.55871 19.3161 10.1213 19.8787C10.6839 20.4413 11 21.2044 11 22ZM25 22C25 22.7956 24.6839 23.5587 24.1213 24.1213C23.5587 24.6839 22.7956 25 22 25C21.2044 25 20.4413 24.6839 19.8787 24.1213C19.3161 23.5587 19 22.7956 19 22C19 21.2044 19.3161 20.4413 19.8787 19.8787C20.4413 19.3161 21.2044 19 22 19C22.7956 19 23.5587 19.3161 24.1213 19.8787C24.6839 20.4413 25 21.2044 25 22Z" stroke="#054742" stroke-width="1.5"/>
+                  </svg>
+                    Streamline workflows with integrated shipping tools
+                  </li>
+                  <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                    <path d="M15 19.4444H15.0089M15 10.5555V16.1111M5.25561 10.4589L10.4556 5.25555C10.6222 5.08889 10.8445 5 11.0889 5H18.9222C19.1555 5 19.3889 5.08889 19.5555 5.25555L24.7444 10.4477C24.9111 10.6144 24.9999 10.8366 24.9999 11.0811V18.9188C24.9999 19.1521 24.9111 19.3855 24.7444 19.5521L19.5555 24.7443C19.3889 24.911 19.1666 24.9999 18.9222 24.9999H11.0778C10.9606 25.0012 10.8443 24.9792 10.7356 24.9354C10.6269 24.8915 10.528 24.8266 10.4445 24.7443L5.25561 19.5521C5.17336 19.4686 5.10844 19.3697 5.06458 19.261C5.02072 19.1523 4.99879 19.036 5.00005 18.9188V11.0811C5.00005 10.8477 5.08894 10.6144 5.25561 10.4477V10.4589Z" stroke="#054742" stroke-width="1.66666" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Reduce document errors and save time on repetitive tasks
+                  </li>
+                </ul>
+                <div class="buttonwrap">
+                  <a href="/">
+                    <span>
+                      Upskill Your Career
+                    </span>
+                    <span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                      <path d="M10.5 4.375L16.625 10.5M16.625 10.5L10.5 16.625M16.625 10.5H4.375" stroke="black" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Who Navaro is for End -->
+
+    <!-- Real outcomes from real exporters Start -->
+    <div class="realcustomersec">
+      <div class="container">
+        <div class="titlebox">
+          <h2>Real outcomes from real exporters</h2>
+          <p>Trusted by hundreds of exporters, students, and trade professionals across India</p>
+        </div>
+      </div>
+      <div class="realcustomersliderinner">
+        <div class="realcustomerslider">
+          <div class="realcustomerslide">
+            <div class="customerslideinner">
+              <p>“  I believe collaboration makes artistic practice richer and more fulfilling. While the myth of the lone genius still lingers, art relies on support, connection and diverse perspectives. In the end, it's about community, collectivity and visibility. “</p>
+              <div class="info">
+                <div class="infoimage">
+                  <img src="img/user.jpg" alt="image">
+                </div>
+                <div class="infocontent">
+                  <h6>Irene Sánchez Gómez</h6>
+                  <p>Independent Curator Germany</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="realcustomerslide">
+            <div class="customerslideinner">
+              <p>“  I believe collaboration makes artistic practice richer and more fulfilling. While the myth of the lone genius still lingers, art relies on support, connection and diverse perspectives. In the end, it's about community, collectivity and visibility. “</p>
+              <div class="info">
+                <div class="infoimage">
+                  <img src="img/user.jpg" alt="image">
+                </div>
+                <div class="infocontent">
+                  <h6>Irene Sánchez Gómez</h6>
+                  <p>Independent Curator Germany</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="realcustomerslide">
+            <div class="customerslideinner">
+              <p>“  I believe collaboration makes artistic practice richer and more fulfilling. While the myth of the lone genius still lingers, art relies on support, connection and diverse perspectives. In the end, it's about community, collectivity and visibility. “</p>
+              <div class="info">
+                <div class="infoimage">
+                  <img src="img/user.jpg" alt="image">
+                </div>
+                <div class="infocontent">
+                  <h6>Irene Sánchez Gómez</h6>
+                  <p>Independent Curator Germany</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="realcustomerslide">
+            <div class="customerslideinner">
+              <p>“  I believe collaboration makes artistic practice richer and more fulfilling. While the myth of the lone genius still lingers, art relies on support, connection and diverse perspectives. In the end, it's about community, collectivity and visibility. “</p>
+              <div class="info">
+                <div class="infoimage">
+                  <img src="img/user.jpg" alt="image">
+                </div>
+                <div class="infocontent">
+                  <h6>Irene Sánchez Gómez</h6>
+                  <p>Independent Curator Germany</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cloudsquare">          
+          <svg width="1512" height="721" viewBox="0 0 1512 721" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1579.12 208.896L829.177 633.795L995.67 1067.61L1745.62 642.713L1579.12 208.896Z" fill="#C780ED"/>
+          <path d="M842.963 -78.8145L-171.613 496.016L87.021 1169.92L1101.6 595.086L842.963 -78.8145Z" fill="#C780ED"/>
+          <g opacity="0.5">
+          <rect x="-26.2272" y="0.689748" width="103.039" height="101.665" stroke="#FFFBF3" stroke-width="1.16856"/>
+          </g>
+          <g opacity="0.5">
+          <rect x="77.9803" y="0.689748" width="103.039" height="101.665" stroke="#FFFBF3" stroke-width="1.16856"/>
+          </g>
+          <g opacity="0.5">
+          <rect x="182.188" y="0.689748" width="103.039" height="101.665" stroke="#FFFBF3" stroke-width="1.16856"/>
+          </g>
+          <g opacity="0.5">
+          <rect x="286.396" y="0.689748" width="103.039" height="101.665" stroke="#FFFBF3" stroke-width="1.16856"/>
+          </g>
+          <g opacity="0.5">
+          <rect x="390.604" y="0.689748" width="103.039" height="101.665" stroke="#FFFBF3" stroke-width="1.16856"/>
+          </g>
+          <g opacity="0.5">
+          <rect x="494.812" y="0.689748" width="103.039" height="101.665" stroke="#FFFBF3" stroke-width="1.16856"/>
+          </g>
+          <g opacity="0.5">
+          <rect x="599.02" y="0.689748" width="103.039" height="101.665" stroke="#FFFBF3" stroke-width="1.16856"/>
+          </g>
+          <g opacity="0.5">
+          <rect x="703.227" y="0.689748" width="103.039" height="101.665" stroke="#FFFBF3" stroke-width="1.16856"/>
+          </g>
+          <g opacity="0.5">
+          <rect x="807.435" y="0.689748" width="103.039" height="101.665" stroke="#FFFBF3" stroke-width="1.16856"/>
+          </g>
+          <g opacity="0.5">
+          <rect x="911.643" y="0.689748" width="103.039" height="101.665" stroke="#FFFBF3" stroke-width="1.16856"/>
+          </g>
+          <g opacity="0.5">
+          <rect x="1015.85" y="0.689748" width="103.039" height="101.665" stroke="#FFFBF3" stroke-width="1.16856"/>
+          </g>
+          <g opacity="0.5">
+          <rect x="1120.06" y="0.689748" width="103.039" height="101.665" stroke="#FFFBF3" stroke-width="1.16856"/>
+          </g>
+          <g opacity="0.5">
+          <rect x="1224.27" y="0.689748" width="103.039" height="101.665" stroke="#FFFBF3" stroke-width="1.16856"/>
+          </g>
+          <g opacity="0.5">
+          <rect x="1328.47" y="0.689748" width="103.039" height="101.665" stroke="#FFFBF3" stroke-width="1.16856"/>
+          </g>
+          <g opacity="0.5">
+          <rect x="1432.68" y="0.689748" width="103.039" height="101.665" stroke="#FFFBF3" stroke-width="1.16856"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-18-inside-1_886_1475" fill="white">
+          <path d="M-26.8115 102.939H77.3963V205.773H-26.8115V102.939Z"/>
+          </mask>
+          <path d="M77.3963 205.773V206.941H78.5649V205.773H77.3963ZM-26.8115 205.773H-27.9801V206.941H-26.8115V205.773ZM77.3963 102.939H76.2278V205.773H77.3963H78.5649V102.939H77.3963ZM77.3963 205.773V204.604H-26.8115V205.773V206.941H77.3963V205.773ZM-26.8115 205.773H-25.643V102.939H-26.8115H-27.9801V205.773H-26.8115Z" fill="#FFFBF3" mask="url(#path-18-inside-1_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-20-inside-2_886_1475" fill="white">
+          <path d="M77.396 102.939H181.604V205.773H77.396V102.939Z"/>
+          </mask>
+          <path d="M181.604 205.773V206.941H182.772V205.773H181.604ZM77.396 205.773H76.2274V206.941H77.396V205.773ZM181.604 102.939H180.435V205.773H181.604H182.772V102.939H181.604ZM181.604 205.773V204.604H77.396V205.773V206.941H181.604V205.773ZM77.396 205.773H78.5646V102.939H77.396H76.2274V205.773H77.396Z" fill="#FFFBF3" mask="url(#path-20-inside-2_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-22-inside-3_886_1475" fill="white">
+          <path d="M181.604 102.939H285.812V205.773H181.604V102.939Z"/>
+          </mask>
+          <path d="M285.812 205.773V206.941H286.98V205.773H285.812ZM181.604 205.773H180.435V206.941H181.604V205.773ZM285.812 102.939H284.643V205.773H285.812H286.98V102.939H285.812ZM285.812 205.773V204.604H181.604V205.773V206.941H285.812V205.773ZM181.604 205.773H182.773V102.939H181.604H180.435V205.773H181.604Z" fill="#FFFBF3" mask="url(#path-22-inside-3_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-24-inside-4_886_1475" fill="white">
+          <path d="M285.812 102.939H390.02V205.773H285.812V102.939Z"/>
+          </mask>
+          <path d="M390.02 205.773V206.941H391.188V205.773H390.02ZM285.812 205.773H284.643V206.941H285.812V205.773ZM390.02 102.939H388.851V205.773H390.02H391.188V102.939H390.02ZM390.02 205.773V204.604H285.812V205.773V206.941H390.02V205.773ZM285.812 205.773H286.981V102.939H285.812H284.643V205.773H285.812Z" fill="#FFFBF3" mask="url(#path-24-inside-4_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-26-inside-5_886_1475" fill="white">
+          <path d="M390.02 102.939H494.227V205.773H390.02V102.939Z"/>
+          </mask>
+          <path d="M494.227 205.773V206.941H495.396V205.773H494.227ZM390.02 205.773H388.851V206.941H390.02V205.773ZM494.227 102.939H493.059V205.773H494.227H495.396V102.939H494.227ZM494.227 205.773V204.604H390.02V205.773V206.941H494.227V205.773ZM390.02 205.773H391.188V102.939H390.02H388.851V205.773H390.02Z" fill="#FFFBF3" mask="url(#path-26-inside-5_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-28-inside-6_886_1475" fill="white">
+          <path d="M494.228 102.939H598.435V205.773H494.228V102.939Z"/>
+          </mask>
+          <path d="M598.435 205.773V206.941H599.604V205.773H598.435ZM494.228 205.773H493.059V206.941H494.228V205.773ZM598.435 102.939H597.267V205.773H598.435H599.604V102.939H598.435ZM598.435 205.773V204.604H494.228V205.773V206.941H598.435V205.773ZM494.228 205.773H495.396V102.939H494.228H493.059V205.773H494.228Z" fill="#FFFBF3" mask="url(#path-28-inside-6_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-30-inside-7_886_1475" fill="white">
+          <path d="M598.436 102.939H702.643V205.773H598.436V102.939Z"/>
+          </mask>
+          <path d="M702.643 205.773V206.941H703.812V205.773H702.643ZM598.436 205.773H597.267V206.941H598.436V205.773ZM702.643 102.939H701.475V205.773H702.643H703.812V102.939H702.643ZM702.643 205.773V204.604H598.436V205.773V206.941H702.643V205.773ZM598.436 205.773H599.604V102.939H598.436H597.267V205.773H598.436Z" fill="#FFFBF3" mask="url(#path-30-inside-7_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-32-inside-8_886_1475" fill="white">
+          <path d="M702.643 102.939H806.851V205.773H702.643V102.939Z"/>
+          </mask>
+          <path d="M806.851 205.773V206.941H808.019V205.773H806.851ZM702.643 205.773H701.475V206.941H702.643V205.773ZM806.851 102.939H805.682V205.773H806.851H808.019V102.939H806.851ZM806.851 205.773V204.604H702.643V205.773V206.941H806.851V205.773ZM702.643 205.773H703.812V102.939H702.643H701.475V205.773H702.643Z" fill="#FFFBF3" mask="url(#path-32-inside-8_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-34-inside-9_886_1475" fill="white">
+          <path d="M806.851 102.939H911.059V205.773H806.851V102.939Z"/>
+          </mask>
+          <path d="M911.059 205.773V206.941H912.227V205.773H911.059ZM806.851 205.773H805.683V206.941H806.851V205.773ZM911.059 102.939H909.89V205.773H911.059H912.227V102.939H911.059ZM911.059 205.773V204.604H806.851V205.773V206.941H911.059V205.773ZM806.851 205.773H808.02V102.939H806.851H805.683V205.773H806.851Z" fill="#FFFBF3" mask="url(#path-34-inside-9_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-36-inside-10_886_1475" fill="white">
+          <path d="M911.059 102.939H1015.27V205.773H911.059V102.939Z"/>
+          </mask>
+          <path d="M1015.27 205.773V206.941H1016.43V205.773H1015.27ZM911.059 205.773H909.89V206.941H911.059V205.773ZM1015.27 102.939H1014.1V205.773H1015.27H1016.43V102.939H1015.27ZM1015.27 205.773V204.604H911.059V205.773V206.941H1015.27V205.773ZM911.059 205.773H912.227V102.939H911.059H909.89V205.773H911.059Z" fill="#FFFBF3" mask="url(#path-36-inside-10_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-38-inside-11_886_1475" fill="white">
+          <path d="M1015.27 102.939H1119.47V205.773H1015.27V102.939Z"/>
+          </mask>
+          <path d="M1119.47 205.773V206.941H1120.64V205.773H1119.47ZM1015.27 205.773H1014.1V206.941H1015.27V205.773ZM1119.47 102.939H1118.31V205.773H1119.47H1120.64V102.939H1119.47ZM1119.47 205.773V204.604H1015.27V205.773V206.941H1119.47V205.773ZM1015.27 205.773H1016.44V102.939H1015.27H1014.1V205.773H1015.27Z" fill="#FFFBF3" mask="url(#path-38-inside-11_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-40-inside-12_886_1475" fill="white">
+          <path d="M1119.47 102.939H1223.68V205.773H1119.47V102.939Z"/>
+          </mask>
+          <path d="M1223.68 205.773V206.941H1224.85V205.773H1223.68ZM1119.47 205.773H1118.31V206.941H1119.47V205.773ZM1223.68 102.939H1222.51V205.773H1223.68H1224.85V102.939H1223.68ZM1223.68 205.773V204.604H1119.47V205.773V206.941H1223.68V205.773ZM1119.47 205.773H1120.64V102.939H1119.47H1118.31V205.773H1119.47Z" fill="#FFFBF3" mask="url(#path-40-inside-12_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-42-inside-13_886_1475" fill="white">
+          <path d="M1223.68 102.939H1327.89V205.773H1223.68V102.939Z"/>
+          </mask>
+          <path d="M1327.89 205.773V206.941H1329.06V205.773H1327.89ZM1223.68 205.773H1222.51V206.941H1223.68V205.773ZM1327.89 102.939H1326.72V205.773H1327.89H1329.06V102.939H1327.89ZM1327.89 205.773V204.604H1223.68V205.773V206.941H1327.89V205.773ZM1223.68 205.773H1224.85V102.939H1223.68H1222.51V205.773H1223.68Z" fill="#FFFBF3" mask="url(#path-42-inside-13_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-44-inside-14_886_1475" fill="white">
+          <path d="M1327.89 102.939H1432.1V205.773H1327.89V102.939Z"/>
+          </mask>
+          <path d="M1432.1 205.773V206.941H1433.27V205.773H1432.1ZM1327.89 205.773H1326.72V206.941H1327.89V205.773ZM1432.1 102.939H1430.93V205.773H1432.1H1433.27V102.939H1432.1ZM1432.1 205.773V204.604H1327.89V205.773V206.941H1432.1V205.773ZM1327.89 205.773H1329.06V102.939H1327.89H1326.72V205.773H1327.89Z" fill="#FFFBF3" mask="url(#path-44-inside-14_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-46-inside-15_886_1475" fill="white">
+          <path d="M1432.1 102.939H1536.31V205.773H1432.1V102.939Z"/>
+          </mask>
+          <path d="M1536.31 205.773V206.941H1537.47V205.773H1536.31ZM1432.1 205.773H1430.93V206.941H1432.1V205.773ZM1536.31 102.939H1535.14V205.773H1536.31H1537.47V102.939H1536.31ZM1536.31 205.773V204.604H1432.1V205.773V206.941H1536.31V205.773ZM1432.1 205.773H1433.27V102.939H1432.1H1430.93V205.773H1432.1Z" fill="#FFFBF3" mask="url(#path-46-inside-15_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-48-inside-16_886_1475" fill="white">
+          <path d="M-26.8115 205.771H77.3963V308.605H-26.8115V205.771Z"/>
+          </mask>
+          <path d="M77.3963 308.605V309.773H78.5649V308.605H77.3963ZM-26.8115 308.605H-27.9801V309.773H-26.8115V308.605ZM77.3963 205.771H76.2278V308.605H77.3963H78.5649V205.771H77.3963ZM77.3963 308.605V307.436H-26.8115V308.605V309.773H77.3963V308.605ZM-26.8115 308.605H-25.643V205.771H-26.8115H-27.9801V308.605H-26.8115Z" fill="#FFFBF3" mask="url(#path-48-inside-16_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-50-inside-17_886_1475" fill="white">
+          <path d="M77.396 205.771H181.604V308.605H77.396V205.771Z"/>
+          </mask>
+          <path d="M181.604 308.605V309.773H182.772V308.605H181.604ZM77.396 308.605H76.2274V309.773H77.396V308.605ZM181.604 205.771H180.435V308.605H181.604H182.772V205.771H181.604ZM181.604 308.605V307.436H77.396V308.605V309.773H181.604V308.605ZM77.396 308.605H78.5646V205.771H77.396H76.2274V308.605H77.396Z" fill="#FFFBF3" mask="url(#path-50-inside-17_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-52-inside-18_886_1475" fill="white">
+          <path d="M181.604 205.771H285.812V308.605H181.604V205.771Z"/>
+          </mask>
+          <path d="M285.812 308.605V309.773H286.98V308.605H285.812ZM181.604 308.605H180.435V309.773H181.604V308.605ZM285.812 205.771H284.643V308.605H285.812H286.98V205.771H285.812ZM285.812 308.605V307.436H181.604V308.605V309.773H285.812V308.605ZM181.604 308.605H182.773V205.771H181.604H180.435V308.605H181.604Z" fill="#FFFBF3" mask="url(#path-52-inside-18_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-54-inside-19_886_1475" fill="white">
+          <path d="M285.812 205.771H390.02V308.605H285.812V205.771Z"/>
+          </mask>
+          <path d="M390.02 308.605V309.773H391.188V308.605H390.02ZM285.812 308.605H284.643V309.773H285.812V308.605ZM390.02 205.771H388.851V308.605H390.02H391.188V205.771H390.02ZM390.02 308.605V307.436H285.812V308.605V309.773H390.02V308.605ZM285.812 308.605H286.981V205.771H285.812H284.643V308.605H285.812Z" fill="#FFFBF3" mask="url(#path-54-inside-19_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-56-inside-20_886_1475" fill="white">
+          <path d="M390.02 205.771H494.227V308.605H390.02V205.771Z"/>
+          </mask>
+          <path d="M494.227 308.605V309.773H495.396V308.605H494.227ZM390.02 308.605H388.851V309.773H390.02V308.605ZM494.227 205.771H493.059V308.605H494.227H495.396V205.771H494.227ZM494.227 308.605V307.436H390.02V308.605V309.773H494.227V308.605ZM390.02 308.605H391.188V205.771H390.02H388.851V308.605H390.02Z" fill="#FFFBF3" mask="url(#path-56-inside-20_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-58-inside-21_886_1475" fill="white">
+          <path d="M494.228 205.771H598.435V308.605H494.228V205.771Z"/>
+          </mask>
+          <path d="M598.435 308.605V309.773H599.604V308.605H598.435ZM494.228 308.605H493.059V309.773H494.228V308.605ZM598.435 205.771H597.267V308.605H598.435H599.604V205.771H598.435ZM598.435 308.605V307.436H494.228V308.605V309.773H598.435V308.605ZM494.228 308.605H495.396V205.771H494.228H493.059V308.605H494.228Z" fill="#FFFBF3" mask="url(#path-58-inside-21_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-60-inside-22_886_1475" fill="white">
+          <path d="M598.436 205.771H702.643V308.605H598.436V205.771Z"/>
+          </mask>
+          <path d="M702.643 308.605V309.773H703.812V308.605H702.643ZM598.436 308.605H597.267V309.773H598.436V308.605ZM702.643 205.771H701.475V308.605H702.643H703.812V205.771H702.643ZM702.643 308.605V307.436H598.436V308.605V309.773H702.643V308.605ZM598.436 308.605H599.604V205.771H598.436H597.267V308.605H598.436Z" fill="#FFFBF3" mask="url(#path-60-inside-22_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-62-inside-23_886_1475" fill="white">
+          <path d="M702.643 205.771H806.851V308.605H702.643V205.771Z"/>
+          </mask>
+          <path d="M806.851 308.605V309.773H808.019V308.605H806.851ZM702.643 308.605H701.475V309.773H702.643V308.605ZM806.851 205.771H805.682V308.605H806.851H808.019V205.771H806.851ZM806.851 308.605V307.436H702.643V308.605V309.773H806.851V308.605ZM702.643 308.605H703.812V205.771H702.643H701.475V308.605H702.643Z" fill="#FFFBF3" mask="url(#path-62-inside-23_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-64-inside-24_886_1475" fill="white">
+          <path d="M806.851 205.771H911.059V308.605H806.851V205.771Z"/>
+          </mask>
+          <path d="M911.059 308.605V309.773H912.227V308.605H911.059ZM806.851 308.605H805.683V309.773H806.851V308.605ZM911.059 205.771H909.89V308.605H911.059H912.227V205.771H911.059ZM911.059 308.605V307.436H806.851V308.605V309.773H911.059V308.605ZM806.851 308.605H808.02V205.771H806.851H805.683V308.605H806.851Z" fill="#FFFBF3" mask="url(#path-64-inside-24_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-66-inside-25_886_1475" fill="white">
+          <path d="M911.059 205.771H1015.27V308.605H911.059V205.771Z"/>
+          </mask>
+          <path d="M1015.27 308.605V309.773H1016.43V308.605H1015.27ZM911.059 308.605H909.89V309.773H911.059V308.605ZM1015.27 205.771H1014.1V308.605H1015.27H1016.43V205.771H1015.27ZM1015.27 308.605V307.436H911.059V308.605V309.773H1015.27V308.605ZM911.059 308.605H912.227V205.771H911.059H909.89V308.605H911.059Z" fill="#FFFBF3" mask="url(#path-66-inside-25_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-68-inside-26_886_1475" fill="white">
+          <path d="M1015.27 205.771H1119.47V308.605H1015.27V205.771Z"/>
+          </mask>
+          <path d="M1119.47 308.605V309.773H1120.64V308.605H1119.47ZM1015.27 308.605H1014.1V309.773H1015.27V308.605ZM1119.47 205.771H1118.31V308.605H1119.47H1120.64V205.771H1119.47ZM1119.47 308.605V307.436H1015.27V308.605V309.773H1119.47V308.605ZM1015.27 308.605H1016.44V205.771H1015.27H1014.1V308.605H1015.27Z" fill="#FFFBF3" mask="url(#path-68-inside-26_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-70-inside-27_886_1475" fill="white">
+          <path d="M1119.47 205.771H1223.68V308.605H1119.47V205.771Z"/>
+          </mask>
+          <path d="M1223.68 308.605V309.773H1224.85V308.605H1223.68ZM1119.47 308.605H1118.31V309.773H1119.47V308.605ZM1223.68 205.771H1222.51V308.605H1223.68H1224.85V205.771H1223.68ZM1223.68 308.605V307.436H1119.47V308.605V309.773H1223.68V308.605ZM1119.47 308.605H1120.64V205.771H1119.47H1118.31V308.605H1119.47Z" fill="#FFFBF3" mask="url(#path-70-inside-27_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-72-inside-28_886_1475" fill="white">
+          <path d="M1223.68 205.771H1327.89V308.605H1223.68V205.771Z"/>
+          </mask>
+          <path d="M1327.89 308.605V309.773H1329.06V308.605H1327.89ZM1223.68 308.605H1222.51V309.773H1223.68V308.605ZM1327.89 205.771H1326.72V308.605H1327.89H1329.06V205.771H1327.89ZM1327.89 308.605V307.436H1223.68V308.605V309.773H1327.89V308.605ZM1223.68 308.605H1224.85V205.771H1223.68H1222.51V308.605H1223.68Z" fill="#FFFBF3" mask="url(#path-72-inside-28_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-74-inside-29_886_1475" fill="white">
+          <path d="M1327.89 205.771H1432.1V308.605H1327.89V205.771Z"/>
+          </mask>
+          <path d="M1432.1 308.605V309.773H1433.27V308.605H1432.1ZM1327.89 308.605H1326.72V309.773H1327.89V308.605ZM1432.1 205.771H1430.93V308.605H1432.1H1433.27V205.771H1432.1ZM1432.1 308.605V307.436H1327.89V308.605V309.773H1432.1V308.605ZM1327.89 308.605H1329.06V205.771H1327.89H1326.72V308.605H1327.89Z" fill="#FFFBF3" mask="url(#path-74-inside-29_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-76-inside-30_886_1475" fill="white">
+          <path d="M1432.1 205.771H1536.31V308.605H1432.1V205.771Z"/>
+          </mask>
+          <path d="M1536.31 308.605V309.773H1537.47V308.605H1536.31ZM1432.1 308.605H1430.93V309.773H1432.1V308.605ZM1536.31 205.771H1535.14V308.605H1536.31H1537.47V205.771H1536.31ZM1536.31 308.605V307.436H1432.1V308.605V309.773H1536.31V308.605ZM1432.1 308.605H1433.27V205.771H1432.1H1430.93V308.605H1432.1Z" fill="#FFFBF3" mask="url(#path-76-inside-30_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-78-inside-31_886_1475" fill="white">
+          <path d="M-26.8115 308.605H77.3963V411.439H-26.8115V308.605Z"/>
+          </mask>
+          <path d="M77.3963 411.439V412.607H78.5649V411.439H77.3963ZM-26.8115 411.439H-27.9801V412.607H-26.8115V411.439ZM77.3963 308.605H76.2278V411.439H77.3963H78.5649V308.605H77.3963ZM77.3963 411.439V410.27H-26.8115V411.439V412.607H77.3963V411.439ZM-26.8115 411.439H-25.643V308.605H-26.8115H-27.9801V411.439H-26.8115Z" fill="#FFFBF3" mask="url(#path-78-inside-31_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-80-inside-32_886_1475" fill="white">
+          <path d="M77.396 308.605H181.604V411.439H77.396V308.605Z"/>
+          </mask>
+          <path d="M181.604 411.439V412.607H182.772V411.439H181.604ZM77.396 411.439H76.2274V412.607H77.396V411.439ZM181.604 308.605H180.435V411.439H181.604H182.772V308.605H181.604ZM181.604 411.439V410.27H77.396V411.439V412.607H181.604V411.439ZM77.396 411.439H78.5646V308.605H77.396H76.2274V411.439H77.396Z" fill="#FFFBF3" mask="url(#path-80-inside-32_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-82-inside-33_886_1475" fill="white">
+          <path d="M181.604 308.605H285.812V411.439H181.604V308.605Z"/>
+          </mask>
+          <path d="M285.812 411.439V412.607H286.98V411.439H285.812ZM181.604 411.439H180.435V412.607H181.604V411.439ZM285.812 308.605H284.643V411.439H285.812H286.98V308.605H285.812ZM285.812 411.439V410.27H181.604V411.439V412.607H285.812V411.439ZM181.604 411.439H182.773V308.605H181.604H180.435V411.439H181.604Z" fill="#FFFBF3" mask="url(#path-82-inside-33_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-84-inside-34_886_1475" fill="white">
+          <path d="M285.812 308.605H390.02V411.439H285.812V308.605Z"/>
+          </mask>
+          <path d="M390.02 411.439V412.607H391.188V411.439H390.02ZM285.812 411.439H284.643V412.607H285.812V411.439ZM390.02 308.605H388.851V411.439H390.02H391.188V308.605H390.02ZM390.02 411.439V410.27H285.812V411.439V412.607H390.02V411.439ZM285.812 411.439H286.981V308.605H285.812H284.643V411.439H285.812Z" fill="#FFFBF3" mask="url(#path-84-inside-34_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-86-inside-35_886_1475" fill="white">
+          <path d="M390.02 308.605H494.227V411.439H390.02V308.605Z"/>
+          </mask>
+          <path d="M494.227 411.439V412.607H495.396V411.439H494.227ZM390.02 411.439H388.851V412.607H390.02V411.439ZM494.227 308.605H493.059V411.439H494.227H495.396V308.605H494.227ZM494.227 411.439V410.27H390.02V411.439V412.607H494.227V411.439ZM390.02 411.439H391.188V308.605H390.02H388.851V411.439H390.02Z" fill="#FFFBF3" mask="url(#path-86-inside-35_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-88-inside-36_886_1475" fill="white">
+          <path d="M494.228 308.605H598.435V411.439H494.228V308.605Z"/>
+          </mask>
+          <path d="M598.435 411.439V412.607H599.604V411.439H598.435ZM494.228 411.439H493.059V412.607H494.228V411.439ZM598.435 308.605H597.267V411.439H598.435H599.604V308.605H598.435ZM598.435 411.439V410.27H494.228V411.439V412.607H598.435V411.439ZM494.228 411.439H495.396V308.605H494.228H493.059V411.439H494.228Z" fill="#FFFBF3" mask="url(#path-88-inside-36_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-90-inside-37_886_1475" fill="white">
+          <path d="M598.436 308.605H702.643V411.439H598.436V308.605Z"/>
+          </mask>
+          <path d="M702.643 411.439V412.607H703.812V411.439H702.643ZM598.436 411.439H597.267V412.607H598.436V411.439ZM702.643 308.605H701.475V411.439H702.643H703.812V308.605H702.643ZM702.643 411.439V410.27H598.436V411.439V412.607H702.643V411.439ZM598.436 411.439H599.604V308.605H598.436H597.267V411.439H598.436Z" fill="#FFFBF3" mask="url(#path-90-inside-37_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-92-inside-38_886_1475" fill="white">
+          <path d="M702.643 308.605H806.851V411.439H702.643V308.605Z"/>
+          </mask>
+          <path d="M806.851 411.439V412.607H808.019V411.439H806.851ZM702.643 411.439H701.475V412.607H702.643V411.439ZM806.851 308.605H805.682V411.439H806.851H808.019V308.605H806.851ZM806.851 411.439V410.27H702.643V411.439V412.607H806.851V411.439ZM702.643 411.439H703.812V308.605H702.643H701.475V411.439H702.643Z" fill="#FFFBF3" mask="url(#path-92-inside-38_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-94-inside-39_886_1475" fill="white">
+          <path d="M806.851 308.605H911.059V411.439H806.851V308.605Z"/>
+          </mask>
+          <path d="M911.059 411.439V412.607H912.227V411.439H911.059ZM806.851 411.439H805.683V412.607H806.851V411.439ZM911.059 308.605H909.89V411.439H911.059H912.227V308.605H911.059ZM911.059 411.439V410.27H806.851V411.439V412.607H911.059V411.439ZM806.851 411.439H808.02V308.605H806.851H805.683V411.439H806.851Z" fill="#FFFBF3" mask="url(#path-94-inside-39_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-96-inside-40_886_1475" fill="white">
+          <path d="M911.059 308.605H1015.27V411.439H911.059V308.605Z"/>
+          </mask>
+          <path d="M1015.27 411.439V412.607H1016.43V411.439H1015.27ZM911.059 411.439H909.89V412.607H911.059V411.439ZM1015.27 308.605H1014.1V411.439H1015.27H1016.43V308.605H1015.27ZM1015.27 411.439V410.27H911.059V411.439V412.607H1015.27V411.439ZM911.059 411.439H912.227V308.605H911.059H909.89V411.439H911.059Z" fill="#FFFBF3" mask="url(#path-96-inside-40_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-98-inside-41_886_1475" fill="white">
+          <path d="M1015.27 308.605H1119.47V411.439H1015.27V308.605Z"/>
+          </mask>
+          <path d="M1119.47 411.439V412.607H1120.64V411.439H1119.47ZM1015.27 411.439H1014.1V412.607H1015.27V411.439ZM1119.47 308.605H1118.31V411.439H1119.47H1120.64V308.605H1119.47ZM1119.47 411.439V410.27H1015.27V411.439V412.607H1119.47V411.439ZM1015.27 411.439H1016.44V308.605H1015.27H1014.1V411.439H1015.27Z" fill="#FFFBF3" mask="url(#path-98-inside-41_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-100-inside-42_886_1475" fill="white">
+          <path d="M1119.47 308.605H1223.68V411.439H1119.47V308.605Z"/>
+          </mask>
+          <path d="M1223.68 411.439V412.607H1224.85V411.439H1223.68ZM1119.47 411.439H1118.31V412.607H1119.47V411.439ZM1223.68 308.605H1222.51V411.439H1223.68H1224.85V308.605H1223.68ZM1223.68 411.439V410.27H1119.47V411.439V412.607H1223.68V411.439ZM1119.47 411.439H1120.64V308.605H1119.47H1118.31V411.439H1119.47Z" fill="#FFFBF3" mask="url(#path-100-inside-42_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-102-inside-43_886_1475" fill="white">
+          <path d="M1223.68 308.605H1327.89V411.439H1223.68V308.605Z"/>
+          </mask>
+          <path d="M1327.89 411.439V412.607H1329.06V411.439H1327.89ZM1223.68 411.439H1222.51V412.607H1223.68V411.439ZM1327.89 308.605H1326.72V411.439H1327.89H1329.06V308.605H1327.89ZM1327.89 411.439V410.27H1223.68V411.439V412.607H1327.89V411.439ZM1223.68 411.439H1224.85V308.605H1223.68H1222.51V411.439H1223.68Z" fill="#FFFBF3" mask="url(#path-102-inside-43_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-104-inside-44_886_1475" fill="white">
+          <path d="M1327.89 308.605H1432.1V411.439H1327.89V308.605Z"/>
+          </mask>
+          <path d="M1432.1 411.439V412.607H1433.27V411.439H1432.1ZM1327.89 411.439H1326.72V412.607H1327.89V411.439ZM1432.1 308.605H1430.93V411.439H1432.1H1433.27V308.605H1432.1ZM1432.1 411.439V410.27H1327.89V411.439V412.607H1432.1V411.439ZM1327.89 411.439H1329.06V308.605H1327.89H1326.72V411.439H1327.89Z" fill="#FFFBF3" mask="url(#path-104-inside-44_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-106-inside-45_886_1475" fill="white">
+          <path d="M1432.1 308.605H1536.31V411.439H1432.1V308.605Z"/>
+          </mask>
+          <path d="M1536.31 411.439V412.607H1537.47V411.439H1536.31ZM1432.1 411.439H1430.93V412.607H1432.1V411.439ZM1536.31 308.605H1535.14V411.439H1536.31H1537.47V308.605H1536.31ZM1536.31 411.439V410.27H1432.1V411.439V412.607H1536.31V411.439ZM1432.1 411.439H1433.27V308.605H1432.1H1430.93V411.439H1432.1Z" fill="#FFFBF3" mask="url(#path-106-inside-45_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-108-inside-46_886_1475" fill="white">
+          <path d="M-26.8115 411.438H77.3963V514.271H-26.8115V411.438Z"/>
+          </mask>
+          <path d="M77.3963 514.271V515.439H78.5649V514.271H77.3963ZM-26.8115 514.271H-27.9801V515.439H-26.8115V514.271ZM77.3963 411.438H76.2278V514.271H77.3963H78.5649V411.438H77.3963ZM77.3963 514.271V513.102H-26.8115V514.271V515.439H77.3963V514.271ZM-26.8115 514.271H-25.643V411.438H-26.8115H-27.9801V514.271H-26.8115Z" fill="#FFFBF3" mask="url(#path-108-inside-46_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-110-inside-47_886_1475" fill="white">
+          <path d="M77.396 411.438H181.604V514.271H77.396V411.438Z"/>
+          </mask>
+          <path d="M181.604 514.271V515.439H182.772V514.271H181.604ZM77.396 514.271H76.2274V515.439H77.396V514.271ZM181.604 411.438H180.435V514.271H181.604H182.772V411.438H181.604ZM181.604 514.271V513.102H77.396V514.271V515.439H181.604V514.271ZM77.396 514.271H78.5646V411.438H77.396H76.2274V514.271H77.396Z" fill="#FFFBF3" mask="url(#path-110-inside-47_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-112-inside-48_886_1475" fill="white">
+          <path d="M181.604 411.438H285.812V514.271H181.604V411.438Z"/>
+          </mask>
+          <path d="M285.812 514.271V515.439H286.98V514.271H285.812ZM181.604 514.271H180.435V515.439H181.604V514.271ZM285.812 411.438H284.643V514.271H285.812H286.98V411.438H285.812ZM285.812 514.271V513.102H181.604V514.271V515.439H285.812V514.271ZM181.604 514.271H182.773V411.438H181.604H180.435V514.271H181.604Z" fill="#FFFBF3" mask="url(#path-112-inside-48_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-114-inside-49_886_1475" fill="white">
+          <path d="M285.812 411.438H390.02V514.271H285.812V411.438Z"/>
+          </mask>
+          <path d="M390.02 514.271V515.439H391.188V514.271H390.02ZM285.812 514.271H284.643V515.439H285.812V514.271ZM390.02 411.438H388.851V514.271H390.02H391.188V411.438H390.02ZM390.02 514.271V513.102H285.812V514.271V515.439H390.02V514.271ZM285.812 514.271H286.981V411.438H285.812H284.643V514.271H285.812Z" fill="#FFFBF3" mask="url(#path-114-inside-49_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-116-inside-50_886_1475" fill="white">
+          <path d="M390.02 411.438H494.227V514.271H390.02V411.438Z"/>
+          </mask>
+          <path d="M494.227 514.271V515.439H495.396V514.271H494.227ZM390.02 514.271H388.851V515.439H390.02V514.271ZM494.227 411.438H493.059V514.271H494.227H495.396V411.438H494.227ZM494.227 514.271V513.102H390.02V514.271V515.439H494.227V514.271ZM390.02 514.271H391.188V411.438H390.02H388.851V514.271H390.02Z" fill="#FFFBF3" mask="url(#path-116-inside-50_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-118-inside-51_886_1475" fill="white">
+          <path d="M494.228 411.438H598.435V514.271H494.228V411.438Z"/>
+          </mask>
+          <path d="M598.435 514.271V515.439H599.604V514.271H598.435ZM494.228 514.271H493.059V515.439H494.228V514.271ZM598.435 411.438H597.267V514.271H598.435H599.604V411.438H598.435ZM598.435 514.271V513.102H494.228V514.271V515.439H598.435V514.271ZM494.228 514.271H495.396V411.438H494.228H493.059V514.271H494.228Z" fill="#FFFBF3" mask="url(#path-118-inside-51_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-120-inside-52_886_1475" fill="white">
+          <path d="M598.436 411.438H702.643V514.271H598.436V411.438Z"/>
+          </mask>
+          <path d="M702.643 514.271V515.439H703.812V514.271H702.643ZM598.436 514.271H597.267V515.439H598.436V514.271ZM702.643 411.438H701.475V514.271H702.643H703.812V411.438H702.643ZM702.643 514.271V513.102H598.436V514.271V515.439H702.643V514.271ZM598.436 514.271H599.604V411.438H598.436H597.267V514.271H598.436Z" fill="#FFFBF3" mask="url(#path-120-inside-52_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-122-inside-53_886_1475" fill="white">
+          <path d="M702.643 411.438H806.851V514.271H702.643V411.438Z"/>
+          </mask>
+          <path d="M806.851 514.271V515.439H808.019V514.271H806.851ZM702.643 514.271H701.475V515.439H702.643V514.271ZM806.851 411.438H805.682V514.271H806.851H808.019V411.438H806.851ZM806.851 514.271V513.102H702.643V514.271V515.439H806.851V514.271ZM702.643 514.271H703.812V411.438H702.643H701.475V514.271H702.643Z" fill="#FFFBF3" mask="url(#path-122-inside-53_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-124-inside-54_886_1475" fill="white">
+          <path d="M806.851 411.438H911.059V514.271H806.851V411.438Z"/>
+          </mask>
+          <path d="M911.059 514.271V515.439H912.227V514.271H911.059ZM806.851 514.271H805.683V515.439H806.851V514.271ZM911.059 411.438H909.89V514.271H911.059H912.227V411.438H911.059ZM911.059 514.271V513.102H806.851V514.271V515.439H911.059V514.271ZM806.851 514.271H808.02V411.438H806.851H805.683V514.271H806.851Z" fill="#FFFBF3" mask="url(#path-124-inside-54_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-126-inside-55_886_1475" fill="white">
+          <path d="M911.059 411.438H1015.27V514.271H911.059V411.438Z"/>
+          </mask>
+          <path d="M1015.27 514.271V515.439H1016.43V514.271H1015.27ZM911.059 514.271H909.89V515.439H911.059V514.271ZM1015.27 411.438H1014.1V514.271H1015.27H1016.43V411.438H1015.27ZM1015.27 514.271V513.102H911.059V514.271V515.439H1015.27V514.271ZM911.059 514.271H912.227V411.438H911.059H909.89V514.271H911.059Z" fill="#FFFBF3" mask="url(#path-126-inside-55_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-128-inside-56_886_1475" fill="white">
+          <path d="M1015.27 411.438H1119.47V514.271H1015.27V411.438Z"/>
+          </mask>
+          <path d="M1119.47 514.271V515.439H1120.64V514.271H1119.47ZM1015.27 514.271H1014.1V515.439H1015.27V514.271ZM1119.47 411.438H1118.31V514.271H1119.47H1120.64V411.438H1119.47ZM1119.47 514.271V513.102H1015.27V514.271V515.439H1119.47V514.271ZM1015.27 514.271H1016.44V411.438H1015.27H1014.1V514.271H1015.27Z" fill="#FFFBF3" mask="url(#path-128-inside-56_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-130-inside-57_886_1475" fill="white">
+          <path d="M1119.47 411.438H1223.68V514.271H1119.47V411.438Z"/>
+          </mask>
+          <path d="M1223.68 514.271V515.439H1224.85V514.271H1223.68ZM1119.47 514.271H1118.31V515.439H1119.47V514.271ZM1223.68 411.438H1222.51V514.271H1223.68H1224.85V411.438H1223.68ZM1223.68 514.271V513.102H1119.47V514.271V515.439H1223.68V514.271ZM1119.47 514.271H1120.64V411.438H1119.47H1118.31V514.271H1119.47Z" fill="#FFFBF3" mask="url(#path-130-inside-57_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-132-inside-58_886_1475" fill="white">
+          <path d="M1223.68 411.438H1327.89V514.271H1223.68V411.438Z"/>
+          </mask>
+          <path d="M1327.89 514.271V515.439H1329.06V514.271H1327.89ZM1223.68 514.271H1222.51V515.439H1223.68V514.271ZM1327.89 411.438H1326.72V514.271H1327.89H1329.06V411.438H1327.89ZM1327.89 514.271V513.102H1223.68V514.271V515.439H1327.89V514.271ZM1223.68 514.271H1224.85V411.438H1223.68H1222.51V514.271H1223.68Z" fill="#FFFBF3" mask="url(#path-132-inside-58_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-134-inside-59_886_1475" fill="white">
+          <path d="M1327.89 411.438H1432.1V514.271H1327.89V411.438Z"/>
+          </mask>
+          <path d="M1432.1 514.271V515.439H1433.27V514.271H1432.1ZM1327.89 514.271H1326.72V515.439H1327.89V514.271ZM1432.1 411.438H1430.93V514.271H1432.1H1433.27V411.438H1432.1ZM1432.1 514.271V513.102H1327.89V514.271V515.439H1432.1V514.271ZM1327.89 514.271H1329.06V411.438H1327.89H1326.72V514.271H1327.89Z" fill="#FFFBF3" mask="url(#path-134-inside-59_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-136-inside-60_886_1475" fill="white">
+          <path d="M1432.1 411.438H1536.31V514.271H1432.1V411.438Z"/>
+          </mask>
+          <path d="M1536.31 514.271V515.439H1537.47V514.271H1536.31ZM1432.1 514.271H1430.93V515.439H1432.1V514.271ZM1536.31 411.438H1535.14V514.271H1536.31H1537.47V411.438H1536.31ZM1536.31 514.271V513.102H1432.1V514.271V515.439H1536.31V514.271ZM1432.1 514.271H1433.27V411.438H1432.1H1430.93V514.271H1432.1Z" fill="#FFFBF3" mask="url(#path-136-inside-60_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-138-inside-61_886_1475" fill="white">
+          <path d="M-26.8115 514.271H77.3963V617.105H-26.8115V514.271Z"/>
+          </mask>
+          <path d="M77.3963 617.105V618.273H78.5649V617.105H77.3963ZM-26.8115 617.105H-27.9801V618.273H-26.8115V617.105ZM77.3963 514.271H76.2278V617.105H77.3963H78.5649V514.271H77.3963ZM77.3963 617.105V615.936H-26.8115V617.105V618.273H77.3963V617.105ZM-26.8115 617.105H-25.643V514.271H-26.8115H-27.9801V617.105H-26.8115Z" fill="#FFFBF3" mask="url(#path-138-inside-61_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-140-inside-62_886_1475" fill="white">
+          <path d="M77.396 514.271H181.604V617.105H77.396V514.271Z"/>
+          </mask>
+          <path d="M181.604 617.105V618.273H182.772V617.105H181.604ZM77.396 617.105H76.2274V618.273H77.396V617.105ZM181.604 514.271H180.435V617.105H181.604H182.772V514.271H181.604ZM181.604 617.105V615.936H77.396V617.105V618.273H181.604V617.105ZM77.396 617.105H78.5646V514.271H77.396H76.2274V617.105H77.396Z" fill="#FFFBF3" mask="url(#path-140-inside-62_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-142-inside-63_886_1475" fill="white">
+          <path d="M181.604 514.271H285.812V617.105H181.604V514.271Z"/>
+          </mask>
+          <path d="M285.812 617.105V618.273H286.98V617.105H285.812ZM181.604 617.105H180.435V618.273H181.604V617.105ZM285.812 514.271H284.643V617.105H285.812H286.98V514.271H285.812ZM285.812 617.105V615.936H181.604V617.105V618.273H285.812V617.105ZM181.604 617.105H182.773V514.271H181.604H180.435V617.105H181.604Z" fill="#FFFBF3" mask="url(#path-142-inside-63_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-144-inside-64_886_1475" fill="white">
+          <path d="M285.812 514.271H390.02V617.105H285.812V514.271Z"/>
+          </mask>
+          <path d="M390.02 617.105V618.273H391.188V617.105H390.02ZM285.812 617.105H284.643V618.273H285.812V617.105ZM390.02 514.271H388.851V617.105H390.02H391.188V514.271H390.02ZM390.02 617.105V615.936H285.812V617.105V618.273H390.02V617.105ZM285.812 617.105H286.981V514.271H285.812H284.643V617.105H285.812Z" fill="#FFFBF3" mask="url(#path-144-inside-64_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-146-inside-65_886_1475" fill="white">
+          <path d="M390.02 514.271H494.227V617.105H390.02V514.271Z"/>
+          </mask>
+          <path d="M494.227 617.105V618.273H495.396V617.105H494.227ZM390.02 617.105H388.851V618.273H390.02V617.105ZM494.227 514.271H493.059V617.105H494.227H495.396V514.271H494.227ZM494.227 617.105V615.936H390.02V617.105V618.273H494.227V617.105ZM390.02 617.105H391.188V514.271H390.02H388.851V617.105H390.02Z" fill="#FFFBF3" mask="url(#path-146-inside-65_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-148-inside-66_886_1475" fill="white">
+          <path d="M494.228 514.271H598.435V617.105H494.228V514.271Z"/>
+          </mask>
+          <path d="M598.435 617.105V618.273H599.604V617.105H598.435ZM494.228 617.105H493.059V618.273H494.228V617.105ZM598.435 514.271H597.267V617.105H598.435H599.604V514.271H598.435ZM598.435 617.105V615.936H494.228V617.105V618.273H598.435V617.105ZM494.228 617.105H495.396V514.271H494.228H493.059V617.105H494.228Z" fill="#FFFBF3" mask="url(#path-148-inside-66_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-150-inside-67_886_1475" fill="white">
+          <path d="M598.436 514.271H702.643V617.105H598.436V514.271Z"/>
+          </mask>
+          <path d="M702.643 617.105V618.273H703.812V617.105H702.643ZM598.436 617.105H597.267V618.273H598.436V617.105ZM702.643 514.271H701.475V617.105H702.643H703.812V514.271H702.643ZM702.643 617.105V615.936H598.436V617.105V618.273H702.643V617.105ZM598.436 617.105H599.604V514.271H598.436H597.267V617.105H598.436Z" fill="#FFFBF3" mask="url(#path-150-inside-67_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-152-inside-68_886_1475" fill="white">
+          <path d="M702.643 514.271H806.851V617.105H702.643V514.271Z"/>
+          </mask>
+          <path d="M806.851 617.105V618.273H808.019V617.105H806.851ZM702.643 617.105H701.475V618.273H702.643V617.105ZM806.851 514.271H805.682V617.105H806.851H808.019V514.271H806.851ZM806.851 617.105V615.936H702.643V617.105V618.273H806.851V617.105ZM702.643 617.105H703.812V514.271H702.643H701.475V617.105H702.643Z" fill="#FFFBF3" mask="url(#path-152-inside-68_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-154-inside-69_886_1475" fill="white">
+          <path d="M806.851 514.271H911.059V617.105H806.851V514.271Z"/>
+          </mask>
+          <path d="M911.059 617.105V618.273H912.227V617.105H911.059ZM806.851 617.105H805.683V618.273H806.851V617.105ZM911.059 514.271H909.89V617.105H911.059H912.227V514.271H911.059ZM911.059 617.105V615.936H806.851V617.105V618.273H911.059V617.105ZM806.851 617.105H808.02V514.271H806.851H805.683V617.105H806.851Z" fill="#FFFBF3" mask="url(#path-154-inside-69_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-156-inside-70_886_1475" fill="white">
+          <path d="M911.059 514.271H1015.27V617.105H911.059V514.271Z"/>
+          </mask>
+          <path d="M1015.27 617.105V618.273H1016.43V617.105H1015.27ZM911.059 617.105H909.89V618.273H911.059V617.105ZM1015.27 514.271H1014.1V617.105H1015.27H1016.43V514.271H1015.27ZM1015.27 617.105V615.936H911.059V617.105V618.273H1015.27V617.105ZM911.059 617.105H912.227V514.271H911.059H909.89V617.105H911.059Z" fill="#FFFBF3" mask="url(#path-156-inside-70_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-158-inside-71_886_1475" fill="white">
+          <path d="M1015.27 514.271H1119.47V617.105H1015.27V514.271Z"/>
+          </mask>
+          <path d="M1119.47 617.105V618.273H1120.64V617.105H1119.47ZM1015.27 617.105H1014.1V618.273H1015.27V617.105ZM1119.47 514.271H1118.31V617.105H1119.47H1120.64V514.271H1119.47ZM1119.47 617.105V615.936H1015.27V617.105V618.273H1119.47V617.105ZM1015.27 617.105H1016.44V514.271H1015.27H1014.1V617.105H1015.27Z" fill="#FFFBF3" mask="url(#path-158-inside-71_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-160-inside-72_886_1475" fill="white">
+          <path d="M1119.47 514.271H1223.68V617.105H1119.47V514.271Z"/>
+          </mask>
+          <path d="M1223.68 617.105V618.273H1224.85V617.105H1223.68ZM1119.47 617.105H1118.31V618.273H1119.47V617.105ZM1223.68 514.271H1222.51V617.105H1223.68H1224.85V514.271H1223.68ZM1223.68 617.105V615.936H1119.47V617.105V618.273H1223.68V617.105ZM1119.47 617.105H1120.64V514.271H1119.47H1118.31V617.105H1119.47Z" fill="#FFFBF3" mask="url(#path-160-inside-72_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-162-inside-73_886_1475" fill="white">
+          <path d="M1223.68 514.271H1327.89V617.105H1223.68V514.271Z"/>
+          </mask>
+          <path d="M1327.89 617.105V618.273H1329.06V617.105H1327.89ZM1223.68 617.105H1222.51V618.273H1223.68V617.105ZM1327.89 514.271H1326.72V617.105H1327.89H1329.06V514.271H1327.89ZM1327.89 617.105V615.936H1223.68V617.105V618.273H1327.89V617.105ZM1223.68 617.105H1224.85V514.271H1223.68H1222.51V617.105H1223.68Z" fill="#FFFBF3" mask="url(#path-162-inside-73_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-164-inside-74_886_1475" fill="white">
+          <path d="M1327.89 514.271H1432.1V617.105H1327.89V514.271Z"/>
+          </mask>
+          <path d="M1432.1 617.105V618.273H1433.27V617.105H1432.1ZM1327.89 617.105H1326.72V618.273H1327.89V617.105ZM1432.1 514.271H1430.93V617.105H1432.1H1433.27V514.271H1432.1ZM1432.1 617.105V615.936H1327.89V617.105V618.273H1432.1V617.105ZM1327.89 617.105H1329.06V514.271H1327.89H1326.72V617.105H1327.89Z" fill="#FFFBF3" mask="url(#path-164-inside-74_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-166-inside-75_886_1475" fill="white">
+          <path d="M1432.1 514.271H1536.31V617.105H1432.1V514.271Z"/>
+          </mask>
+          <path d="M1536.31 617.105V618.273H1537.47V617.105H1536.31ZM1432.1 617.105H1430.93V618.273H1432.1V617.105ZM1536.31 514.271H1535.14V617.105H1536.31H1537.47V514.271H1536.31ZM1536.31 617.105V615.936H1432.1V617.105V618.273H1536.31V617.105ZM1432.1 617.105H1433.27V514.271H1432.1H1430.93V617.105H1432.1Z" fill="#FFFBF3" mask="url(#path-166-inside-75_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-168-inside-76_886_1475" fill="white">
+          <path d="M-26.8115 617.104H77.3963V719.937H-26.8115V617.104Z"/>
+          </mask>
+          <path d="M77.3963 719.937V721.105H78.5649V719.937H77.3963ZM-26.8115 719.937H-27.9801V721.105H-26.8115V719.937ZM77.3963 617.104H76.2278V719.937H77.3963H78.5649V617.104H77.3963ZM77.3963 719.937V718.768H-26.8115V719.937V721.105H77.3963V719.937ZM-26.8115 719.937H-25.643V617.104H-26.8115H-27.9801V719.937H-26.8115Z" fill="#FFFBF3" mask="url(#path-168-inside-76_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-170-inside-77_886_1475" fill="white">
+          <path d="M77.396 617.104H181.604V719.937H77.396V617.104Z"/>
+          </mask>
+          <path d="M181.604 719.937V721.105H182.772V719.937H181.604ZM77.396 719.937H76.2274V721.105H77.396V719.937ZM181.604 617.104H180.435V719.937H181.604H182.772V617.104H181.604ZM181.604 719.937V718.768H77.396V719.937V721.105H181.604V719.937ZM77.396 719.937H78.5646V617.104H77.396H76.2274V719.937H77.396Z" fill="#FFFBF3" mask="url(#path-170-inside-77_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-172-inside-78_886_1475" fill="white">
+          <path d="M181.604 617.104H285.812V719.937H181.604V617.104Z"/>
+          </mask>
+          <path d="M285.812 719.937V721.105H286.98V719.937H285.812ZM181.604 719.937H180.435V721.105H181.604V719.937ZM285.812 617.104H284.643V719.937H285.812H286.98V617.104H285.812ZM285.812 719.937V718.768H181.604V719.937V721.105H285.812V719.937ZM181.604 719.937H182.773V617.104H181.604H180.435V719.937H181.604Z" fill="#FFFBF3" mask="url(#path-172-inside-78_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-174-inside-79_886_1475" fill="white">
+          <path d="M285.812 617.104H390.02V719.937H285.812V617.104Z"/>
+          </mask>
+          <path d="M390.02 719.937V721.105H391.188V719.937H390.02ZM285.812 719.937H284.643V721.105H285.812V719.937ZM390.02 617.104H388.851V719.937H390.02H391.188V617.104H390.02ZM390.02 719.937V718.768H285.812V719.937V721.105H390.02V719.937ZM285.812 719.937H286.981V617.104H285.812H284.643V719.937H285.812Z" fill="#FFFBF3" mask="url(#path-174-inside-79_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-176-inside-80_886_1475" fill="white">
+          <path d="M390.02 617.104H494.227V719.937H390.02V617.104Z"/>
+          </mask>
+          <path d="M494.227 719.937V721.105H495.396V719.937H494.227ZM390.02 719.937H388.851V721.105H390.02V719.937ZM494.227 617.104H493.059V719.937H494.227H495.396V617.104H494.227ZM494.227 719.937V718.768H390.02V719.937V721.105H494.227V719.937ZM390.02 719.937H391.188V617.104H390.02H388.851V719.937H390.02Z" fill="#FFFBF3" mask="url(#path-176-inside-80_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-178-inside-81_886_1475" fill="white">
+          <path d="M494.228 617.104H598.435V719.937H494.228V617.104Z"/>
+          </mask>
+          <path d="M598.435 719.937V721.105H599.604V719.937H598.435ZM494.228 719.937H493.059V721.105H494.228V719.937ZM598.435 617.104H597.267V719.937H598.435H599.604V617.104H598.435ZM598.435 719.937V718.768H494.228V719.937V721.105H598.435V719.937ZM494.228 719.937H495.396V617.104H494.228H493.059V719.937H494.228Z" fill="#FFFBF3" mask="url(#path-178-inside-81_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-180-inside-82_886_1475" fill="white">
+          <path d="M598.436 617.104H702.643V719.937H598.436V617.104Z"/>
+          </mask>
+          <path d="M702.643 719.937V721.105H703.812V719.937H702.643ZM598.436 719.937H597.267V721.105H598.436V719.937ZM702.643 617.104H701.475V719.937H702.643H703.812V617.104H702.643ZM702.643 719.937V718.768H598.436V719.937V721.105H702.643V719.937ZM598.436 719.937H599.604V617.104H598.436H597.267V719.937H598.436Z" fill="#FFFBF3" mask="url(#path-180-inside-82_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-182-inside-83_886_1475" fill="white">
+          <path d="M702.643 617.104H806.851V719.937H702.643V617.104Z"/>
+          </mask>
+          <path d="M806.851 719.937V721.105H808.019V719.937H806.851ZM702.643 719.937H701.475V721.105H702.643V719.937ZM806.851 617.104H805.682V719.937H806.851H808.019V617.104H806.851ZM806.851 719.937V718.768H702.643V719.937V721.105H806.851V719.937ZM702.643 719.937H703.812V617.104H702.643H701.475V719.937H702.643Z" fill="#FFFBF3" mask="url(#path-182-inside-83_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-184-inside-84_886_1475" fill="white">
+          <path d="M806.851 617.104H911.059V719.937H806.851V617.104Z"/>
+          </mask>
+          <path d="M911.059 719.937V721.105H912.227V719.937H911.059ZM806.851 719.937H805.683V721.105H806.851V719.937ZM911.059 617.104H909.89V719.937H911.059H912.227V617.104H911.059ZM911.059 719.937V718.768H806.851V719.937V721.105H911.059V719.937ZM806.851 719.937H808.02V617.104H806.851H805.683V719.937H806.851Z" fill="#FFFBF3" mask="url(#path-184-inside-84_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-186-inside-85_886_1475" fill="white">
+          <path d="M911.059 617.104H1015.27V719.937H911.059V617.104Z"/>
+          </mask>
+          <path d="M1015.27 719.937V721.105H1016.43V719.937H1015.27ZM911.059 719.937H909.89V721.105H911.059V719.937ZM1015.27 617.104H1014.1V719.937H1015.27H1016.43V617.104H1015.27ZM1015.27 719.937V718.768H911.059V719.937V721.105H1015.27V719.937ZM911.059 719.937H912.227V617.104H911.059H909.89V719.937H911.059Z" fill="#FFFBF3" mask="url(#path-186-inside-85_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-188-inside-86_886_1475" fill="white">
+          <path d="M1015.27 617.104H1119.47V719.937H1015.27V617.104Z"/>
+          </mask>
+          <path d="M1119.47 719.937V721.105H1120.64V719.937H1119.47ZM1015.27 719.937H1014.1V721.105H1015.27V719.937ZM1119.47 617.104H1118.31V719.937H1119.47H1120.64V617.104H1119.47ZM1119.47 719.937V718.768H1015.27V719.937V721.105H1119.47V719.937ZM1015.27 719.937H1016.44V617.104H1015.27H1014.1V719.937H1015.27Z" fill="#FFFBF3" mask="url(#path-188-inside-86_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-190-inside-87_886_1475" fill="white">
+          <path d="M1119.47 617.104H1223.68V719.937H1119.47V617.104Z"/>
+          </mask>
+          <path d="M1223.68 719.937V721.105H1224.85V719.937H1223.68ZM1119.47 719.937H1118.31V721.105H1119.47V719.937ZM1223.68 617.104H1222.51V719.937H1223.68H1224.85V617.104H1223.68ZM1223.68 719.937V718.768H1119.47V719.937V721.105H1223.68V719.937ZM1119.47 719.937H1120.64V617.104H1119.47H1118.31V719.937H1119.47Z" fill="#FFFBF3" mask="url(#path-190-inside-87_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-192-inside-88_886_1475" fill="white">
+          <path d="M1223.68 617.104H1327.89V719.937H1223.68V617.104Z"/>
+          </mask>
+          <path d="M1327.89 719.937V721.105H1329.06V719.937H1327.89ZM1223.68 719.937H1222.51V721.105H1223.68V719.937ZM1327.89 617.104H1326.72V719.937H1327.89H1329.06V617.104H1327.89ZM1327.89 719.937V718.768H1223.68V719.937V721.105H1327.89V719.937ZM1223.68 719.937H1224.85V617.104H1223.68H1222.51V719.937H1223.68Z" fill="#FFFBF3" mask="url(#path-192-inside-88_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-194-inside-89_886_1475" fill="white">
+          <path d="M1327.89 617.104H1432.1V719.937H1327.89V617.104Z"/>
+          </mask>
+          <path d="M1432.1 719.937V721.105H1433.27V719.937H1432.1ZM1327.89 719.937H1326.72V721.105H1327.89V719.937ZM1432.1 617.104H1430.93V719.937H1432.1H1433.27V617.104H1432.1ZM1432.1 719.937V718.768H1327.89V719.937V721.105H1432.1V719.937ZM1327.89 719.937H1329.06V617.104H1327.89H1326.72V719.937H1327.89Z" fill="#FFFBF3" mask="url(#path-194-inside-89_886_1475)"/>
+          </g>
+          <g opacity="0.5">
+          <mask id="path-196-inside-90_886_1475" fill="white">
+          <path d="M1432.1 617.104H1536.31V719.937H1432.1V617.104Z"/>
+          </mask>
+          <path d="M1536.31 719.937V721.105H1537.47V719.937H1536.31ZM1432.1 719.937H1430.93V721.105H1432.1V719.937ZM1536.31 617.104H1535.14V719.937H1536.31H1537.47V617.104H1536.31ZM1536.31 719.937V718.768H1432.1V719.937V721.105H1536.31V719.937ZM1432.1 719.937H1433.27V617.104H1432.1H1430.93V719.937H1432.1Z" fill="#FFFBF3" mask="url(#path-196-inside-90_886_1475)"/>
+          </g>
+          </svg>
+
+        </div>
+      </div>
+    </div>
+    <!-- Real outcomes from real exporters End -->
+
+    <!-- Try NAVARO Tools Start -->
+    <div class="trynavarotools">
+      <div class="container">
+        <div class="titlebox">
+          <h2>TRY NAVARO TOOLS</h2>
+          <p>See how our tools work, no sign-up required</p>
+        </div>
+        <div class="row">
+          <div class="col-third">
+            <div class="colthirdinner">
+              <div class="image">
+                <img src="img/cbm-calc.png" alt="Image">
+              </div>
+              <div class="contentnavaro" style="background: #DCB7EB;">
+                <h6><span style="background-color: #C780ED;">Free to Use</span></h6>
+                <h2>CBM Calculator</h2>
+                <p>
+                  <span>Calculate container volume and see how your cargo fits with a 3D view.</span>
+                  <a href="/dashboard" class="btn">Try CBM Calculator</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-third">
+            <div class="colthirdinner">
+              <div class="image">
+                <img src="img/lcc-calc.png" alt="Image">
+              </div>
+              <div class="contentnavaro"  style="background: #FBEBA9;">
+                <h6><span style="background-color: #F9DB5F;">Free to Use</span></h6>
+                <h2>Landed Cost Calculator</h2>
+                <p>
+                  <span>See the real cost of your shipment before you commit.</span>
+                  <a href="/dashboard" class="btn">Try Cost Calculator</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-third">
+            <div class="colthirdinner">
+              <div class="image">
+                <img src="img/aidac.png" alt="Image">
+              </div>
+              <div class="contentnavaro" style="background: #9EE4D7;">
+                <h6><span style="background-color: #3ECEB9;">Free to Use</span></h6>
+                <h2>AI Document Checker</h2>
+                <p>
+                  <span>Scan export documents for errors before customs.</span>
+                  <a href="/dashboard" class="btn">Try Document Checker</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Try NAVARO Tools End -->
+
+    <!-- Frequently asked questions Start -->
+    <div class="faqsec">
+      <div class="container">
+        <div class="titlebox">
+          <h2>Frequently asked questions</h2>
+        </div>
+        <div class="faqinnerboxes">
+          <div class="faqitem">
+          <div class="question">
+            <h2>
+              Can I use the tools without taking a course?
+            </h2>
+          </div>
+          <div class="answer">
+            No. The core course is designed for anyone starting from scratch. It covers documentation, customs, finance, and logistics step by step.   If you already have experience, you can jump straight to tools or advanced courses. No. The core course is designed for anyone starting from scratch. It covers documentation, customs, finance, and logistics step by step.   If you already have experience, you can jump straight to tools or advanced courses.
+          </div>
+          </div>
+          <div class="faqitem">
+          <div class="question">
+            <h2>
+              Is the AI Document Checker accurate?
+            </h2>
+          </div>
+          <div class="answer">
+            No. The core course is designed for anyone starting from scratch. It covers documentation, customs, finance, and logistics step by step.   If you already have experience, you can jump straight to tools or advanced courses. No. The core course is designed for anyone starting from scratch. It covers documentation, customs, finance, and logistics step by step.   If you already have experience, you can jump straight to tools or advanced courses.
+          </div>
+          </div>
+          <div class="faqitem">
+          <div class="question">
+            <h2>
+              How long does it take to complete the course?
+            </h2>
+          </div>
+          <div class="answer">
+            No. The core course is designed for anyone starting from scratch. It covers documentation, customs, finance, and logistics step by step.   If you already have experience, you can jump straight to tools or advanced courses. No. The core course is designed for anyone starting from scratch. It covers documentation, customs, finance, and logistics step by step.   If you already have experience, you can jump straight to tools or advanced courses.
+          </div>
+          </div>
+          <div class="faqitem">
+          <div class="question">
+            <h2>
+              What's included in the 7 tools?
+            </h2>
+          </div>
+          <div class="answer">
+            No. The core course is designed for anyone starting from scratch. It covers documentation, customs, finance, and logistics step by step.   If you already have experience, you can jump straight to tools or advanced courses. No. The core course is designed for anyone starting from scratch. It covers documentation, customs, finance, and logistics step by step.   If you already have experience, you can jump straight to tools or advanced courses.
+          </div>
+          </div>
+          <div class="faqitem">
+          <div class="question">
+            <h2>
+              Do I need prior experience in import-export?
+            </h2>
+          </div>
+          <div class="answer">
+            No. The core course is designed for anyone starting from scratch. It covers documentation, customs, finance, and logistics step by step.   If you already have experience, you can jump straight to tools or advanced courses. No. The core course is designed for anyone starting from scratch. It covers documentation, customs, finance, and logistics step by step.   If you already have experience, you can jump straight to tools or advanced courses.
+          </div>
+          </div>
+          <div class="faqitem">
+          <div class="question">
+            <h2>
+               Can I use the tools without taking a course?
+            </h2>
+          </div>
+          <div class="answer">
+            No. The core course is designed for anyone starting from scratch. It covers documentation, customs, finance, and logistics step by step.   If you already have experience, you can jump straight to tools or advanced courses. No. The core course is designed for anyone starting from scratch. It covers documentation, customs, finance, and logistics step by step.   If you already have experience, you can jump straight to tools or advanced courses.
+          </div>
+          </div>
+          <div class="faqitem">
+          <div class="question">
+            <h2>
+              Is the AI Document Checker accurate?
+            </h2>
+          </div>
+          <div class="answer">
+            No. The core course is designed for anyone starting from scratch. It covers documentation, customs, finance, and logistics step by step.   If you already have experience, you can jump straight to tools or advanced courses. No. The core course is designed for anyone starting from scratch. It covers documentation, customs, finance, and logistics step by step.   If you already have experience, you can jump straight to tools or advanced courses.
+          </div>
+          </div>
+          <div class="faqitem">
+          <div class="question">
+            <h2>
+              How long does it take to complete the course?
+            </h2>
+          </div>
+          <div class="answer">
+            No. The core course is designed for anyone starting from scratch. It covers documentation, customs, finance, and logistics step by step.   If you already have experience, you can jump straight to tools or advanced courses. No. The core course is designed for anyone starting from scratch. It covers documentation, customs, finance, and logistics step by step.   If you already have experience, you can jump straight to tools or advanced courses.
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Frequently asked questions End -->
+
+    <!-- Call To Action Start -->
+    <div class="call-toaction">
+      <div class="container">
+        <div class="call-toactioninner">
+          <div class="call-toactioncontent">
+            <h3>Ready to Build Your Trade Operation?</h3>
+            <p>Move from scattered learning to structured execution with Navaro.</p>
+            <div class="explorecourse">
+              <a href="/" class="btn">
+                Explore our Courses
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M3 7L10 10L17 7" stroke="black" stroke-width="1.56863" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10 18V10" stroke="black" stroke-width="1.56863" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8.27503 2.06706L3.82503 4.53373C2.8167 5.09206 1.9917 6.49206 1.9917 7.64206V12.3504C1.9917 13.5004 2.8167 14.9004 3.82503 15.4587L8.27503 17.9337C9.22503 18.4587 10.7834 18.4587 11.7334 17.9337L16.1834 15.4587C17.1917 14.9004 18.0167 13.5004 18.0167 12.3504V7.64206C18.0167 6.49206 17.1917 5.09206 16.1834 4.53373L11.7334 2.05873C10.775 1.53373 9.22503 1.53373 8.27503 2.06706Z" stroke="black" stroke-width="1.56863" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              <a href="/dashboard" class="btn oulinebtn">Explore the Platform</a>
+            </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- Call To Action End -->
+
+    <!-- Footer Start -->
+    <footer class="sitefooter">
+      <div class="footertop">
+        <div class="container">            
+          <div class="row">
+            <div class="col-third">
+              <div class="footerheading">
+                <h4>Quick Links</h4>
+              </div>
+              <div class="uselinks">
+                <ul>
+                  <li>
+                    <a href="/course">
+                      Courses
+                      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9706 7.92294C17.1196 7.92304 17.2626 7.98229 17.368 8.0877C17.4734 8.1931 17.5326 8.33603 17.5327 8.48509L17.5327 14.8491C17.5354 14.9245 17.5228 14.9998 17.4958 15.0703C17.4687 15.1409 17.4277 15.2052 17.3753 15.2596C17.3228 15.3139 17.2599 15.3571 17.1904 15.3867C17.1209 15.4162 17.0461 15.4314 16.9706 15.4314C16.895 15.4314 16.8203 15.4162 16.7507 15.3867C16.6812 15.3571 16.6183 15.3139 16.5659 15.2596C16.5134 15.2052 16.4724 15.1409 16.4454 15.0703C16.4183 14.9998 16.4058 14.9245 16.4084 14.8491L16.4084 9.84274L8.88304 17.3681C8.77755 17.4736 8.63447 17.5329 8.48529 17.5329C8.33611 17.5329 8.19303 17.4736 8.08754 17.3681C7.98205 17.2626 7.92279 17.1196 7.92279 16.9704C7.92279 16.8212 7.98205 16.6781 8.08754 16.5726L15.6129 9.04724L10.6066 9.04724C10.5311 9.04991 10.4559 9.03734 10.3853 9.01029C10.3148 8.98324 10.2504 8.94226 10.1961 8.8898C10.1418 8.83733 10.0985 8.77446 10.069 8.70493C10.0395 8.6354 10.0243 8.56063 10.0243 8.48509C10.0243 8.40955 10.0395 8.33479 10.069 8.26526C10.0985 8.19573 10.1418 8.13286 10.1961 8.08039C10.2504 8.02793 10.3148 7.98695 10.3853 7.9599C10.4559 7.93285 10.5311 7.92028 10.6066 7.92294L16.9706 7.92294Z" fill="#054742"/>
+                      </svg>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/dashboard">
+                      Tools
+                      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9706 7.92294C17.1196 7.92304 17.2626 7.98229 17.368 8.0877C17.4734 8.1931 17.5326 8.33603 17.5327 8.48509L17.5327 14.8491C17.5354 14.9245 17.5228 14.9998 17.4958 15.0703C17.4687 15.1409 17.4277 15.2052 17.3753 15.2596C17.3228 15.3139 17.2599 15.3571 17.1904 15.3867C17.1209 15.4162 17.0461 15.4314 16.9706 15.4314C16.895 15.4314 16.8203 15.4162 16.7507 15.3867C16.6812 15.3571 16.6183 15.3139 16.5659 15.2596C16.5134 15.2052 16.4724 15.1409 16.4454 15.0703C16.4183 14.9998 16.4058 14.9245 16.4084 14.8491L16.4084 9.84274L8.88304 17.3681C8.77755 17.4736 8.63447 17.5329 8.48529 17.5329C8.33611 17.5329 8.19303 17.4736 8.08754 17.3681C7.98205 17.2626 7.92279 17.1196 7.92279 16.9704C7.92279 16.8212 7.98205 16.6781 8.08754 16.5726L15.6129 9.04724L10.6066 9.04724C10.5311 9.04991 10.4559 9.03734 10.3853 9.01029C10.3148 8.98324 10.2504 8.94226 10.1961 8.8898C10.1418 8.83733 10.0985 8.77446 10.069 8.70493C10.0395 8.6354 10.0243 8.56063 10.0243 8.48509C10.0243 8.40955 10.0395 8.33479 10.069 8.26526C10.0985 8.19573 10.1418 8.13286 10.1961 8.08039C10.2504 8.02793 10.3148 7.98695 10.3853 7.9599C10.4559 7.93285 10.5311 7.92028 10.6066 7.92294L16.9706 7.92294Z" fill="#054742"/>
+                      </svg>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/about">
+                      About
+                      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9706 7.92294C17.1196 7.92304 17.2626 7.98229 17.368 8.0877C17.4734 8.1931 17.5326 8.33603 17.5327 8.48509L17.5327 14.8491C17.5354 14.9245 17.5228 14.9998 17.4958 15.0703C17.4687 15.1409 17.4277 15.2052 17.3753 15.2596C17.3228 15.3139 17.2599 15.3571 17.1904 15.3867C17.1209 15.4162 17.0461 15.4314 16.9706 15.4314C16.895 15.4314 16.8203 15.4162 16.7507 15.3867C16.6812 15.3571 16.6183 15.3139 16.5659 15.2596C16.5134 15.2052 16.4724 15.1409 16.4454 15.0703C16.4183 14.9998 16.4058 14.9245 16.4084 14.8491L16.4084 9.84274L8.88304 17.3681C8.77755 17.4736 8.63447 17.5329 8.48529 17.5329C8.33611 17.5329 8.19303 17.4736 8.08754 17.3681C7.98205 17.2626 7.92279 17.1196 7.92279 16.9704C7.92279 16.8212 7.98205 16.6781 8.08754 16.5726L15.6129 9.04724L10.6066 9.04724C10.5311 9.04991 10.4559 9.03734 10.3853 9.01029C10.3148 8.98324 10.2504 8.94226 10.1961 8.8898C10.1418 8.83733 10.0985 8.77446 10.069 8.70493C10.0395 8.6354 10.0243 8.56063 10.0243 8.48509C10.0243 8.40955 10.0395 8.33479 10.069 8.26526C10.0985 8.19573 10.1418 8.13286 10.1961 8.08039C10.2504 8.02793 10.3148 7.98695 10.3853 7.9599C10.4559 7.93285 10.5311 7.92028 10.6066 7.92294L16.9706 7.92294Z" fill="#054742"/>
+                      </svg>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/contact">
+                      Contact Us
+                      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9706 7.92294C17.1196 7.92304 17.2626 7.98229 17.368 8.0877C17.4734 8.1931 17.5326 8.33603 17.5327 8.48509L17.5327 14.8491C17.5354 14.9245 17.5228 14.9998 17.4958 15.0703C17.4687 15.1409 17.4277 15.2052 17.3753 15.2596C17.3228 15.3139 17.2599 15.3571 17.1904 15.3867C17.1209 15.4162 17.0461 15.4314 16.9706 15.4314C16.895 15.4314 16.8203 15.4162 16.7507 15.3867C16.6812 15.3571 16.6183 15.3139 16.5659 15.2596C16.5134 15.2052 16.4724 15.1409 16.4454 15.0703C16.4183 14.9998 16.4058 14.9245 16.4084 14.8491L16.4084 9.84274L8.88304 17.3681C8.77755 17.4736 8.63447 17.5329 8.48529 17.5329C8.33611 17.5329 8.19303 17.4736 8.08754 17.3681C7.98205 17.2626 7.92279 17.1196 7.92279 16.9704C7.92279 16.8212 7.98205 16.6781 8.08754 16.5726L15.6129 9.04724L10.6066 9.04724C10.5311 9.04991 10.4559 9.03734 10.3853 9.01029C10.3148 8.98324 10.2504 8.94226 10.1961 8.8898C10.1418 8.83733 10.0985 8.77446 10.069 8.70493C10.0395 8.6354 10.0243 8.56063 10.0243 8.48509C10.0243 8.40955 10.0395 8.33479 10.069 8.26526C10.0985 8.19573 10.1418 8.13286 10.1961 8.08039C10.2504 8.02793 10.3148 7.98695 10.3853 7.9599C10.4559 7.93285 10.5311 7.92028 10.6066 7.92294L16.9706 7.92294Z" fill="#054742"/>
+                      </svg>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-third">
+              <div class="footerheading">
+                <h4>CONNECT</h4>
+              </div>
+              <div class="uselinks">
+                <ul>
+                  <li>
+                    <a href="/">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 16C13.0609 16 14.0783 15.5786 14.8284 14.8284C15.5786 14.0783 16 13.0609 16 12C16 10.9391 15.5786 9.92172 14.8284 9.17157C14.0783 8.42143 13.0609 8 12 8C10.9391 8 9.92172 8.42143 9.17157 9.17157C8.42143 9.92172 8 10.9391 8 12C8 13.0609 8.42143 14.0783 9.17157 14.8284C9.92172 15.5786 10.9391 16 12 16Z" stroke="#747474" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M3 16V8C3 6.67392 3.52678 5.40215 4.46447 4.46447C5.40215 3.52678 6.67392 3 8 3H16C17.3261 3 18.5979 3.52678 19.5355 4.46447C20.4732 5.40215 21 6.67392 21 8V16C21 17.3261 20.4732 18.5979 19.5355 19.5355C18.5979 20.4732 17.3261 21 16 21H8C6.67392 21 5.40215 20.4732 4.46447 19.5355C3.52678 18.5979 3 17.3261 3 16Z" stroke="#747474" stroke-width="1.5"/>
+                      <path d="M17.5 6.50905L17.51 6.49805" stroke="#747474" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Instagram
+                      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9706 7.92294C17.1196 7.92304 17.2626 7.98229 17.368 8.0877C17.4734 8.1931 17.5326 8.33603 17.5327 8.48509L17.5327 14.8491C17.5354 14.9245 17.5228 14.9998 17.4958 15.0703C17.4687 15.1409 17.4277 15.2052 17.3753 15.2596C17.3228 15.3139 17.2599 15.3571 17.1904 15.3867C17.1209 15.4162 17.0461 15.4314 16.9706 15.4314C16.895 15.4314 16.8203 15.4162 16.7507 15.3867C16.6812 15.3571 16.6183 15.3139 16.5659 15.2596C16.5134 15.2052 16.4724 15.1409 16.4454 15.0703C16.4183 14.9998 16.4058 14.9245 16.4084 14.8491L16.4084 9.84274L8.88304 17.3681C8.77755 17.4736 8.63447 17.5329 8.48529 17.5329C8.33611 17.5329 8.19303 17.4736 8.08754 17.3681C7.98205 17.2626 7.92279 17.1196 7.92279 16.9704C7.92279 16.8212 7.98205 16.6781 8.08754 16.5726L15.6129 9.04724L10.6066 9.04724C10.5311 9.04991 10.4559 9.03734 10.3853 9.01029C10.3148 8.98324 10.2504 8.94226 10.1961 8.8898C10.1418 8.83733 10.0985 8.77446 10.069 8.70493C10.0395 8.6354 10.0243 8.56063 10.0243 8.48509C10.0243 8.40955 10.0395 8.33479 10.069 8.26526C10.0985 8.19573 10.1418 8.13286 10.1961 8.08039C10.2504 8.02793 10.3148 7.98695 10.3853 7.9599C10.4559 7.93285 10.5311 7.92028 10.6066 7.92294L16.9706 7.92294Z" fill="#054742"/>
+                      </svg>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <g clip-path="url(#clip0_558_935)">
+                          <path d="M6.12698 3.02942C6.13163 3.6222 5.90278 4.19298 5.48991 4.61836C5.07705 5.04374 4.51334 5.28952 3.92069 5.30256C3.32928 5.28108 2.76874 5.03318 2.35492 4.61012C1.94111 4.18705 1.70567 3.62116 1.69727 3.02942C1.72282 2.45274 1.96682 1.90739 2.37974 1.50402C2.79266 1.10065 3.34358 0.86948 3.92069 0.857422C4.49611 0.869711 5.04507 1.10146 5.45522 1.50523C5.86536 1.90901 6.10568 2.45427 6.12698 3.02942ZM1.93555 9.34142C1.93555 8.03514 2.76698 8.23914 3.92069 8.23914C5.07441 8.23914 5.88869 8.03514 5.88869 9.34142V22.0683C5.88869 23.3917 5.05727 23.1209 3.92069 23.1209C2.78412 23.1209 1.93555 23.3917 1.93555 22.0683V9.34142ZM9.31727 9.34314C9.31727 8.61285 9.58812 8.34028 10.0116 8.25628C10.435 8.17228 11.8973 8.25628 12.4047 8.25628C12.9138 8.25628 13.1178 9.08771 13.1007 9.71514C13.5367 9.13142 14.1148 8.66901 14.7801 8.37194C15.4454 8.07487 16.1756 7.95302 16.9013 8.01799C17.614 7.97448 18.3279 8.08136 18.9966 8.3317C19.6653 8.58203 20.2739 8.97023 20.7828 9.47107C21.2917 9.97191 21.6896 10.5742 21.9506 11.2388C22.2116 11.9034 22.3299 12.6155 22.2978 13.3289V22.0169C22.2978 23.3403 21.4836 23.0694 20.3281 23.0694C19.1727 23.0694 18.3601 23.3403 18.3601 22.0169V15.23C18.39 14.8807 18.3444 14.5292 18.2263 14.1991C18.1083 13.8691 17.9206 13.5683 17.676 13.3172C17.4315 13.0661 17.1357 12.8706 16.8089 12.7439C16.482 12.6173 16.1317 12.5624 15.7818 12.5831C15.4333 12.574 15.0868 12.639 14.7652 12.7739C14.4437 12.9088 14.1545 13.1105 13.9169 13.3657C13.6793 13.6208 13.4986 13.9236 13.3868 14.2538C13.2751 14.5841 13.2348 14.9344 13.2687 15.2814V22.0683C13.2687 23.3917 12.4373 23.1209 11.2836 23.1209C10.1298 23.1209 9.31555 23.3917 9.31555 22.0683L9.31727 9.34314Z" stroke="#747474" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_558_935">
+                            <rect width="24" height="24" fill="white"/>
+                          </clipPath>
+                        </defs>
+                      </svg>
+                      LinkedIn
+                      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9706 7.92294C17.1196 7.92304 17.2626 7.98229 17.368 8.0877C17.4734 8.1931 17.5326 8.33603 17.5327 8.48509L17.5327 14.8491C17.5354 14.9245 17.5228 14.9998 17.4958 15.0703C17.4687 15.1409 17.4277 15.2052 17.3753 15.2596C17.3228 15.3139 17.2599 15.3571 17.1904 15.3867C17.1209 15.4162 17.0461 15.4314 16.9706 15.4314C16.895 15.4314 16.8203 15.4162 16.7507 15.3867C16.6812 15.3571 16.6183 15.3139 16.5659 15.2596C16.5134 15.2052 16.4724 15.1409 16.4454 15.0703C16.4183 14.9998 16.4058 14.9245 16.4084 14.8491L16.4084 9.84274L8.88304 17.3681C8.77755 17.4736 8.63447 17.5329 8.48529 17.5329C8.33611 17.5329 8.19303 17.4736 8.08754 17.3681C7.98205 17.2626 7.92279 17.1196 7.92279 16.9704C7.92279 16.8212 7.98205 16.6781 8.08754 16.5726L15.6129 9.04724L10.6066 9.04724C10.5311 9.04991 10.4559 9.03734 10.3853 9.01029C10.3148 8.98324 10.2504 8.94226 10.1961 8.8898C10.1418 8.83733 10.0985 8.77446 10.069 8.70493C10.0395 8.6354 10.0243 8.56063 10.0243 8.48509C10.0243 8.40955 10.0395 8.33479 10.069 8.26526C10.0985 8.19573 10.1418 8.13286 10.1961 8.08039C10.2504 8.02793 10.3148 7.98695 10.3853 7.9599C10.4559 7.93285 10.5311 7.92028 10.6066 7.92294L16.9706 7.92294Z" fill="#054742"/>
+                      </svg>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M14 12L10.5 14V10L14 12Z" fill="#747474" stroke="#747474" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 12.7084V11.2924C2 8.39739 2 6.94939 2.905 6.01839C3.811 5.08639 5.237 5.04639 8.088 4.96539C9.438 4.92739 10.818 4.90039 12 4.90039C13.182 4.90039 14.561 4.92739 15.912 4.96539C18.763 5.04639 20.189 5.08639 21.094 6.01839C21.999 6.95039 22 8.39839 22 11.2924V12.7074C22 15.6034 22 17.0504 21.095 17.9824C20.189 18.9134 18.764 18.9544 15.912 19.0344C14.562 19.0734 13.182 19.1004 12 19.1004C10.818 19.1004 9.439 19.0734 8.088 19.0344C5.237 18.9544 3.811 18.9144 2.905 17.9824C1.999 17.0504 2 15.6024 2 12.7084Z" stroke="#747474" stroke-width="1.5"/>
+                      </svg>
+                      Youtube
+                      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9706 7.92294C17.1196 7.92304 17.2626 7.98229 17.368 8.0877C17.4734 8.1931 17.5326 8.33603 17.5327 8.48509L17.5327 14.8491C17.5354 14.9245 17.5228 14.9998 17.4958 15.0703C17.4687 15.1409 17.4277 15.2052 17.3753 15.2596C17.3228 15.3139 17.2599 15.3571 17.1904 15.3867C17.1209 15.4162 17.0461 15.4314 16.9706 15.4314C16.895 15.4314 16.8203 15.4162 16.7507 15.3867C16.6812 15.3571 16.6183 15.3139 16.5659 15.2596C16.5134 15.2052 16.4724 15.1409 16.4454 15.0703C16.4183 14.9998 16.4058 14.9245 16.4084 14.8491L16.4084 9.84274L8.88304 17.3681C8.77755 17.4736 8.63447 17.5329 8.48529 17.5329C8.33611 17.5329 8.19303 17.4736 8.08754 17.3681C7.98205 17.2626 7.92279 17.1196 7.92279 16.9704C7.92279 16.8212 7.98205 16.6781 8.08754 16.5726L15.6129 9.04724L10.6066 9.04724C10.5311 9.04991 10.4559 9.03734 10.3853 9.01029C10.3148 8.98324 10.2504 8.94226 10.1961 8.8898C10.1418 8.83733 10.0985 8.77446 10.069 8.70493C10.0395 8.6354 10.0243 8.56063 10.0243 8.48509C10.0243 8.40955 10.0395 8.33479 10.069 8.26526C10.0985 8.19573 10.1418 8.13286 10.1961 8.08039C10.2504 8.02793 10.3148 7.98695 10.3853 7.9599C10.4559 7.93285 10.5311 7.92028 10.6066 7.92294L16.9706 7.92294Z" fill="#054742"/>
+                      </svg>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-third">
+              <div class="footerheading">
+                <h4>SUBSCRIBE TO OUR NEWSLETTER</h4>
+              </div>
+              <div class="newlettersignup">
+                <div class="input">
+                  <input type="text" placeholder="Email">
+                  <div class="buttonwrap">
+                    <a href="/">
+                      <span>
+                        Join
+                      </span>
+                      <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                        <path d="M10.5 4.375L16.625 10.5M16.625 10.5L10.5 16.625M16.625 10.5H4.375" stroke="black" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="bottomlogo">
+          <div class="logofooter">
+            <img src="img/footerlogo.png" alt="Logo">
+          </div>
+        </div>
+        <div class="footercopyright">
+          <p><span>©2025 Navaro</span><a href="">Privacy Policy</a></p>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer End -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+      (function () {
+        if (window.parent === window) return
+        document.addEventListener('click', function (e) {
+          var a = e.target.closest('a[href]')
+          if (!a) return
+          var href = a.getAttribute('href')
+          if (!href || href.charAt(0) !== '/') return
+          e.preventDefault()
+          window.parent.location.href = a.href
+        })
+      })()
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bill of Exchange</title>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap"
+  />
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+    crossorigin="anonymous"
+  ></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11px;
+      color: #000;
+      background: #f0f2f5;
+      padding: 16px;
+    }
+
+    body.embed {
+      background: #fff;
+      padding: 8px;
+      margin: 0;
+      overflow: visible;
+    }
+
+    /* A4 — table ~92% width, equal side margins (matches reference PDF) */
+    #boeDocument {
+      width: 794px;
+      max-width: 794px;
+      margin: 0 auto;
+      background: #fff;
+      box-sizing: border-box;
+    }
+
+    body.pdf-capture {
+      background: #fff !important;
+      padding: 0 !important;
+    }
+
+    body.pdf-capture #boeDocument {
+      visibility: visible !important;
+      opacity: 1 !important;
+      width: 794px !important;
+      max-width: 794px !important;
+    }
+
+    .boe-page-single {
+      width: 100%;
+      max-width: 794px;
+      margin: 0 auto;
+      padding: 10px 40px 14px;
+      box-sizing: border-box;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    body.pdf-capture .boe-page-single {
+      padding: 6px 40px 10px;
+    }
+
+    .boe-copy {
+      margin-bottom: 14px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .boe-copy:last-child {
+      margin-bottom: 0;
+    }
+
+    body.pdf-capture .boe-copy {
+      margin-bottom: 8px;
+    }
+
+    body.pdf-capture .boe-sheet td,
+    body.pdf-capture .boe-sheet th {
+      padding: 2px 5px;
+    }
+
+    body.pdf-capture .boe-title {
+      font-size: 14px;
+      padding: 5px 6px;
+    }
+
+    body.pdf-capture .cell-tall {
+      min-height: 34px;
+    }
+
+    body.pdf-capture .cell-signature {
+      min-height: 56px;
+    }
+
+    body.pdf-capture .signature-body {
+      min-height: 44px;
+    }
+
+    body.pdf-capture .signature-img {
+      max-height: 44px;
+    }
+
+    body.pdf-capture .signature-typed {
+      font-size: 24px;
+    }
+
+    .boe-sheet {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .boe-sheet td,
+    .boe-sheet th {
+      border: 1px solid #000;
+      vertical-align: top;
+      padding: 4px 6px;
+    }
+
+    .boe-title {
+      text-align: center;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 7px 6px;
+      border: 1px solid #000;
+    }
+
+    .cell-label {
+      display: block;
+      font-size: 9px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 3px;
+      line-height: 1.2;
+    }
+
+    .cell-value {
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.35;
+      white-space: pre-wrap;
+      word-break: break-word;
+      min-height: 14px;
+    }
+
+    .cell-value-amount {
+      text-align: right;
+    }
+
+    .cell-tall {
+      min-height: 56px;
+    }
+
+    .contact-inline {
+      line-height: 1.4;
+    }
+
+    .signatory-names {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      margin-top: 2px;
+    }
+
+    .signatory-first {
+      text-align: left;
+      flex: 0 1 auto;
+    }
+
+    .signatory-last {
+      text-align: right;
+      flex: 0 1 auto;
+      margin-left: auto;
+    }
+
+    .cell-signature {
+      min-height: 76px;
+      vertical-align: top;
+      padding: 4px 6px 6px;
+    }
+
+    .signature-cell-inner {
+      display: flex;
+      flex-direction: column;
+      min-height: 68px;
+      height: 100%;
+    }
+
+    .signature-label-plain {
+      display: block;
+      font-size: 9px;
+      font-weight: 400;
+      color: #333;
+      line-height: 1.2;
+      margin-bottom: 2px;
+    }
+
+    .signature-body {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 2px 4px 4px;
+    }
+
+    .signature-img {
+      max-height: 52px;
+      max-width: 92%;
+      object-fit: contain;
+      object-position: center center;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .signature-typed {
+      font-family: 'Cedarville Cursive', cursive;
+      font-size: 30px;
+      font-weight: 400;
+      color: #1a1a1a;
+      text-align: center;
+      line-height: 1.15;
+      width: 100%;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="boeDocument"></div>
+
+  <script>
+    (function () {
+      const isEmbed =
+        new URLSearchParams(window.location.search).get('embed') === '1' ||
+        !window.location.pathname.includes('bill-exchange')
+      if (isEmbed) document.body.classList.add('embed')
+
+      function escapeHtml(value) {
+        return String(value ?? '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+      }
+
+      function contactDisplayName(c) {
+        return (c && (c.companyName || c.name) || '').trim()
+      }
+
+      function contactPreviewLines(c) {
+        const contact = c || {}
+        const lines = []
+        const company = contactDisplayName(contact)
+        if (company) lines.push(company)
+        const person = [contact.firstName, contact.lastName].filter(Boolean).join(' ').trim()
+        if (person) lines.push(person)
+        for (const line of [contact.line1, contact.line2, contact.line3]) {
+          if (line && String(line).trim()) lines.push(String(line).trim())
+        }
+        const locality = [contact.city, contact.region, contact.postal].filter(Boolean).join(', ')
+        const locLine = [locality, contact.country].filter(Boolean).join(' ')
+        if (locLine.trim()) lines.push(locLine.trim())
+        if (contact.email && String(contact.email).trim()) lines.push(String(contact.email).trim())
+        if (contact.phone && String(contact.phone).trim()) lines.push('Tel: ' + String(contact.phone).trim())
+        return lines
+      }
+
+      function contactBlockHtml(c) {
+        const lines = contactPreviewLines(c)
+        const textHtml = lines.length
+          ? lines.map((l) => escapeHtml(l)).join('<br>')
+          : '&nbsp;'
+        return `<div class="cell-value">${textHtml}</div>`
+      }
+
+      /** Drawee/drawer party block — single flowing line like the reference PDF */
+      function contactBlockInlineHtml(c) {
+        const lines = contactPreviewLines(c)
+        if (!lines.length) return '<div class="cell-value">&nbsp;</div>'
+        return `<div class="cell-value contact-inline">${escapeHtml(lines.join(' '))}</div>`
+      }
+
+      function formatDisplayDate(iso) {
+        if (!iso) return ''
+        const d = new Date(iso + 'T00:00:00')
+        if (Number.isNaN(d.getTime())) return iso
+        return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
+      }
+
+      function currencySymbol(currency) {
+        const code = String(currency || 'USD').trim().toUpperCase() || 'USD'
+        try {
+          const parts = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: code,
+            currencyDisplay: 'narrowSymbol',
+          }).formatToParts(0)
+          const part = parts.find(function (p) {
+            return p.type === 'currency'
+          })
+          return (part && part.value && part.value.trim()) || code
+        } catch (e) {
+          return code
+        }
+      }
+
+      function formatAmount(amount, currency) {
+        const n = parseFloat(String(amount || '').replace(/,/g, ''))
+        const formatted = Number.isFinite(n)
+          ? new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(n)
+          : String(amount || '0.00')
+        return currencySymbol(currency) + ' ' + formatted
+      }
+
+      function signatoryPart(value) {
+        const v = String(value ?? '').trim()
+        return v ? escapeHtml(v) : '&nbsp;'
+      }
+
+      function signatureBodyHtml(sig) {
+        if (sig && sig.imageDataUrl && String(sig.imageDataUrl).trim()) {
+          return `<div class="signature-body"><img class="signature-img" src="${escapeHtml(sig.imageDataUrl)}" alt="Signature"></div>`
+        }
+        if (sig && sig.typedText && String(sig.typedText).trim()) {
+          return `<div class="signature-body"><div class="signature-typed">${escapeHtml(String(sig.typedText).trim())}</div></div>`
+        }
+        return '<div class="signature-body">&nbsp;</div>'
+      }
+
+      function signatureCellHtml(label, sig) {
+        return `
+          <div class="signature-cell-inner">
+            <span class="signature-label-plain">${escapeHtml(label)}</span>
+            ${signatureBodyHtml(sig)}
+          </div>
+        `
+      }
+
+      function renderBillOfExchangeCopy(d) {
+        const data = d || {}
+        return `
+          <table class="boe-sheet" cellspacing="0" cellpadding="0">
+            <colgroup>
+              <col style="width:16.66%">
+              <col style="width:16.66%">
+              <col style="width:16.68%">
+              <col style="width:16.66%">
+              <col style="width:16.66%">
+              <col style="width:16.68%">
+            </colgroup>
+
+            <tr>
+              <td colspan="6" class="boe-title">BILL OF EXCHANGE</td>
+            </tr>
+
+            <tr>
+              <td colspan="3">
+                <span class="cell-label">Reference No.</span>
+                <div class="cell-value">${escapeHtml(data.reference) || '&nbsp;'}</div>
+              </td>
+              <td colspan="3">
+                <span class="cell-label">Amount in figures</span>
+                <div class="cell-value cell-value-amount">${escapeHtml(formatAmount(data.amount, data.currency))}</div>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="2">
+                <span class="cell-label">B/L Date (if applicable)</span>
+                <div class="cell-value">${escapeHtml(formatDisplayDate(data.blDate)) || '&nbsp;'}</div>
+              </td>
+              <td colspan="2">
+                <span class="cell-label">Place of issue</span>
+                <div class="cell-value">${escapeHtml(data.placeOfIssue) || '&nbsp;'}</div>
+              </td>
+              <td colspan="2">
+                <span class="cell-label">Date of issue</span>
+                <div class="cell-value">${escapeHtml(formatDisplayDate(data.dateOfIssue)) || '&nbsp;'}</div>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="6">
+                <span class="cell-label">At</span>
+                <div class="cell-value">${escapeHtml(data.at) || '&nbsp;'}</div>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="6">
+                <span class="cell-label">Pay to the order of</span>
+                ${contactBlockHtml(data.payToOrderOf)}
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="6">
+                <span class="cell-label">The sum of (amount in words)</span>
+                <div class="cell-value">${escapeHtml(data.amountInWords) || '&nbsp;'}</div>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="3">
+                <span class="cell-label">Drawn under</span>
+                <div class="cell-value">${escapeHtml(data.drawnUnder) || '&nbsp;'}</div>
+              </td>
+              <td colspan="3">
+                <span class="cell-label">Dated</span>
+                <div class="cell-value">${escapeHtml(formatDisplayDate(data.drawnDate)) || '&nbsp;'}</div>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="6">
+                <span class="cell-label">Issued by</span>
+                ${contactBlockHtml(data.issuedBy)}
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="3" class="cell-tall">
+                <span class="cell-label">Signed for and on behalf of Drawee</span>
+                ${contactBlockInlineHtml(data.drawee)}
+              </td>
+              <td colspan="3" class="cell-tall">
+                <span class="cell-label">Signed for and on behalf of Drawer</span>
+                ${contactBlockInlineHtml(data.drawer)}
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="3">
+                <span class="cell-label">Name of authorized signatory</span>
+                <div class="signatory-names">
+                  <span class="cell-value signatory-first">${signatoryPart(data.draweeFirstName)}</span>
+                  <span class="cell-value signatory-last">${signatoryPart(data.draweeLastName)}</span>
+                </div>
+              </td>
+              <td colspan="3">
+                <span class="cell-label">Name of authorized signatory</span>
+                <div class="signatory-names">
+                  <span class="cell-value signatory-first">${signatoryPart(data.drawerFirstName)}</span>
+                  <span class="cell-value signatory-last">${signatoryPart(data.drawerLastName)}</span>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="3" class="cell-signature">
+                ${signatureCellHtml('signature', data.draweeSignature)}
+              </td>
+              <td colspan="3" class="cell-signature">
+                ${signatureCellHtml('Signature', data.drawerSignature)}
+              </td>
+            </tr>
+          </table>
+        `
+      }
+
+      function renderBillOfExchangeDocument(data) {
+        const root = document.getElementById('boeDocument')
+        if (!root) return
+        root.innerHTML = `
+          <div class="boe-page-single">
+            <div class="boe-copy">${renderBillOfExchangeCopy(data)}</div>
+            <div class="boe-copy">${renderBillOfExchangeCopy(data)}</div>
+          </div>
+        `
+      }
+
+      async function downloadBillOfExchangePdf() {
+        if (typeof html2pdf !== 'function') {
+          throw new Error('PDF library failed to load. Check your network connection and try again.')
+        }
+
+        const element = document.getElementById('boeDocument')
+        if (!element || !element.innerHTML.trim()) {
+          throw new Error('Bill of Exchange document is empty.')
+        }
+
+        document.body.classList.add('pdf-capture')
+
+        const imgs = element.querySelectorAll('img')
+        await Promise.all(
+          Array.from(imgs).map(
+            (img) =>
+              new Promise((resolve) => {
+                if (img.complete) resolve()
+                else {
+                  img.onload = () => resolve()
+                  img.onerror = () => resolve()
+                }
+              })
+          )
+        )
+        await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)))
+        await new Promise((resolve) => setTimeout(resolve, 150))
+
+        const captureWidth = Math.max(element.scrollWidth, element.offsetWidth, 794)
+        const captureHeight = Math.max(element.scrollHeight, element.offsetHeight, 400)
+
+        if (captureHeight < 50 || captureWidth < 50) {
+          document.body.classList.remove('pdf-capture')
+          throw new Error('Bill of Exchange layout is not ready for PDF export.')
+        }
+
+        const opt = {
+          margin: [8, 10, 8, 10],
+          filename: 'bill-of-exchange.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: {
+            scale: 2,
+            useCORS: true,
+            allowTaint: true,
+            letterRendering: true,
+            logging: false,
+            scrollX: 0,
+            scrollY: 0,
+            width: captureWidth,
+            height: captureHeight,
+            windowWidth: captureWidth,
+            windowHeight: captureHeight,
+            onclone: function (clonedDoc) {
+              const cloned = clonedDoc.getElementById('boeDocument')
+              if (cloned) {
+                cloned.style.width = captureWidth + 'px'
+                cloned.style.maxWidth = captureWidth + 'px'
+                cloned.style.visibility = 'visible'
+                cloned.style.opacity = '1'
+              }
+              const page = clonedDoc.querySelector('.boe-page-single')
+              if (page) {
+                page.style.paddingLeft = '40px'
+                page.style.paddingRight = '40px'
+                page.style.boxSizing = 'border-box'
+              }
+              clonedDoc.body.style.background = '#fff'
+            },
+          },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+          pagebreak: { mode: ['css', 'legacy'] },
+        }
+
+        try {
+          const blob = await html2pdf().set(opt).from(element).outputPdf('blob')
+          if (blob instanceof Blob && blob.size > 500) {
+            return blob
+          }
+
+          const pdf = await html2pdf().set(opt).from(element).toPdf().get('pdf')
+          const fallback = pdf.output('blob')
+          if (fallback instanceof Blob && fallback.size > 500) {
+            return fallback
+          }
+
+          throw new Error('PDF export produced no data.')
+        } finally {
+          document.body.classList.remove('pdf-capture')
+        }
+      }
+
+      function whenHtml2PdfReady() {
+        return new Promise((resolve, reject) => {
+          if (typeof html2pdf === 'function') {
+            resolve()
+            return
+          }
+          const script = document.querySelector('script[src*="html2pdf"]')
+          if (!script) {
+            reject(new Error('PDF script tag not found.'))
+            return
+          }
+          const done = () => {
+            if (typeof html2pdf === 'function') resolve()
+            else reject(new Error('PDF library loaded but html2pdf is unavailable.'))
+          }
+          if (script.readyState === 'complete' || script.readyState === 'loaded') {
+            done()
+            return
+          }
+          const timeout = setTimeout(() => {
+            reject(new Error('PDF library load timed out.'))
+          }, 20000)
+          script.addEventListener('load', () => {
+            clearTimeout(timeout)
+            done()
+          })
+          script.addEventListener('error', () => {
+            clearTimeout(timeout)
+            reject(new Error('Failed to load PDF library from CDN.'))
+          })
+        })
+      }
+
+      window.renderBillOfExchangeDocument = renderBillOfExchangeDocument
+      window.downloadBillOfExchangePdf = downloadBillOfExchangePdf
+      window.boePdfTemplateReady = whenHtml2PdfReady().catch(function (err) {
+        console.error('Bill of Exchange PDF library failed:', err)
+        throw err
+      })
+      window.boePdfTemplateBooted = true
+
+      if (!isEmbed) {
+        renderBillOfExchangeDocument({
+          reference: '',
+          currency: 'USD',
+          amount: '0.00',
+          blDate: '',
+          placeOfIssue: '',
+          dateOfIssue: '',
+          at: '',
+          payToOrderOf: {},
+          amountInWords: '',
+          drawnUnder: '',
+          drawnDate: '',
+          issuedBy: {},
+          drawee: {},
+          drawer: {},
+          draweeFirstName: '',
+          draweeLastName: '',
+          drawerFirstName: '',
+          drawerLastName: '',
+          draweeSignature: null,
+          drawerSignature: null,
+        })
+      }
+    })()
+  </script>
+</body>
+</html>

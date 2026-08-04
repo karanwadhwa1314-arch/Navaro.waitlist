@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bill of Lading</title>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+    crossorigin="anonymous"
+  ></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11px;
+      color: #000;
+      background: #f0f2f5;
+      padding: 16px;
+    }
+
+    body.embed {
+      background: #fff;
+      padding: 8px;
+      margin: 0;
+      overflow: visible;
+    }
+
+    #bolDocument {
+      width: 794px;
+      max-width: 794px;
+      margin: 0 auto;
+      background: #fff;
+    }
+
+    body.pdf-capture {
+      background: #fff !important;
+      padding: 0 !important;
+    }
+
+    body.pdf-capture #bolDocument {
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    .bol-sheet {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .bol-sheet td,
+    .bol-sheet th {
+      border: 1px solid #000;
+      vertical-align: top;
+      padding: 4px 6px;
+    }
+
+    .bol-title {
+      text-align: center;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 8px 6px;
+      border: 1px solid #000;
+    }
+
+    .bol-pages-wrap {
+      text-align: right;
+      padding: 3px 6px 4px;
+      vertical-align: top;
+    }
+
+    .bol-pages-label {
+      font-size: 9px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .bol-pages-value {
+      font-size: 11px;
+      margin-top: 2px;
+    }
+
+    .cell-label {
+      display: block;
+      font-size: 9px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+
+    .cell-value {
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.35;
+      white-space: pre-wrap;
+      word-break: break-word;
+      min-height: 0;
+    }
+
+    .cell-address {
+      min-height: 56px;
+    }
+
+    .cell-address-sm {
+      min-height: 44px;
+    }
+
+    .cell-tall {
+      min-height: 0;
+      height: 100%;
+    }
+
+    .split-2 {
+      padding: 0 !important;
+      vertical-align: top;
+    }
+
+    .split-2 table {
+      width: 100%;
+      height: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .split-2 td {
+      border: none;
+      border-right: 1px solid #000;
+      padding: 4px 6px;
+      vertical-align: top;
+      width: 50%;
+    }
+
+    .split-2 td:last-child {
+      border-right: none;
+    }
+
+    .nested-sheet {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .nested-sheet td {
+      border: 1px solid #000;
+      vertical-align: top;
+      padding: 4px 6px;
+    }
+
+    .nested-sheet td.no-border-top { border-top: none; }
+    .nested-sheet td.no-border-left { border-left: none; }
+    .nested-sheet td.no-border-right { border-right: none; }
+    .nested-sheet td.no-border-bottom { border-bottom: none; }
+
+    .five-col-sheet td {
+      width: 20%;
+    }
+
+    .total-row-label {
+      font-size: 10px;
+      font-weight: 600;
+      text-align: right;
+      padding: 4px 8px;
+      vertical-align: middle;
+    }
+
+    .total-value {
+      font-size: 11px;
+      font-weight: 700;
+      text-align: left;
+      padding: 4px 6px;
+      vertical-align: middle;
+    }
+
+    .goods-data-row td {
+      font-weight: 700;
+      padding: 3px 6px;
+    }
+
+    .bol-sheet th {
+      font-size: 9px;
+      font-weight: 600;
+      padding: 4px 6px;
+    }
+
+    .footer-terms {
+      min-height: 72px;
+      width: 60%;
+    }
+
+    .issue-date-value {
+      text-align: right;
+    }
+
+    .footer-sign {
+      width: 40%;
+      padding: 0 !important;
+      vertical-align: top;
+    }
+
+    .goods-table th {
+      font-size: 9px;
+      font-weight: 600;
+      text-align: left;
+      background: #fff;
+      padding: 5px 6px;
+    }
+
+    .goods-table td {
+      font-size: 11px;
+      vertical-align: top;
+      padding: 4px 6px;
+    }
+
+    .signature-img {
+      max-height: 56px;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin-top: 4px;
+    }
+
+    .signature-box {
+      min-height: 64px;
+    }
+
+    .contact-block {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 2px;
+    }
+
+    .contact-block-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .contact-block-logo {
+      flex-shrink: 0;
+      max-width: 45%;
+      text-align: right;
+      padding-top: 2px;
+    }
+
+    .contact-block-logo img {
+      max-height: 52px;
+      max-width: 130px;
+      object-fit: contain;
+      object-position: top right;
+      display: block;
+      margin-left: auto;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="bolDocument"></div>
+
+  <script>
+    (function () {
+      const isEmbed =
+        new URLSearchParams(window.location.search).get('embed') === '1' ||
+        !window.location.pathname.includes('bill-of-landing')
+      if (isEmbed) document.body.classList.add('embed')
+
+      function escapeHtml(value) {
+        return String(value ?? '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+      }
+
+      function contactDisplayName(c) {
+        return (c.companyName || c.name || '').trim()
+      }
+
+      function contactPreviewLines(c, opts) {
+        const skipCompanyIfLogo = opts && opts.skipCompanyIfLogo
+        const lines = []
+        const company = contactDisplayName(c)
+        const hasLogo = !!(c && c.logoDataUrl && String(c.logoDataUrl).trim())
+        if (company && !(skipCompanyIfLogo && hasLogo)) lines.push(company)
+        const person = [c.firstName, c.lastName].filter(Boolean).join(' ').trim()
+        if (person) lines.push(person)
+        for (const line of [c.line1, c.line2, c.line3]) {
+          if (line && String(line).trim()) lines.push(String(line).trim())
+        }
+        const locality = [c.city, c.region, c.postal].filter(Boolean).join(', ')
+        const locLine = [locality, c.country].filter(Boolean).join(' ')
+        if (locLine.trim()) lines.push(locLine.trim())
+        if (c.email && String(c.email).trim()) lines.push(String(c.email).trim())
+        if (c.phone && String(c.phone).trim()) lines.push('Tel: ' + String(c.phone).trim())
+        if (c.fax && String(c.fax).trim()) lines.push('Fax: ' + String(c.fax).trim())
+        return lines
+      }
+
+      function contactBlockHtml(c) {
+        const contact = c || {}
+        const logo = contact.logoDataUrl && String(contact.logoDataUrl).trim()
+        const lines = contactPreviewLines(contact, { skipCompanyIfLogo: true })
+        const textHtml = lines.length
+          ? lines.map((l) => escapeHtml(l)).join('<br>')
+          : logo
+            ? '&nbsp;'
+            : '&nbsp;'
+
+        if (!logo) {
+          return `<div class="contact-block-text cell-value">${textHtml}</div>`
+        }
+
+        return `
+          <div class="contact-block">
+            <div class="contact-block-text cell-value">${textHtml}</div>
+            <div class="contact-block-logo">
+              <img src="${escapeHtml(logo)}" alt="${escapeHtml(contactDisplayName(contact) || 'Logo')}">
+            </div>
+          </div>
+        `
+      }
+
+      function parseBolNum(v) {
+        const n = parseFloat(String(v || '').replace(/,/g, ''))
+        return Number.isFinite(n) ? n : 0
+      }
+
+      function formatBolTotal(n) {
+        return new Intl.NumberFormat('en-US', { maximumFractionDigits: 4 }).format(n)
+      }
+
+      function formatDisplayDate(iso) {
+        if (!iso) return ''
+        const d = new Date(iso + 'T00:00:00')
+        if (Number.isNaN(d.getTime())) return iso
+        return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
+      }
+
+      function calcTotals(goodsLines) {
+        let net = 0
+        let gross = 0
+        let cbm = 0
+        for (const line of goodsLines || []) {
+          net += parseBolNum(line.netWeight)
+          gross += parseBolNum(line.grossWeight)
+          cbm += parseBolNum(line.measurements)
+        }
+        return { net, gross, cbm }
+      }
+
+      function goodsRows(goodsLines) {
+        const lines = (goodsLines || []).filter(
+          (l) =>
+            l.marks ||
+            l.packages ||
+            l.description ||
+            l.netWeight ||
+            l.grossWeight ||
+            l.measurements
+        )
+        if (!lines.length) {
+          return `
+            <tr class="goods-data-row">
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+          `
+        }
+        return lines
+          .map(
+            (l) => `
+            <tr class="goods-data-row">
+              <td>${escapeHtml(l.marks)}</td>
+              <td>${escapeHtml(l.packages)}</td>
+              <td>${escapeHtml(l.description)}</td>
+              <td>${escapeHtml(l.netWeight)}</td>
+              <td>${escapeHtml(l.grossWeight)}</td>
+              <td>${escapeHtml(l.measurements)}</td>
+            </tr>
+          `
+          )
+          .join('')
+      }
+
+      function renderBillOfLadingDocument(data) {
+        const d = data || {}
+        const totals = calcTotals(d.goodsLines)
+        const placeDate = [d.declarationPlace, formatDisplayDate(d.declarationDate)]
+          .filter(Boolean)
+          .join(', ')
+        const signatoryName = [d.declarationFirstName, d.declarationLastName]
+          .filter(Boolean)
+          .join(' ')
+        const signatureHtml = d.signature?.imageDataUrl
+          ? `<img class="signature-img" src="${escapeHtml(d.signature.imageDataUrl)}" alt="Signature">`
+          : '&nbsp;'
+
+        const extraContainerRows = (d.containerLines || [])
+          .slice(1)
+          .filter((l) => l.containerNo || l.sealNo || l.containerType)
+          .map(
+            (l) => `
+            <tr>
+              <td colspan="2"><div class="cell-value">${escapeHtml(l.containerNo)}</div></td>
+              <td colspan="2"><div class="cell-value">${escapeHtml(l.sealNo)}</div></td>
+              <td colspan="2"><div class="cell-value">${escapeHtml(l.containerType)}</div></td>
+            </tr>`
+          )
+          .join('')
+
+        const html = `
+          <table class="bol-sheet" cellspacing="0" cellpadding="0">
+            <colgroup>
+              <col style="width:16.66%">
+              <col style="width:16.66%">
+              <col style="width:16.68%">
+              <col style="width:16.66%">
+              <col style="width:16.66%">
+              <col style="width:16.68%">
+            </colgroup>
+
+            <tr>
+              <td colspan="6" class="bol-title">BILL OF LADING</td>
+            </tr>
+
+            <!-- Row 1: Shipper | References + Pages -->
+            <tr>
+              <td colspan="3" class="cell-address">
+                <span class="cell-label">Shipper</span>
+                ${contactBlockHtml(d.shipper)}
+              </td>
+              <td colspan="3" style="padding:0;vertical-align:top;">
+                <table class="nested-sheet" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td colspan="2" class="bol-pages-wrap no-border-top no-border-left no-border-right">
+                      <span class="cell-label">Pages</span>
+                      <div class="bol-pages-value">${escapeHtml(d.pages || '1 of 1')}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="no-border-left">
+                      <span class="cell-label">Shipper's Reference</span>
+                      <div class="cell-value">${escapeHtml(d.shippersReference)}</div>
+                    </td>
+                    <td rowspan="2" class="no-border-right">
+                      <span class="cell-label">Bill of Lading Number</span>
+                      <div class="cell-value">${escapeHtml(d.bolNumber)}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="no-border-left">
+                      <span class="cell-label">Carrier's Reference</span>
+                      <div class="cell-value">${escapeHtml(d.carriersReference)}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" class="no-border-left no-border-right no-border-bottom">
+                      <span class="cell-label">Unique Consignment Reference</span>
+                      <div class="cell-value">${escapeHtml(d.consignmentReference)}</div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Row 2: Consignee | Carrier -->
+            <tr>
+              <td colspan="3" class="cell-address-sm">
+                <span class="cell-label">Consignee</span>
+                ${contactBlockHtml(d.consignee)}
+              </td>
+              <td colspan="3" class="cell-address-sm">
+                <span class="cell-label">Carrier Name</span>
+                ${contactBlockHtml(d.carrier)}
+              </td>
+            </tr>
+
+            <!-- Row 3: Notify parties -->
+            <tr>
+              <td colspan="3" class="cell-address-sm">
+                <span class="cell-label">Notify Party (If not Consignee)</span>
+                ${contactBlockHtml(d.notifyParty)}
+              </td>
+              <td colspan="3" class="cell-address-sm">
+                <span class="cell-label">Additional Notify Party</span>
+                ${contactBlockHtml(d.additionalNotifyParty)}
+              </td>
+            </tr>
+
+            <!-- Transport: 3 columns — Additional Information spans rows 1–2 on the right -->
+            <tr>
+              <td colspan="2">
+                <span class="cell-label">Pre-Carriage By</span>
+                <div class="cell-value">${escapeHtml(d.precarriageBy)}</div>
+              </td>
+              <td colspan="2">
+                <span class="cell-label">Place of Receipt</span>
+                <div class="cell-value">${escapeHtml(d.placeOfReceipt)}</div>
+              </td>
+              <td colspan="2" rowspan="2" class="cell-tall">
+                <span class="cell-label">Additional Information</span>
+                <div class="cell-value">${escapeHtml(d.additionalInformation)}</div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" class="split-2">
+                <table cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td>
+                      <span class="cell-label">Vessel / Aircraft</span>
+                      <div class="cell-value">${escapeHtml(d.vessel)}</div>
+                    </td>
+                    <td>
+                      <span class="cell-label">Voyage No</span>
+                      <div class="cell-value">${escapeHtml(d.voyage)}</div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+              <td colspan="2">
+                <span class="cell-label">Port of Loading</span>
+                <div class="cell-value">${escapeHtml(d.portOfLoading)}</div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <span class="cell-label">Port of Discharge</span>
+                <div class="cell-value">${escapeHtml(d.portOfDischarge)}</div>
+              </td>
+              <td colspan="2">
+                <span class="cell-label">Place of Delivery</span>
+                <div class="cell-value">${escapeHtml(d.placeOfDelivery)}</div>
+              </td>
+              <td colspan="2">
+                <span class="cell-label">Final Destination</span>
+                <div class="cell-value">${escapeHtml(d.finalDestination)}</div>
+              </td>
+            </tr>
+
+            <!-- Goods -->
+            <tr>
+              <th>Marks &amp; Numbers</th>
+              <th>Kind &amp; No of Packages</th>
+              <th>Description of Goods</th>
+              <th>Net Weight (Kg)</th>
+              <th>Gross Weight (Kg)</th>
+              <th>Measurements (m³)</th>
+            </tr>
+            ${goodsRows(d.goodsLines)}
+            <tr>
+              <td colspan="3" class="total-row-label">Total This Page</td>
+              <td class="total-value">${escapeHtml(formatBolTotal(totals.net))}</td>
+              <td class="total-value">${escapeHtml(formatBolTotal(totals.gross))}</td>
+              <td class="total-value">${escapeHtml(formatBolTotal(totals.cbm))}</td>
+            </tr>
+            <tr>
+              <td colspan="3" class="total-row-label">Consignment Total</td>
+              <td class="total-value">${escapeHtml(formatBolTotal(totals.net))}</td>
+              <td class="total-value">${escapeHtml(formatBolTotal(totals.gross))}</td>
+              <td class="total-value">${escapeHtml(formatBolTotal(totals.cbm))}</td>
+            </tr>
+
+            <!-- Containers -->
+            <tr>
+              <td colspan="2">
+                <span class="cell-label">Container No(s)</span>
+                <div class="cell-value">${escapeHtml((d.containerLines || [])[0]?.containerNo)}</div>
+              </td>
+              <td colspan="2">
+                <span class="cell-label">Seal No(s)</span>
+                <div class="cell-value">${escapeHtml((d.containerLines || [])[0]?.sealNo)}</div>
+              </td>
+              <td colspan="2">
+                <span class="cell-label">Container Type</span>
+                <div class="cell-value">${escapeHtml((d.containerLines || [])[0]?.containerType)}</div>
+              </td>
+            </tr>
+            ${extraContainerRows}
+            <tr>
+              <td colspan="6">
+                <span class="cell-label">Total No of Containers or other packages or units (in words)</span>
+                <div class="cell-value">${escapeHtml(d.numberOfContainers)}</div>
+              </td>
+            </tr>
+
+            <!-- Shipping terms: 5 equal columns -->
+            <tr>
+              <td colspan="6" style="padding:0;">
+                <table class="nested-sheet five-col-sheet" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="no-border-top no-border-left no-border-bottom">
+                      <span class="cell-label">No. of original Bills of Lading</span>
+                      <div class="cell-value">${escapeHtml(d.numberOfOriginalBol)}</div>
+                    </td>
+                    <td class="no-border-top no-border-bottom">
+                      <span class="cell-label">Incoterms® 2020</span>
+                      <div class="cell-value">${escapeHtml(d.incoterms)}</div>
+                    </td>
+                    <td class="no-border-top no-border-bottom">
+                      <span class="cell-label">Payable at</span>
+                      <div class="cell-value">${escapeHtml(d.payableAt)}</div>
+                    </td>
+                    <td class="no-border-top no-border-bottom">
+                      <span class="cell-label">Freight Charges</span>
+                      <div class="cell-value">${escapeHtml(d.freightCharges)}</div>
+                    </td>
+                    <td class="no-border-top no-border-right no-border-bottom">
+                      <span class="cell-label">Shipped on Board Date</span>
+                      <div class="cell-value">${escapeHtml(formatDisplayDate(d.shippedOnBoardDate))}</div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Footer: Terms (60%) | Signature stack (40%) -->
+            <tr>
+              <td colspan="4" class="footer-terms">
+                <span class="cell-label">Terms and Conditions</span>
+                <div class="cell-value">${escapeHtml(d.termsAndConditions)}</div>
+              </td>
+              <td colspan="2" class="footer-sign">
+                <table class="nested-sheet" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="no-border-top no-border-left no-border-right">
+                      <span class="cell-label">Place and Date of Issue</span>
+                      <div class="cell-value issue-date-value">${escapeHtml(placeDate)}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="no-border-left no-border-right">
+                      <span class="cell-label">Signatory Company</span>
+                      <div class="cell-value">${escapeHtml(d.declarationCompanyName)}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="no-border-left no-border-right">
+                      <span class="cell-label">Name of Authorized Signatory</span>
+                      <div class="cell-value">${escapeHtml(signatoryName)}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="signature-box no-border-left no-border-right no-border-bottom">
+                      <span class="cell-label">Signature</span>
+                      ${signatureHtml}
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        `
+
+        document.getElementById('bolDocument').innerHTML = html
+      }
+
+      async function downloadBillOfLadingPdf() {
+        if (typeof html2pdf !== 'function') {
+          throw new Error('PDF library failed to load. Check your network connection and try again.')
+        }
+
+        const element = document.getElementById('bolDocument')
+        if (!element || !element.innerHTML.trim()) {
+          throw new Error('Bill of Lading document is empty.')
+        }
+
+        document.body.classList.add('pdf-capture')
+
+        const imgs = element.querySelectorAll('img')
+        await Promise.all(
+          Array.from(imgs).map(
+            (img) =>
+              new Promise((resolve) => {
+                if (img.complete) resolve()
+                else {
+                  img.onload = () => resolve()
+                  img.onerror = () => resolve()
+                }
+              })
+          )
+        )
+        await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)))
+        await new Promise((resolve) => setTimeout(resolve, 100))
+
+        const captureWidth = Math.max(element.scrollWidth, element.offsetWidth, 794)
+        const captureHeight = Math.max(element.scrollHeight, element.offsetHeight, 400)
+
+        if (captureHeight < 50 || captureWidth < 50) {
+          document.body.classList.remove('pdf-capture')
+          throw new Error('Bill of Lading layout is not ready for PDF export.')
+        }
+
+        const opt = {
+          margin: [8, 8, 8, 8],
+          filename: 'bill-of-lading.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: {
+            scale: 2,
+            useCORS: true,
+            allowTaint: true,
+            letterRendering: true,
+            logging: false,
+            scrollX: 0,
+            scrollY: 0,
+            width: captureWidth,
+            height: captureHeight,
+            windowWidth: captureWidth,
+            windowHeight: captureHeight,
+            onclone: function (clonedDoc) {
+              const cloned = clonedDoc.getElementById('bolDocument')
+              if (cloned) {
+                cloned.style.width = captureWidth + 'px'
+                cloned.style.maxWidth = captureWidth + 'px'
+                cloned.style.visibility = 'visible'
+                cloned.style.opacity = '1'
+              }
+              clonedDoc.body.style.background = '#fff'
+            },
+          },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+          pagebreak: { mode: ['css', 'legacy'] },
+        }
+
+        try {
+          const blob = await html2pdf().set(opt).from(element).outputPdf('blob')
+          if (blob instanceof Blob && blob.size > 500) {
+            return blob
+          }
+
+          const pdf = await html2pdf().set(opt).from(element).toPdf().get('pdf')
+          const fallback = pdf.output('blob')
+          if (fallback instanceof Blob && fallback.size > 500) {
+            return fallback
+          }
+
+          throw new Error('PDF export produced no data.')
+        } finally {
+          document.body.classList.remove('pdf-capture')
+        }
+      }
+
+      function whenHtml2PdfReady() {
+        return new Promise((resolve, reject) => {
+          if (typeof html2pdf === 'function') {
+            resolve()
+            return
+          }
+          const script = document.querySelector('script[src*="html2pdf"]')
+          if (!script) {
+            reject(new Error('PDF script tag not found.'))
+            return
+          }
+          const timeout = setTimeout(() => {
+            reject(new Error('PDF library load timed out.'))
+          }, 20000)
+          script.addEventListener('load', () => {
+            clearTimeout(timeout)
+            resolve()
+          })
+          script.addEventListener('error', () => {
+            clearTimeout(timeout)
+            reject(new Error('Failed to load PDF library from CDN.'))
+          })
+        })
+      }
+
+      window.renderBillOfLadingDocument = renderBillOfLadingDocument
+      window.downloadBillOfLadingPdf = downloadBillOfLadingPdf
+      window.bolPdfTemplateReady = whenHtml2PdfReady().catch(function (err) {
+        console.error('Bill of Lading PDF library failed:', err)
+        throw err
+      })
+      window.bolPdfTemplateBooted = true
+
+      if (!isEmbed) {
+        renderBillOfLadingDocument({
+          pages: '1 of 1',
+          shippersReference: '',
+          carriersReference: '',
+          bolNumber: '',
+          consignmentReference: '',
+          shipper: {},
+          consignee: {},
+          carrier: {},
+          notifyParty: {},
+          additionalNotifyParty: {},
+          precarriageBy: '',
+          placeOfReceipt: '',
+          vessel: '',
+          voyage: '',
+          portOfLoading: '',
+          additionalInformation: '',
+          portOfDischarge: '',
+          placeOfDelivery: '',
+          finalDestination: '',
+          goodsLines: [],
+          containerLines: [],
+          numberOfContainers: '',
+          numberOfOriginalBol: '',
+          incoterms: '',
+          payableAt: '',
+          freightCharges: '',
+          shippedOnBoardDate: '',
+          termsAndConditions: '',
+          declarationPlace: '',
+          declarationDate: '',
+          declarationCompanyName: '',
+          declarationFirstName: '',
+          declarationLastName: '',
+          signature: null,
+        })
+      }
+    })()
+  </script>
+</body>
+</html>
