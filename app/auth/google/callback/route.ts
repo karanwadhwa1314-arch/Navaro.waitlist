@@ -1,6 +1,0 @@
-import type { NextRequest } from 'next/server'
-import { handleGoogleOAuthCallback } from '@/lib/auth/google-callback'
-
-export async function GET(request: NextRequest) {
-  return handleGoogleOAuthCallback(request)
-}
