@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getClientId } from '@/lib/chat/rate-limit'
 import {
   ADMIN_COOKIE,
   clearLoginAttempts,
@@ -10,6 +9,15 @@ import {
 } from '@/lib/waitlist/admin-auth'
 
 export const runtime = 'nodejs'
+
+/** Derive a rate-limit key from the request IP. */
+function getClientId(request: NextRequest): string {
+  return (
+    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+    request.headers.get('x-real-ip') ||
+    'unknown'
+  )
+}
 
 export async function POST(request: NextRequest) {
   const password = getAdminPassword()
