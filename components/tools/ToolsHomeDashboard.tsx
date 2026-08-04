@@ -6,7 +6,7 @@ import { useEffect, useState, type SVGProps } from 'react'
 
 import ShippingToolsPanel, { type ToolSlug } from '@/components/tools/ShippingToolsPanel'
 import ExportDocsFlow from '@/components/tools/export-docs/ExportDocsFlow'
-import CBMCalculator from '@/components/tools/CBMCalculator'
+import CBMCalculator from '@/components/tools/CbmCalculator'
 import Cbm3dCalculator from '@/components/tools/Cbm3dCalculator'
 import DutyCalculator from '@/components/tools/DutyCalculator'
 import PdfComparison from '@/components/tools/PdfComparison'

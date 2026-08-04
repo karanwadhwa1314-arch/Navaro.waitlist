@@ -1,4 +1,4 @@
-import CBMCalculator from '@/components/tools/CBMCalculator'
+import CBMCalculator from '@/components/tools/CbmCalculator'
 
 export default function Page() {
   return (
