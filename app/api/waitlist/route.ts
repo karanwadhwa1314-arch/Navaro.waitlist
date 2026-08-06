@@ -4,9 +4,8 @@ import { getSupabaseAdmin } from '@/lib/supabase/server'
 import { addEntry } from '@/lib/waitlist/store'
 
 // Uses Node APIs (fs for PDF attachment via Resend helper).
+// Region: pinned to Mumbai via vercel.json `"regions": ["bom1"]` (preferredRegion is deprecated).
 export const runtime = 'nodejs'
-// Run near Indian users (domain + traffic). Avoids bom1 → iad1 hop on every signup.
-export const preferredRegion = 'bom1'
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
