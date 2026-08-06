@@ -1,3 +1,4 @@
+import { randomUUID } from 'crypto'
 import { getSupabaseAdmin } from '@/lib/supabase/server'
 
 /**
@@ -55,40 +56,53 @@ export type AddResult = { entry: WaitlistEntry; duplicate: boolean }
 /**
  * Appends a signup. Repeat signups with an email already on the list are
  * treated as success without adding a second row.
+ *
+ * Uses a client-generated id and skips SELECT/RETURNING so the hot path is a
+ * single insert round-trip (latency-sensitive on the waitlist API).
  */
 export async function addEntry(input: NewWaitlistEntry): Promise<AddResult> {
   const supabase = getSupabaseAdmin()
   const email = input.email.toLowerCase()
+  const id = randomUUID()
 
-  const { data, error } = await supabase
-    .from('waitlist_signups')
-    .insert({
-      first_name: input.firstName,
-      last_name: input.lastName,
-      email,
-      phone: input.phone || null,
-    })
-    .select('id, created_at, first_name, last_name, email, phone, welcome_email_sent_at')
-    .single()
+  const { error } = await supabase.from('waitlist_signups').insert({
+    id,
+    first_name: input.firstName,
+    last_name: input.lastName,
+    email,
+    phone: input.phone || null,
+  })
 
-  if (!error && data) {
-    return { entry: mapRow(data as WaitlistRow), duplicate: false }
+  if (!error) {
+    return {
+      entry: {
+        id,
+        createdAt: new Date().toISOString(),
+        firstName: input.firstName,
+        lastName: input.lastName,
+        email,
+        phone: input.phone,
+        welcomeEmailSentAt: null,
+      },
+      duplicate: false,
+    }
   }
 
-  // Unique email constraint — soft success (already signed up). Re-fetch the
-  // existing row so the returned shape matches a normal addEntry result.
+  // Unique email constraint — soft success (already signed up). No re-fetch:
+  // callers only need duplicate=true to skip the welcome email.
   if (error?.code === '23505') {
-    const { data: existing, error: fetchError } = await supabase
-      .from('waitlist_signups')
-      .select('id, created_at, first_name, last_name, email, phone, welcome_email_sent_at')
-      .eq('email', email)
-      .single()
-
-    if (fetchError || !existing) {
-      throw fetchError ?? new Error('Duplicate email but could not re-fetch existing signup')
+    return {
+      entry: {
+        id: '',
+        createdAt: '',
+        firstName: input.firstName,
+        lastName: input.lastName,
+        email,
+        phone: input.phone,
+        welcomeEmailSentAt: null,
+      },
+      duplicate: true,
     }
-
-    return { entry: mapRow(existing as WaitlistRow), duplicate: true }
   }
 
   throw error ?? new Error('Failed to insert waitlist signup')
