@@ -10,6 +10,33 @@ import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 
 let client: SupabaseClient | null = null
 
+/**
+ * Accepts the project URL only (https://<ref>.supabase.co).
+ * Strips accidental /rest/v1 (or trailing slash) that cause PostgREST PGRST125.
+ */
+function normalizeSupabaseUrl(raw: string): string {
+  const trimmed = raw.trim().replace(/^["']|["']$/g, '')
+  let parsed: URL
+  try {
+    parsed = new URL(trimmed)
+  } catch {
+    throw new Error(
+      'NEXT_PUBLIC_SUPABASE_URL is not a valid URL — use https://<project-ref>.supabase.co',
+    )
+  }
+
+  // Collapse /rest/v1 (with or without trailing slash) back to the project origin.
+  parsed.pathname = parsed.pathname.replace(/\/rest\/v1\/?$/i, '').replace(/\/+$/, '') || '/'
+  if (parsed.pathname !== '/') {
+    throw new Error(
+      `NEXT_PUBLIC_SUPABASE_URL must be the project origin only (got path "${parsed.pathname}"). ` +
+        'Use https://<project-ref>.supabase.co — do not include /rest/v1.',
+    )
+  }
+
+  return parsed.origin
+}
+
 export function getSupabaseAdmin(): SupabaseClient {
   if (client) return client
 
@@ -22,7 +49,7 @@ export function getSupabaseAdmin(): SupabaseClient {
     )
   }
 
-  client = createClient(url, serviceRoleKey, {
+  client = createClient(normalizeSupabaseUrl(url), serviceRoleKey.trim(), {
     auth: {
       autoRefreshToken: false,
       persistSession: false,
