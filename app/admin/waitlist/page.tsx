@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export default async function WaitlistAdminPage() {
   const configured = getAdminPassword() !== null
-  const authenticated = isAdminRequest(cookies().get(ADMIN_COOKIE)?.value)
+  const cookieStore = await cookies()
+  const authenticated = isAdminRequest(cookieStore.get(ADMIN_COOKIE)?.value)
 
   if (!authenticated) {
     return <WaitlistAdminLogin configured={configured} />

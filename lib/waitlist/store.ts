@@ -1,16 +1,9 @@
-import { randomUUID } from 'crypto'
-import { mkdir, readFile, rename, writeFile } from 'fs/promises'
-import path from 'path'
+import { getSupabaseAdmin } from '@/lib/supabase/server'
 
 /**
- * Waitlist signups, stored as a JSON array on disk.
- *
- * Requires a persistent filesystem — this will lose data on serverless hosts
- * (Vercel, Netlify) where the filesystem is read-only and ephemeral.
+ * Waitlist signups, stored in the Supabase `waitlist_signups` table.
+ * All access goes through the service-role client (RLS deny-all for anon).
  */
-
-const DATA_DIR = path.join(process.cwd(), 'data')
-const DATA_FILE = path.join(DATA_DIR, 'waitlist.json')
 
 export type WaitlistEntry = {
   id: string
@@ -19,50 +12,42 @@ export type WaitlistEntry = {
   lastName: string
   email: string
   phone: string
+  welcomeEmailSentAt: string | null
 }
 
-export type NewWaitlistEntry = Omit<WaitlistEntry, 'id' | 'createdAt'>
+export type NewWaitlistEntry = Omit<WaitlistEntry, 'id' | 'createdAt' | 'welcomeEmailSentAt'>
+
+type WaitlistRow = {
+  id: string
+  created_at: string
+  first_name: string
+  last_name: string
+  email: string
+  phone: string | null
+  welcome_email_sent_at: string | null
+}
+
+function mapRow(row: WaitlistRow): WaitlistEntry {
+  return {
+    id: row.id,
+    createdAt: row.created_at,
+    firstName: row.first_name,
+    lastName: row.last_name,
+    email: row.email,
+    phone: row.phone ?? '',
+    welcomeEmailSentAt: row.welcome_email_sent_at,
+  }
+}
 
 export async function readEntries(): Promise<WaitlistEntry[]> {
-  let raw: string
-  try {
-    raw = await readFile(DATA_FILE, 'utf8')
-  } catch (error) {
-    // No signups yet.
-    if ((error as NodeJS.ErrnoException).code === 'ENOENT') return []
-    throw error
-  }
+  const supabase = getSupabaseAdmin()
+  const { data, error } = await supabase
+    .from('waitlist_signups')
+    .select('id, created_at, first_name, last_name, email, phone, welcome_email_sent_at')
+    .order('created_at', { ascending: false })
 
-  if (!raw.trim()) return []
-
-  const parsed = JSON.parse(raw)
-  if (!Array.isArray(parsed)) {
-    throw new Error(`${DATA_FILE} is not a JSON array — refusing to use it`)
-  }
-  return parsed as WaitlistEntry[]
-}
-
-/**
- * Writes via a temp file + rename so a crash mid-write cannot truncate the
- * existing list.
- */
-async function writeEntries(entries: WaitlistEntry[]): Promise<void> {
-  await mkdir(DATA_DIR, { recursive: true })
-  const tempFile = `${DATA_FILE}.${randomUUID()}.tmp`
-  await writeFile(tempFile, JSON.stringify(entries, null, 2), 'utf8')
-  await rename(tempFile, DATA_FILE)
-}
-
-/**
- * Serialises writes. Two signups arriving together would otherwise both read
- * the old list and the second would overwrite the first.
- */
-let writeQueue: Promise<unknown> = Promise.resolve()
-
-function enqueue<T>(task: () => Promise<T>): Promise<T> {
-  const result = writeQueue.then(task, task)
-  writeQueue = result.catch(() => undefined)
-  return result
+  if (error) throw error
+  return ((data ?? []) as WaitlistRow[]).map(mapRow)
 }
 
 export type AddResult = { entry: WaitlistEntry; duplicate: boolean }
@@ -72,22 +57,41 @@ export type AddResult = { entry: WaitlistEntry; duplicate: boolean }
  * treated as success without adding a second row.
  */
 export async function addEntry(input: NewWaitlistEntry): Promise<AddResult> {
-  return enqueue(async () => {
-    const entries = await readEntries()
-    const email = input.email.toLowerCase()
+  const supabase = getSupabaseAdmin()
+  const email = input.email.toLowerCase()
 
-    const existing = entries.find((entry) => entry.email.toLowerCase() === email)
-    if (existing) return { entry: existing, duplicate: true }
+  const { data, error } = await supabase
+    .from('waitlist_signups')
+    .insert({
+      first_name: input.firstName,
+      last_name: input.lastName,
+      email,
+      phone: input.phone || null,
+    })
+    .select('id, created_at, first_name, last_name, email, phone, welcome_email_sent_at')
+    .single()
 
-    const entry: WaitlistEntry = {
-      id: randomUUID(),
-      createdAt: new Date().toISOString(),
-      ...input,
+  if (!error && data) {
+    return { entry: mapRow(data as WaitlistRow), duplicate: false }
+  }
+
+  // Unique email constraint — soft success (already signed up). Re-fetch the
+  // existing row so the returned shape matches a normal addEntry result.
+  if (error?.code === '23505') {
+    const { data: existing, error: fetchError } = await supabase
+      .from('waitlist_signups')
+      .select('id, created_at, first_name, last_name, email, phone, welcome_email_sent_at')
+      .eq('email', email)
+      .single()
+
+    if (fetchError || !existing) {
+      throw fetchError ?? new Error('Duplicate email but could not re-fetch existing signup')
     }
 
-    await writeEntries([...entries, entry])
-    return { entry, duplicate: false }
-  })
+    return { entry: mapRow(existing as WaitlistRow), duplicate: true }
+  }
+
+  throw error ?? new Error('Failed to insert waitlist signup')
 }
 
 function csvCell(value: string): string {
@@ -97,9 +101,18 @@ function csvCell(value: string): string {
 }
 
 export function toCsv(entries: WaitlistEntry[]): string {
-  const header = ['Date', 'First Name', 'Last Name', 'Email', 'Phone']
+  const header = ['Date', 'First Name', 'Last Name', 'Email', 'Phone', 'Welcome Email Sent']
   const rows = entries.map((entry) =>
-    [entry.createdAt, entry.firstName, entry.lastName, entry.email, entry.phone].map(csvCell).join(','),
+    [
+      entry.createdAt,
+      entry.firstName,
+      entry.lastName,
+      entry.email,
+      entry.phone,
+      entry.welcomeEmailSentAt ?? '',
+    ]
+      .map(csvCell)
+      .join(','),
   )
   // BOM so Excel opens UTF-8 names correctly.
   return `﻿${header.map(csvCell).join(',')}\n${rows.join('\n')}\n`

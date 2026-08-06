@@ -1,6 +1,9 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import PhoneInput from 'react-phone-number-input'
+import 'react-phone-number-input/style.css'
+import './WaitlistPhoneInput.css'
 
 const font = { fontFamily: '"TASA Orbiter Deck", sans-serif' }
 
@@ -233,18 +236,21 @@ export default function WaitlistModal({ onClose }: WaitlistModalProps) {
                 <label htmlFor="waitlist-phone" className={labelClass} style={font}>
                   Phone Number{' '}
                   <span className="font-normal text-[#111111]">
-                    (optional - for WhatsApp group invite)
+                    (for WhatsApp group invite)
                   </span>
                 </label>
-                <input
+                <PhoneInput
                   id="waitlist-phone"
-                  name="phone"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  autoComplete="tel"
-                  className={inputClass}
-                  style={font}
+                  international
+                  defaultCountry="IN"
+                  value={formData.phone || undefined}
+                  onChange={(value) => setFormData({ ...formData, phone: value ?? '' })}
+                  numberInputProps={{
+                    id: 'waitlist-phone',
+                    name: 'phone',
+                    autoComplete: 'tel',
+                  }}
+                  className="WaitlistPhoneInput"
                 />
               </div>
 
