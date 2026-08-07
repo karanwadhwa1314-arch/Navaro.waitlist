@@ -159,8 +159,7 @@ export default function WaitlistModal({ onClose }: WaitlistModalProps) {
               You&apos;re on the list
             </h2>
             <p className="mt-2 text-[14px] leading-[150%] text-[#666462]" style={font}>
-              Thanks, {formData.firstName.trim()}. We&apos;ll email {formData.email.trim()} as soon
-              as your spot opens up.
+              Thanks, {formData.firstName.trim()}. You&apos;ll be recieving a gift soon, on {formData.email.trim()}
             </p>
             <button
               type="button"
