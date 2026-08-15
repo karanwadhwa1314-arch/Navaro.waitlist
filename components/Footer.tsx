@@ -32,37 +32,8 @@ export default function Footer() {
       <div className="border-t border-b border-[#D1CEC9]">
         <div className="max-w-[1415px] mx-auto px-4">
           <div className="flex flex-wrap">
-            {/* Quick Links */}
-            <div className="w-full md:w-1/3 py-[30px] md:py-[60px] md:border-r border-b md:border-b-0 border-[#D1CEC9]">
-              <h4
-                className="text-lg font-bold leading-[120%] text-black uppercase mb-5 md:mb-[47px]"
-                style={font}
-              >
-                Quick Links
-              </h4>
-              <ul className="list-none p-0 m-0">
-                {[
-                  { label: 'Courses', href: '/course' },
-                  { label: 'Tools', href: '/dashboard' },
-                  { label: 'About', href: '/about' },
-                  { label: 'Contact Us', href: '/contact' },
-                ].map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="flex items-center gap-2.5 text-[#666462] text-[22px] md:text-[22px] font-normal capitalize mb-[15px] hover:opacity-70 transition-opacity"
-                      style={font}
-                    >
-                      {link.label}
-                      <ArrowIcon />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
             {/* Connect */}
-            <div className="w-full md:w-1/3 py-[30px] md:py-[60px] md:pl-[30px] lg:pl-[60px] md:border-r border-b md:border-b-0 border-[#D1CEC9]">
+            <div className="w-full md:w-1/2 py-[30px] md:py-[60px] md:border-r border-b md:border-b-0 border-[#D1CEC9]">
               <h4
                 className="text-lg font-bold leading-[120%] text-black uppercase mb-5 md:mb-[47px]"
                 style={font}
@@ -123,7 +94,7 @@ export default function Footer() {
             </div>
 
             {/* Newsletter */}
-            <div className="w-full md:w-1/3 py-[30px] md:py-[60px] md:pl-[30px] lg:pl-[60px]">
+            <div className="w-full md:w-1/2 py-[30px] md:py-[60px] md:pl-[30px] lg:pl-[60px]">
               <h4
                 className="text-lg font-bold leading-[120%] text-black uppercase mb-5 md:mb-[47px]"
                 style={font}
@@ -170,7 +141,7 @@ export default function Footer() {
             <img
               src="/landing/img/footerlogo.png"
               alt="Navaro Logo"
-              className="mx-auto w-[80%] md:w-auto max-w-full"
+              className="mx-auto w-[80%] md:w-[1069px] max-w-full"
             />
           </div>
         </div>

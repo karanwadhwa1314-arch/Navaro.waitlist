@@ -1,6 +1,7 @@
 import { after, NextRequest, NextResponse } from 'next/server'
 import { sendWelcomeEmail } from '@/lib/email/sendWelcomeEmail'
 import { getSupabaseAdmin } from '@/lib/supabase/server'
+import { getClientId, isWaitlistRateLimited } from '@/lib/waitlist/rate-limit'
 import { addEntry } from '@/lib/waitlist/store'
 
 // Uses Node APIs (fs for PDF attachment via Resend helper).
@@ -19,6 +20,14 @@ function asField(value: unknown): string {
 }
 
 export async function POST(request: NextRequest) {
+  const clientId = getClientId(request)
+  if (isWaitlistRateLimited(clientId)) {
+    return NextResponse.json(
+      { success: false, error: 'Too many attempts. Please try again in a few minutes.' },
+      { status: 429 },
+    )
+  }
+
   const body = await request.json().catch(() => null)
   if (!body || typeof body !== 'object') {
     return NextResponse.json({ success: false, error: 'Invalid request body' }, { status: 400 })
@@ -28,6 +37,16 @@ export async function POST(request: NextRequest) {
   const lastName = asField((body as Record<string, unknown>).last_name)
   const email = asField((body as Record<string, unknown>).email)
   const phone = asField((body as Record<string, unknown>).phone)
+
+  // Honeypot: a hidden field real users never see or fill. Any value here
+  // means a bot filled every field it could find. Return a fake success so
+  // scripted submitters get no signal they were caught, and skip the DB/
+  // email work entirely.
+  const honeypot = asField((body as Record<string, unknown>).company)
+  if (honeypot) {
+    console.warn('Waitlist honeypot triggered, silently dropped:', clientId)
+    return NextResponse.json({ success: true })
+  }
 
   if (!firstName || !lastName || !email || !phone) {
     return NextResponse.json(

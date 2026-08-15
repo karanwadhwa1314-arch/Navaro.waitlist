@@ -24,6 +24,7 @@ export default function WaitlistModal({ onClose }: WaitlistModalProps) {
     lastName: '',
     email: '',
     phone: '',
+    company: '',
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -84,6 +85,7 @@ export default function WaitlistModal({ onClose }: WaitlistModalProps) {
           last_name: formData.lastName,
           email: formData.email,
           phone: formData.phone,
+          company: formData.company,
         }),
       })
       const result = await res.json()
@@ -181,6 +183,18 @@ export default function WaitlistModal({ onClose }: WaitlistModalProps) {
             </h2>
 
             <form onSubmit={handleSubmit} className="mt-5" noValidate>
+              <div className="absolute left-[-9999px] h-px w-px overflow-hidden" aria-hidden="true">
+                <label htmlFor="waitlist-company">Company</label>
+                <input
+                  id="waitlist-company"
+                  name="company"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={formData.company}
+                  onChange={handleChange}
+                />
+              </div>
               <div className="flex gap-3">
                 <div className="flex-1">
                   <label htmlFor="waitlist-first-name" className={labelClass} style={font}>
