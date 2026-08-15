@@ -141,7 +141,7 @@ export default function Footer() {
             <img
               src="/landing/img/footerlogo.png"
               alt="Navaro Logo"
-              className="mx-auto w-[80%] md:w-[730px] max-w-full"
+              className="mx-auto w-[80%] md:w-[530px] max-w-full"
             />
           </div>
         </div>
