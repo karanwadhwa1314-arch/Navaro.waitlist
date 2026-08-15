@@ -134,14 +134,14 @@ export default function Footer() {
       </div>
 
       {/* Bottom Logo */}
-      <div className="max-w-[1415px] mx-auto px-4">
-        <div className="py-[40px] md:py-[70px] text-center">
+      <div className="max-w-[1115px] mx-auto px-4">
+        <div className="py-[20px] md:py-[45px] text-center">
           <div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/landing/img/footerlogo.png"
               alt="Navaro Logo"
-              className="mx-auto w-[80%] md:w-[530px] max-w-full"
+              className="mx-auto w-[80%] md:w-[330px] max-w-full"
             />
           </div>
         </div>
