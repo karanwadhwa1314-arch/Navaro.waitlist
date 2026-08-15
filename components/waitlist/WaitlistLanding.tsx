@@ -20,7 +20,7 @@ export default function WaitlistLanding() {
           <img
             src="/image/Nav_bar-.png"
             alt="Navaro"
-            className="h-[52px] w-auto object-contain max-[500px]:h-[40px]"
+            className="h-[91px] w-auto object-contain max-[500px]:h-[70px]"
           />
         </Link>
       </header>
