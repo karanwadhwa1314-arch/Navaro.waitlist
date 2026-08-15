@@ -53,13 +53,11 @@ export async function readEntries(): Promise<WaitlistEntry[]> {
   return ((data ?? []) as WaitlistRow[]).map(mapRow)
 }
 
-export type AddResult = { entry: WaitlistEntry; duplicate: boolean }
-
 /**
- * Appends a signup. Repeat signups with an email already on the list are
- * treated as success without adding a second row.
+ * Inserts a waitlist signup. Every submission creates a new row — repeat
+ * submissions with the same email are allowed and each get their own record.
  */
-export async function addEntry(input: NewWaitlistEntry): Promise<AddResult> {
+export async function addEntry(input: NewWaitlistEntry): Promise<WaitlistEntry> {
   const supabase = getSupabaseAdmin()
   const email = input.email.toLowerCase()
 
@@ -74,27 +72,11 @@ export async function addEntry(input: NewWaitlistEntry): Promise<AddResult> {
     .select(ENTRY_COLUMNS)
     .single()
 
-  if (!error && data) {
-    return { entry: mapRow(data as WaitlistRow), duplicate: false }
+  if (error || !data) {
+    throw error ?? new Error('Failed to insert waitlist signup')
   }
 
-  // Unique email constraint — soft success (already signed up). Re-fetch the
-  // existing row so the returned shape matches a normal addEntry result.
-  if (error?.code === '23505') {
-    const { data: existing, error: fetchError } = await supabase
-      .from('waitlist_signups')
-      .select(ENTRY_COLUMNS)
-      .eq('email', email)
-      .single()
-
-    if (fetchError || !existing) {
-      throw fetchError ?? new Error('Duplicate email but could not re-fetch existing signup')
-    }
-
-    return { entry: mapRow(existing as WaitlistRow), duplicate: true }
-  }
-
-  throw error ?? new Error('Failed to insert waitlist signup')
+  return mapRow(data as WaitlistRow)
 }
 
 function csvCell(value: string): string {

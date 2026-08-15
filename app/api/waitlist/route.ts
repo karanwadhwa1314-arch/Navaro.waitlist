@@ -50,31 +50,30 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const { entry, duplicate } = await addEntry({ firstName, lastName, email, phone })
+    const entry = await addEntry({ firstName, lastName, email, phone })
 
-    // Send welcome email after the response so signup latency is not blocked by Resend.
-    // after() keeps the serverless invocation alive on Vercel until this finishes.
-    if (!duplicate) {
-      const entryId = entry.id
-      after(async () => {
-        try {
-          const sent = await sendWelcomeEmail(firstName, email)
-          if (!sent) return
+    // Welcome email on every successful signup (including repeat emails), by design.
+    // after() keeps the serverless invocation alive on Vercel until this finishes
+    // without blocking the signup response.
+    const entryId = entry.id
+    after(async () => {
+      try {
+        const sent = await sendWelcomeEmail(firstName, email)
+        if (!sent) return
 
-          const supabase = getSupabaseAdmin()
-          const { error: stampError } = await supabase
-            .from('waitlist_signups')
-            .update({ welcome_email_sent_at: new Date().toISOString() })
-            .eq('id', entryId)
+        const supabase = getSupabaseAdmin()
+        const { error: stampError } = await supabase
+          .from('waitlist_signups')
+          .update({ welcome_email_sent_at: new Date().toISOString() })
+          .eq('id', entryId)
 
-          if (stampError) {
-            console.error('Failed to set welcome_email_sent_at:', stampError)
-          }
-        } catch (error) {
-          console.error('Welcome email after-response task failed:', error)
+        if (stampError) {
+          console.error('Failed to set welcome_email_sent_at:', stampError)
         }
-      })
-    }
+      } catch (error) {
+        console.error('Welcome email after-response task failed:', error)
+      }
+    })
 
     return NextResponse.json({ success: true })
   } catch (error) {

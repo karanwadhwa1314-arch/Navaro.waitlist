@@ -92,7 +92,7 @@ export async function sendWelcomeEmail(firstName: string, email: string): Promis
     const { error } = await resend.emails.send({
       from: 'Navaro <hello@navaro.co.in>',
       to: email,
-      subject: "You're on the list. Here's what that means.",
+      subject: "You're on the list! Here's what that means.",
       html: buildWelcomeHtml(firstName),
       ...(attachments.length > 0 ? { attachments } : {}),
     })
