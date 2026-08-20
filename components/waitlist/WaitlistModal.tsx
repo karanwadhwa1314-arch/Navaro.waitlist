@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { Turnstile } from '@marsidev/react-turnstile'
 import PhoneInput from 'react-phone-number-input'
 import 'react-phone-number-input/style.css'
 import './WaitlistPhoneInput.css'
@@ -29,6 +30,7 @@ export default function WaitlistModal({ onClose }: WaitlistModalProps) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [submitted, setSubmitted] = useState(false)
+  const [turnstileToken, setTurnstileToken] = useState('')
 
   const firstFieldRef = useRef<HTMLInputElement>(null)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
@@ -74,6 +76,10 @@ export default function WaitlistModal({ onClose }: WaitlistModalProps) {
       setError('Please enter a valid email address.')
       return
     }
+    if (!turnstileToken) {
+      setError('Please complete the verification.')
+      return
+    }
 
     setLoading(true)
     try {
@@ -86,11 +92,13 @@ export default function WaitlistModal({ onClose }: WaitlistModalProps) {
           email: formData.email,
           phone: formData.phone,
           company: formData.company,
+          turnstile_token: turnstileToken,
         }),
       })
       const result = await res.json()
 
       if (!result.success) {
+        setTurnstileToken('')
         setError(result.error ?? 'Could not join the waitlist. Please try again.')
         return
       }
@@ -271,6 +279,18 @@ export default function WaitlistModal({ onClose }: WaitlistModalProps) {
                 <p className="mt-4 text-[13px] leading-[140%] text-[#C0392B]" style={font} role="alert">
                   {error}
                 </p>
+              )}
+
+              {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && (
+                <div className="mt-4 flex justify-center">
+                  <Turnstile
+                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+                    onSuccess={setTurnstileToken}
+                    onExpire={() => setTurnstileToken('')}
+                    onError={() => setTurnstileToken('')}
+                    options={{ theme: 'light' }}
+                  />
+                </div>
               )}
 
               <button

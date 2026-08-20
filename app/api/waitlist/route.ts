@@ -19,9 +19,30 @@ function asField(value: unknown): string {
   return typeof value === 'string' ? value.trim().slice(0, MAX_FIELD_LENGTH) : ''
 }
 
+async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
+  const secret = process.env.TURNSTILE_SECRET_KEY
+  // If not configured, treat as pass so local/dev without keys still works.
+  if (!secret) return true
+  if (!token) return false
+
+  try {
+    const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ secret, response: token, remoteip: ip }),
+    })
+    const data = (await res.json()) as { success: boolean }
+    return data.success === true
+  } catch (error) {
+    // Fail-open on network/service error (not on a failed check).
+    console.error('Turnstile verify failed (allowing request):', error)
+    return true
+  }
+}
+
 export async function POST(request: NextRequest) {
   const clientId = getClientId(request)
-  if (isWaitlistRateLimited(clientId)) {
+  if (await isWaitlistRateLimited(clientId)) {
     return NextResponse.json(
       { success: false, error: 'Too many attempts. Please try again in a few minutes.' },
       { status: 429 },
@@ -46,6 +67,15 @@ export async function POST(request: NextRequest) {
   if (honeypot) {
     console.warn('Waitlist honeypot triggered, silently dropped:', clientId)
     return NextResponse.json({ success: true })
+  }
+
+  const turnstileToken = asField((body as Record<string, unknown>).turnstile_token)
+  const humanVerified = await verifyTurnstile(turnstileToken, clientId)
+  if (!humanVerified) {
+    return NextResponse.json(
+      { success: false, error: 'Verification failed. Please try again.' },
+      { status: 400 },
+    )
   }
 
   if (!firstName || !lastName || !email || !phone) {

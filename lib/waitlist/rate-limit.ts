@@ -1,21 +1,25 @@
 import type { NextRequest } from 'next/server'
+import { Ratelimit } from '@upstash/ratelimit'
+import { Redis } from '@upstash/redis'
 
 /**
- * Lightweight per-IP rate limiter for the public waitlist signup endpoint.
- *
- * In-memory only — resets on cold start and is scoped to a single warm
- * serverless instance, so this is a deterrent against a single scripted
- * source, not a guarantee against a distributed attack. Mirrors the pattern
- * already used for admin login (lib/waitlist/admin-auth.ts), kept as its own
- * module so that file stays untouched.
+ * Per-IP rate limiter for the public waitlist signup endpoint, backed by
+ * Upstash Redis so the limit is global and persistent across serverless
+ * instances and cold starts (unlike the previous in-memory version).
+ * Policy: 5 submissions per IP per 10 minutes.
  */
 
-const MAX_SUBMISSIONS = 5
-const WINDOW_MS = 10 * 60 * 1000 // 10 minutes
+const hasUpstash =
+  !!process.env.UPSTASH_REDIS_REST_URL && !!process.env.UPSTASH_REDIS_REST_TOKEN
 
-const submissions = new Map<string, { count: number; resetAt: number }>()
+const ratelimit = hasUpstash
+  ? new Ratelimit({
+      redis: Redis.fromEnv(),
+      limiter: Ratelimit.slidingWindow(5, '10 m'),
+      prefix: 'waitlist_ratelimit',
+    })
+  : null
 
-/** Derive a rate-limit key from the request IP. */
 export function getClientId(request: NextRequest): string {
   return (
     request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
@@ -24,20 +28,18 @@ export function getClientId(request: NextRequest): string {
   )
 }
 
-export function isWaitlistRateLimited(clientId: string): boolean {
-  const now = Date.now()
-
-  Array.from(submissions.entries()).forEach(([key, entry]) => {
-    if (entry.resetAt <= now) submissions.delete(key)
-  })
-
-  const entry = submissions.get(clientId)
-  if (!entry) {
-    submissions.set(clientId, { count: 1, resetAt: now + WINDOW_MS })
+/**
+ * Returns true if the client is over the limit. Async now (Redis call).
+ * Fail-open: if Upstash is unreachable, allow the request rather than block
+ * a real signup on infra downtime.
+ */
+export async function isWaitlistRateLimited(clientId: string): Promise<boolean> {
+  if (!ratelimit) return false
+  try {
+    const { success } = await ratelimit.limit(clientId)
+    return !success
+  } catch (error) {
+    console.error('Rate limit check failed (allowing request):', error)
     return false
   }
-  if (entry.count >= MAX_SUBMISSIONS) return true
-
-  entry.count++
-  return false
 }
