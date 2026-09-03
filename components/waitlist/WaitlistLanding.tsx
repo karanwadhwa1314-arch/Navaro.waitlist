@@ -13,7 +13,7 @@ export default function WaitlistLanding() {
 
   return (
     <div className="flex min-h-screen flex-col bg-[#FDFBF0]">
-      {/* Header — centred logo only, per the pre-login design */}
+      {/* Header â€” centred logo only, per the pre-login design */}
       <header className="flex justify-center px-4 py-3">
         <Link href="/" aria-label="Navaro home">
           {/* eslint-disable-next-line @next/next/no-img-element */}
