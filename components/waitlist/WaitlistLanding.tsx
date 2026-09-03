@@ -1,16 +1,12 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
 import Footer from '@/components/Footer'
-import WaitlistModal from './WaitlistModal'
 
 const font = { fontFamily: '"TASA Orbiter Deck", sans-serif' }
 const displayFont = { fontFamily: '"TASA Orbiter Display", sans-serif' }
 
 export default function WaitlistLanding() {
-  const [modalOpen, setModalOpen] = useState(false)
-
   return (
     <div className="flex min-h-screen flex-col bg-[#FDFBF0]">
       {/* Header â€” centred logo only, per the pre-login design */}
@@ -49,9 +45,8 @@ export default function WaitlistLanding() {
             An integrated import-export ecosystem that takes you from complexity to clarity
           </p>
 
-          <button
-            type="button"
-            onClick={() => setModalOpen(true)}
+          <Link
+            href="/join"
             className="mt-10 inline-flex items-center gap-3 rounded-full bg-white py-2 pl-6 pr-2 transition-transform hover:scale-[1.02] md:mt-14"
           >
             <span
@@ -71,15 +66,13 @@ export default function WaitlistLanding() {
                 />
               </svg>
             </span>
-          </button>
+          </Link>
         </div>
       </section>
 
       <div className="flex-1">
         <Footer />
       </div>
-
-      {modalOpen && <WaitlistModal onClose={() => setModalOpen(false)} />}
     </div>
   )
 }
