@@ -1,8 +1,9 @@
-import { getSupabaseAdmin } from '@/lib/supabase/server'
+import { desc } from 'drizzle-orm'
+import { getDb } from '@/lib/db/client'
+import { waitlistSignups } from '@/lib/db/schema'
 
 /**
- * Waitlist signups, stored in the Supabase `waitlist_signups` table.
- * All access goes through the service-role client (RLS deny-all for anon).
+ * Waitlist signups, stored in Neon Postgres via Drizzle.
  */
 
 export type WaitlistEntry = {
@@ -17,40 +18,25 @@ export type WaitlistEntry = {
 
 export type NewWaitlistEntry = Omit<WaitlistEntry, 'id' | 'createdAt' | 'welcomeEmailSentAt'>
 
-type WaitlistRow = {
-  id: string
-  created_at: string
-  first_name: string
-  last_name: string
-  email: string
-  phone: string | null
-  welcome_email_sent_at: string | null
-}
-
-const ENTRY_COLUMNS =
-  'id, created_at, first_name, last_name, email, phone, welcome_email_sent_at' as const
-
-function mapRow(row: WaitlistRow): WaitlistEntry {
+function toEntry(row: typeof waitlistSignups.$inferSelect): WaitlistEntry {
   return {
     id: row.id,
-    createdAt: row.created_at,
-    firstName: row.first_name,
-    lastName: row.last_name,
+    createdAt: row.createdAt instanceof Date ? row.createdAt.toISOString() : String(row.createdAt),
+    firstName: row.firstName,
+    lastName: row.lastName,
     email: row.email,
     phone: row.phone ?? '',
-    welcomeEmailSentAt: row.welcome_email_sent_at,
+    welcomeEmailSentAt:
+      row.welcomeEmailSentAt instanceof Date
+        ? row.welcomeEmailSentAt.toISOString()
+        : row.welcomeEmailSentAt,
   }
 }
 
 export async function readEntries(): Promise<WaitlistEntry[]> {
-  const supabase = getSupabaseAdmin()
-  const { data, error } = await supabase
-    .from('waitlist_signups')
-    .select(ENTRY_COLUMNS)
-    .order('created_at', { ascending: false })
-
-  if (error) throw error
-  return ((data ?? []) as WaitlistRow[]).map(mapRow)
+  const db = getDb()
+  const rows = await db.select().from(waitlistSignups).orderBy(desc(waitlistSignups.createdAt))
+  return rows.map(toEntry)
 }
 
 /**
@@ -58,25 +44,19 @@ export async function readEntries(): Promise<WaitlistEntry[]> {
  * submissions with the same email are allowed and each get their own record.
  */
 export async function addEntry(input: NewWaitlistEntry): Promise<WaitlistEntry> {
-  const supabase = getSupabaseAdmin()
+  const db = getDb()
   const email = input.email.toLowerCase()
-
-  const { data, error } = await supabase
-    .from('waitlist_signups')
-    .insert({
-      first_name: input.firstName,
-      last_name: input.lastName,
+  const [row] = await db
+    .insert(waitlistSignups)
+    .values({
+      firstName: input.firstName,
+      lastName: input.lastName,
       email,
       phone: input.phone || null,
     })
-    .select(ENTRY_COLUMNS)
-    .single()
-
-  if (error || !data) {
-    throw error ?? new Error('Failed to insert waitlist signup')
-  }
-
-  return mapRow(data as WaitlistRow)
+    .returning()
+  if (!row) throw new Error('Failed to insert waitlist signup')
+  return toEntry(row)
 }
 
 function csvCell(value: string): string {
