@@ -1,7 +1,6 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import { Turnstile } from '@marsidev/react-turnstile'
 import PhoneInput from 'react-phone-number-input'
 import 'react-phone-number-input/style.css'
 import './WaitlistPhoneInput.css'
@@ -21,12 +20,10 @@ export default function WaitlistForm() {
     lastName: '',
     email: '',
     phone: '',
-    company: '',
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [submitted, setSubmitted] = useState(false)
-  const [turnstileToken, setTurnstileToken] = useState('')
 
   const firstFieldRef = useRef<HTMLInputElement>(null)
 
@@ -46,10 +43,6 @@ export default function WaitlistForm() {
       setError('Please enter a valid email address.')
       return
     }
-    if (!turnstileToken) {
-      setError('Please complete the verification.')
-      return
-    }
 
     setLoading(true)
     try {
@@ -61,14 +54,11 @@ export default function WaitlistForm() {
           last_name: formData.lastName,
           email: formData.email,
           phone: formData.phone,
-          company: formData.company,
-          turnstile_token: turnstileToken,
         }),
       })
       const result = await res.json()
 
       if (!result.success) {
-        setTurnstileToken('')
         setError(result.error ?? 'Could not join the waitlist. Please try again.')
         return
       }
@@ -124,20 +114,6 @@ export default function WaitlistForm() {
           </h2>
 
           <form onSubmit={handleSubmit} className="mt-5" noValidate>
-            {/* Honeypot */}
-            <div className="absolute left-[-9999px] h-px w-px overflow-hidden" aria-hidden="true">
-              <label htmlFor="join-company">Company</label>
-              <input
-                id="join-company"
-                name="company"
-                type="text"
-                tabIndex={-1}
-                autoComplete="off"
-                value={formData.company}
-                onChange={handleChange}
-              />
-            </div>
-
             <div className="flex gap-3">
               <div className="flex-1">
                 <label htmlFor="join-first-name" className={labelClass} style={font}>
@@ -218,25 +194,13 @@ export default function WaitlistForm() {
               </p>
             )}
 
-            {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && (
-              <div className="mt-4 flex justify-center">
-                <Turnstile
-                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
-                  onSuccess={setTurnstileToken}
-                  onExpire={() => setTurnstileToken('')}
-                  onError={() => setTurnstileToken('')}
-                  options={{ theme: 'light' }}
-                />
-              </div>
-            )}
-
             <button
               type="submit"
               disabled={loading}
               className="mt-6 flex h-[46px] w-full items-center justify-center gap-2 rounded-md bg-[#054742] text-[15px] font-bold text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
               style={font}
             >
-              {loading ? 'Joiningâ€¦' : 'Join Waitlist'}
+              {loading ? 'Joining…' : 'Join Waitlist'}
               {!loading && (
                 <svg width="18" height="18" viewBox="0 0 21 21" fill="none" aria-hidden="true">
                   <path
