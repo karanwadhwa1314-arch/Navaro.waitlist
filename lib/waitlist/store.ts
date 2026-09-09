@@ -1,6 +1,7 @@
 import { desc } from 'drizzle-orm'
 import { getDb } from '@/lib/db/client'
 import { waitlistSignups } from '@/lib/db/schema'
+import type { NormalizedMetaLead } from '@/lib/meta/normalizeLead'
 
 /**
  * Waitlist signups, stored in Neon Postgres via Drizzle.
@@ -14,6 +15,7 @@ export type WaitlistEntry = {
   email: string
   phone: string
   welcomeEmailSentAt: string | null
+  metaLeadId?: string | null
 }
 
 export type NewWaitlistEntry = Omit<WaitlistEntry, 'id' | 'createdAt' | 'welcomeEmailSentAt'>
@@ -30,6 +32,7 @@ function toEntry(row: typeof waitlistSignups.$inferSelect): WaitlistEntry {
       row.welcomeEmailSentAt instanceof Date
         ? row.welcomeEmailSentAt.toISOString()
         : row.welcomeEmailSentAt,
+    metaLeadId: row.metaLeadId,
   }
 }
 
@@ -57,6 +60,29 @@ export async function addEntry(input: NewWaitlistEntry): Promise<WaitlistEntry> 
     .returning()
   if (!row) throw new Error('Failed to insert waitlist signup')
   return toEntry(row)
+}
+
+/**
+ * Inserts a Meta-sourced lead. Idempotent: safe to call repeatedly with the
+ * same meta_lead_id — duplicates are silently skipped via the unique
+ * constraint on meta_lead_id. Returns the inserted row, or null if it
+ * already existed (already-synced lead).
+ */
+export async function upsertMetaLead(lead: NormalizedMetaLead) {
+  const db = getDb()
+  const [row] = await db
+    .insert(waitlistSignups)
+    .values({
+      firstName: lead.firstName,
+      lastName: lead.lastName,
+      email: lead.email,
+      phone: lead.phone || null,
+      metaLeadId: lead.metaLeadId,
+      createdAt: new Date(lead.createdAt),
+    })
+    .onConflictDoNothing({ target: waitlistSignups.metaLeadId })
+    .returning()
+  return row ?? null
 }
 
 function csvCell(value: string): string {
