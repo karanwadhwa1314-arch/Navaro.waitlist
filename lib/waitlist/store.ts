@@ -1,4 +1,4 @@
-import { desc } from 'drizzle-orm'
+import { desc, eq } from 'drizzle-orm'
 import { getDb } from '@/lib/db/client'
 import { waitlistSignups } from '@/lib/db/schema'
 import type { NormalizedMetaLead } from '@/lib/meta/normalizeLead'
@@ -62,29 +62,6 @@ export async function addEntry(input: NewWaitlistEntry): Promise<WaitlistEntry> 
   return toEntry(row)
 }
 
-/**
- * Inserts a Meta-sourced lead. Idempotent: safe to call repeatedly with the
- * same meta_lead_id — duplicates are silently skipped via the unique
- * constraint on meta_lead_id. Returns the inserted row, or null if it
- * already existed (already-synced lead).
- */
-export async function upsertMetaLead(lead: NormalizedMetaLead) {
-  const db = getDb()
-  const [row] = await db
-    .insert(waitlistSignups)
-    .values({
-      firstName: lead.firstName,
-      lastName: lead.lastName,
-      email: lead.email,
-      phone: lead.phone || null,
-      metaLeadId: lead.metaLeadId,
-      createdAt: new Date(lead.createdAt),
-    })
-    .onConflictDoNothing({ target: waitlistSignups.metaLeadId })
-    .returning()
-  return row ?? null
-}
-
 function csvCell(value: string): string {
   // Guard against spreadsheet formula injection from user-supplied fields.
   const safe = /^[=+\-@\t\r]/.test(value) ? `'${value}` : value
@@ -107,4 +84,52 @@ export function toCsv(entries: WaitlistEntry[]): string {
   )
   // BOM so Excel opens UTF-8 names correctly.
   return `﻿${header.map(csvCell).join(',')}\n${rows.join('\n')}\n`
+}
+
+/**
+ * All rows matching an email, most recent first. Used only by the Meta
+ * sync path to decide whether this person has already been welcomed —
+ * NOT used to block the website form's intentional duplicate-per-submission
+ * behavior (that logic lives only in addEntry / the website route).
+ */
+export async function findEntriesByEmail(email: string): Promise<WaitlistEntry[]> {
+  const db = getDb()
+  const rows = await db
+    .select()
+    .from(waitlistSignups)
+    .where(eq(waitlistSignups.email, email.toLowerCase()))
+    .orderBy(desc(waitlistSignups.createdAt))
+  return rows.map(toEntry)
+}
+
+/** Stamps welcomeEmailSentAt on a specific row by id. */
+export async function markWelcomeEmailSent(id: string): Promise<void> {
+  const db = getDb()
+  await db.update(waitlistSignups).set({ welcomeEmailSentAt: new Date() }).where(eq(waitlistSignups.id, id))
+}
+
+/**
+ * Inserts a Meta-sourced lead. Safe to call repeatedly with the same
+ * meta_lead_id (backfill re-runs, or overlap with the future webhook) —
+ * duplicates are silently skipped via the unique constraint on meta_lead_id.
+ * Returns the inserted row, or null if it already existed (by meta_lead_id).
+ *
+ * This does NOT check cross-source email duplicates — that check happens
+ * one level up, in the sync route, before this is even called. See Section 6.
+ */
+export async function upsertMetaLead(lead: NormalizedMetaLead): Promise<WaitlistEntry | null> {
+  const db = getDb()
+  const [row] = await db
+    .insert(waitlistSignups)
+    .values({
+      firstName: lead.firstName,
+      lastName: lead.lastName,
+      email: lead.email,
+      phone: lead.phone || null,
+      metaLeadId: lead.metaLeadId,
+      createdAt: new Date(lead.createdAt),
+    })
+    .onConflictDoNothing({ target: waitlistSignups.metaLeadId })
+    .returning()
+  return row ? toEntry(row) : null
 }
