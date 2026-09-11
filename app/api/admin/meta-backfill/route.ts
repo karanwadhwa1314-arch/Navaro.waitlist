@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { ADMIN_COOKIE, isAdminRequest } from '@/lib/waitlist/admin-auth'
+import { ADMIN_COOKIE, isAdminRequest, isCronRequest } from '@/lib/waitlist/admin-auth'
 import type { MetaLead } from '@/lib/meta/normalizeLead'
 import { syncOneLead, type SyncOutcome } from '@/lib/meta/syncLead'
 
@@ -13,7 +13,9 @@ type LeadsResponse = { data?: MetaLead[]; paging?: { next?: string }; error?: un
 type Outcome = SyncOutcome | 'error'
 
 export async function POST(request: NextRequest) {
-  if (!isAdminRequest(request.cookies.get(ADMIN_COOKIE)?.value)) {
+  const isAdmin = isAdminRequest(request.cookies.get(ADMIN_COOKIE)?.value)
+  const isCron = isCronRequest(request)
+  if (!isAdmin && !isCron) {
     return NextResponse.json({ success: false, error: 'Unauthorized' }, { status: 401 })
   }
 

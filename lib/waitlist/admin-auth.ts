@@ -1,4 +1,5 @@
 import { createHash, createHmac, timingSafeEqual } from 'crypto'
+import type { NextRequest } from 'next/server'
 
 /**
  * Password gate for /admin/waitlist.
@@ -63,6 +64,23 @@ export function isAdminRequest(cookieValue: string | undefined): boolean {
   const password = getAdminPassword()
   if (!password) return false
   return verifySessionCookie(cookieValue, password)
+}
+
+/**
+ * Checks a shared-secret header for automated/scheduled callers that can't
+ * carry a browser session cookie (e.g. an external cron scheduler). This is
+ * a separate, additive auth path — it does not replace or weaken the
+ * cookie-based admin check used for manual, logged-in triggering.
+ */
+export function isCronRequest(request: NextRequest): boolean {
+  const secret = process.env.CRON_SECRET
+  const provided = request.headers.get('x-cron-secret')
+  if (!secret || !provided) return false
+
+  const secretBuf = Buffer.from(secret)
+  const providedBuf = Buffer.from(provided)
+  if (secretBuf.length !== providedBuf.length) return false
+  return timingSafeEqual(secretBuf, providedBuf)
 }
 
 const attempts = new Map<string, { count: number; resetAt: number }>()

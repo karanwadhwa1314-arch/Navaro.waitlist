@@ -1,0 +1,21 @@
+name: Meta Lead Backfill Poll
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'  # every 10 minutes, UTC
+  workflow_dispatch: {}       # allows manually triggering from GitHub's UI for testing
+
+jobs:
+  poll:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call backfill endpoint
+        run: |
+          response=$(curl -s -o /tmp/response.json -w "%{http_code}" -X POST \
+            "https://waitlist.navaro.co.in/api/admin/meta-backfill" \
+            -H "x-cron-secret: ${{ secrets.CRON_SECRET }}")
+          cat /tmp/response.json
+          if [ "$response" -ne 200 ]; then
+            echo "Backfill call failed with status $response"
+            exit 1
+          fi
