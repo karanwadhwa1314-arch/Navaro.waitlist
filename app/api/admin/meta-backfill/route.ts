@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { ADMIN_COOKIE, isAdminRequest } from '@/lib/waitlist/admin-auth'
-import { normalizeMetaLead, type MetaLead } from '@/lib/meta/normalizeLead'
-import { findEntriesByEmail, markWelcomeEmailSent, upsertMetaLead } from '@/lib/waitlist/store'
-import { sendWelcomeEmail } from '@/lib/email/sendWelcomeEmail'
+import type { MetaLead } from '@/lib/meta/normalizeLead'
+import { syncOneLead, type SyncOutcome } from '@/lib/meta/syncLead'
 
 export const runtime = 'nodejs'
 
@@ -11,42 +10,7 @@ const GRAPH_VERSION = 'v21.0'
 type LeadgenFormsResponse = { data?: { id: string }[]; error?: unknown }
 type LeadsResponse = { data?: MetaLead[]; paging?: { next?: string }; error?: unknown }
 
-type Outcome = 'inserted_and_emailed' | 'emailed_existing' | 'already_welcomed' | 'error'
-
-/**
- * Handles a single normalized lead end to end: decides whether it's a new
- * person, an existing-but-never-emailed person, or an already-welcomed
- * person, and acts accordingly. See spec Section 5 for the decision tree.
- */
-async function syncOneLead(lead: ReturnType<typeof normalizeMetaLead>): Promise<Outcome> {
-  const existing = await findEntriesByEmail(lead.email)
-  const alreadyWelcomed = existing.some((entry) => entry.welcomeEmailSentAt !== null)
-
-  if (alreadyWelcomed) {
-    return 'already_welcomed'
-  }
-
-  if (existing.length > 0) {
-    // Row(s) exist (e.g. from the website form) but none were ever emailed.
-    // Don't create a duplicate row — just send the email and stamp the most
-    // recent existing row.
-    const latest = existing[0]
-    if (!latest) return 'error'
-    const sent = await sendWelcomeEmail(latest.firstName, lead.email)
-    if (sent) await markWelcomeEmailSent(latest.id)
-    return 'emailed_existing'
-  }
-
-  // Genuinely new person.
-  const row = await upsertMetaLead(lead)
-  if (!row) {
-    // Race: meta_lead_id already existed (backfill re-run). Nothing to do.
-    return 'already_welcomed'
-  }
-  const sent = await sendWelcomeEmail(row.firstName, row.email)
-  if (sent) await markWelcomeEmailSent(row.id)
-  return 'inserted_and_emailed'
-}
+type Outcome = SyncOutcome | 'error'
 
 export async function POST(request: NextRequest) {
   if (!isAdminRequest(request.cookies.get(ADMIN_COOKIE)?.value)) {
@@ -95,7 +59,7 @@ export async function POST(request: NextRequest) {
 
         for (const lead of json.data ?? []) {
           try {
-            const outcome = await syncOneLead(normalizeMetaLead(lead))
+            const outcome = await syncOneLead(lead)
             counts[outcome]++
           } catch (leadError) {
             console.error('Failed to sync one lead:', lead.id, leadError)

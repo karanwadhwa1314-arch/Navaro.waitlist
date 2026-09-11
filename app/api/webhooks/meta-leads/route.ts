@@ -1,73 +1,101 @@
 import { NextRequest, NextResponse } from 'next/server'
-import crypto from 'crypto'
-import { normalizeMetaLead, type MetaLead } from '@/lib/meta/normalizeLead'
-import { upsertMetaLead } from '@/lib/waitlist/store'
+import { createHmac, timingSafeEqual } from 'crypto'
+import { syncOneLead } from '@/lib/meta/syncLead'
+import type { MetaLead } from '@/lib/meta/normalizeLead'
 
 export const runtime = 'nodejs'
 
 const GRAPH_VERSION = 'v21.0'
 
-// --- Handshake: Meta calls this once when you register the webhook URL ---
+/**
+ * Meta calls this once, synchronously, when you save the webhook
+ * subscription in the App Dashboard. It must echo back hub.challenge
+ * if hub.verify_token matches what we configured, or Meta refuses to
+ * save the subscription.
+ */
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
   const mode = searchParams.get('hub.mode')
   const token = searchParams.get('hub.verify_token')
   const challenge = searchParams.get('hub.challenge')
 
-  if (mode === 'subscribe' && token === process.env.META_WEBHOOK_VERIFY_TOKEN && challenge) {
+  if (mode === 'subscribe' && challenge && token === process.env.META_WEBHOOK_VERIFY_TOKEN) {
     return new NextResponse(challenge, { status: 200 })
   }
-  return new NextResponse('Forbidden', { status: 403 })
+  return NextResponse.json({ error: 'Verification failed' }, { status: 403 })
 }
 
-// --- Real lead events ---
+/**
+ * Real lead notifications land here. Meta sends a lightweight payload
+ * containing only leadgen_id(s) — the full lead data is fetched
+ * separately via the Graph API, same as the backfill does.
+ */
 export async function POST(request: NextRequest) {
+  // Read as raw text FIRST — the signature is computed over the exact raw
+  // bytes Meta sent. Parsing to JSON and re-stringifying would produce a
+  // different byte sequence and break signature verification.
   const rawBody = await request.text()
 
-  // Verify the request actually came from Meta before trusting it.
-  const signature = request.headers.get('x-hub-signature-256')
-  const appSecret = process.env.META_APP_SECRET
-  if (!signature || !appSecret) {
-    return NextResponse.json({ error: 'Missing signature or app secret' }, { status: 401 })
-  }
-  const expected =
-    'sha256=' + crypto.createHmac('sha256', appSecret).update(rawBody).digest('hex')
-  const signatureBuf = Buffer.from(signature)
-  const expectedBuf = Buffer.from(expected)
-  if (signatureBuf.length !== expectedBuf.length) {
-    return NextResponse.json({ error: 'Invalid signature' }, { status: 401 })
-  }
-  const valid = crypto.timingSafeEqual(signatureBuf, expectedBuf)
-  if (!valid) {
+  if (!isValidSignature(rawBody, request.headers.get('x-hub-signature-256'))) {
     return NextResponse.json({ error: 'Invalid signature' }, { status: 401 })
   }
 
-  const body = JSON.parse(rawBody)
-  const accessToken = process.env.META_PAGE_ACCESS_TOKEN
+  let payload: {
+    entry?: { changes?: { field?: string; value?: { leadgen_id?: string } }[] }[]
+  }
+  try {
+    payload = JSON.parse(rawBody)
+  } catch {
+    return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 })
+  }
 
-  for (const entry of body.entry ?? []) {
+  const leadgenIds: string[] = []
+  for (const entry of payload.entry ?? []) {
     for (const change of entry.changes ?? []) {
-      if (change.field !== 'leadgen') continue
-      const leadgenId = change.value?.leadgen_id
-      if (!leadgenId) continue
-
-      try {
-        const leadRes = await fetch(
-          `https://graph.facebook.com/${GRAPH_VERSION}/${leadgenId}?fields=id,created_time,field_data&access_token=${accessToken}`,
-        )
-        const lead = (await leadRes.json()) as MetaLead
-        if (!leadRes.ok) {
-          console.error('Failed to fetch lead detail:', lead)
-          continue
-        }
-        await upsertMetaLead(normalizeMetaLead(lead))
-      } catch (err) {
-        console.error('Error processing leadgen webhook entry:', err)
-        // Swallow — don't let one bad lead block Meta's ack or retry storm.
+      if (change.field === 'leadgen' && change.value?.leadgen_id) {
+        leadgenIds.push(change.value.leadgen_id)
       }
     }
   }
 
-  // Meta expects a fast 200 ack regardless of internal processing detail.
+  const accessToken = process.env.META_PAGE_ACCESS_TOKEN!
+
+  for (const leadgenId of leadgenIds) {
+    try {
+      const res = await fetch(
+        `https://graph.facebook.com/${GRAPH_VERSION}/${leadgenId}` +
+          `?fields=id,created_time,field_data&access_token=${accessToken}`,
+      )
+      const lead: MetaLead = await res.json()
+      if (!res.ok) {
+        console.error('Failed to fetch lead from webhook notification:', leadgenId, lead)
+        continue
+      }
+      await syncOneLead(lead)
+    } catch (err) {
+      console.error('Failed to sync lead from webhook:', leadgenId, err)
+      // Do not throw — one bad lead must not affect others in the same
+      // payload, and must not turn into a 500 that makes Meta retry the
+      // whole batch.
+    }
+  }
+
+  // Meta expects a fast 200 acknowledging receipt. Processing is done
+  // inline above since volume is low (one Page, one form) — if that
+  // changes, move the loop body to a background job/queue and return
+  // this response immediately after just enqueueing the ids.
   return NextResponse.json({ received: true })
+}
+
+function isValidSignature(rawBody: string, signatureHeader: string | null): boolean {
+  if (!signatureHeader) return false
+  const [algo, signature] = signatureHeader.split('=')
+  if (algo !== 'sha256' || !signature) return false
+
+  const expected = createHmac('sha256', process.env.META_APP_SECRET!).update(rawBody).digest('hex')
+
+  const expectedBuf = Buffer.from(expected, 'hex')
+  const actualBuf = Buffer.from(signature, 'hex')
+  if (expectedBuf.length !== actualBuf.length) return false
+  return timingSafeEqual(expectedBuf, actualBuf)
 }
