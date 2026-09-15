@@ -15,10 +15,14 @@ export type WaitlistEntry = {
   email: string
   phone: string
   welcomeEmailSentAt: string | null
+  secondBroadcastSentAt: string | null
   metaLeadId?: string | null
 }
 
-export type NewWaitlistEntry = Omit<WaitlistEntry, 'id' | 'createdAt' | 'welcomeEmailSentAt'>
+export type NewWaitlistEntry = Omit<
+  WaitlistEntry,
+  'id' | 'createdAt' | 'welcomeEmailSentAt' | 'secondBroadcastSentAt'
+>
 
 function toEntry(row: typeof waitlistSignups.$inferSelect): WaitlistEntry {
   return {
@@ -32,6 +36,10 @@ function toEntry(row: typeof waitlistSignups.$inferSelect): WaitlistEntry {
       row.welcomeEmailSentAt instanceof Date
         ? row.welcomeEmailSentAt.toISOString()
         : row.welcomeEmailSentAt,
+    secondBroadcastSentAt:
+      row.secondBroadcastSentAt instanceof Date
+        ? row.secondBroadcastSentAt.toISOString()
+        : row.secondBroadcastSentAt,
     metaLeadId: row.metaLeadId,
   }
 }
@@ -132,4 +140,36 @@ export async function upsertMetaLead(lead: NormalizedMetaLead): Promise<Waitlist
     .onConflictDoNothing({ target: waitlistSignups.metaLeadId })
     .returning()
   return row ? toEntry(row) : null
+}
+
+/**
+ * Returns one row per unique email address (the most recently created row
+ * for that email), for anyone who has not yet received the one-time
+ * broadcast. Used only by the broadcast route — has no bearing on the
+ * automated Meta sync pipeline's welcomeEmailSentAt logic.
+ */
+export async function getUnbroadcastedRecipients(): Promise<WaitlistEntry[]> {
+  const db = getDb()
+  const rows = await db
+    .select()
+    .from(waitlistSignups)
+    .orderBy(desc(waitlistSignups.createdAt))
+
+  const seen = new Map<string, WaitlistEntry>()
+  for (const row of rows.map(toEntry)) {
+    if (!seen.has(row.email)) {
+      seen.set(row.email, row)
+    }
+  }
+
+  return Array.from(seen.values()).filter((entry) => entry.secondBroadcastSentAt === null)
+}
+
+/** Stamps second_broadcast_sent_at on every row matching this email. */
+export async function markSecondBroadcastSent(email: string): Promise<void> {
+  const db = getDb()
+  await db
+    .update(waitlistSignups)
+    .set({ secondBroadcastSentAt: new Date() })
+    .where(eq(waitlistSignups.email, email.toLowerCase()))
 }
