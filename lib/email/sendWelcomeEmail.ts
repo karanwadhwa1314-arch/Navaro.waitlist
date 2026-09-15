@@ -9,30 +9,41 @@ function buildWelcomeHtml(firstName: string): string {
 
   <p>Hi ${escapeHtml(firstName)},</p>
 
-  <p>You're in.</p>
+  <p>You're on the Navaro waitlist. Your spot is safe. Nothing else to do.</p>
 
-  <p>We can't tell you everything yet. But we can tell you this:</p>
+  <p>One thing before you go.</p>
 
-  <p>The shipment never left</p>
+  <p>You signed up because somewhere in your head, you stopped thinking small. There was a business you promised yourself you'd build.</p>
 
-  <p>There's a shipment that exists only in someone's head.</p>
+  <p>Now everyone's going to tell you to be realistic. That exporting is complicated. Documentation, customs, classification, freight, compliance, payment terms, a hundred things you've never done, any one of which can cost you a container.</p>
 
-  <p>It belongs to an ambitious importer exporter in Haryana. Or Maharashtra. Or Delhi. He got his IEC three years ago. He knows his product. He's priced it. Some nights, he opens his laptop and researches ports, buyers, duties until the tabs blur.</p>
+  <p>They're right about the complexity.</p>
 
-  <p>The shipment never ships. Not because he can't afford it. Because every search answers one question and raises five.</p>
+  <p>They're wrong about whose problem it is.</p>
 
-  <p>There are lakhs more like him. Ambition, fully loaded, going nowhere.</p>
+  <p>That part is ours. The learning, the paperwork, the tools, the moment something goes wrong at port and you don't know who to call.</p>
 
-  <p>We've spent years watching that happen. Then we spent years building the answer.</p>
+  <p>Yours is the part nobody can do for you: deciding what the world should be buying from you.</p>
 
-  <p>On August 15, you'll see it. Independence Day felt right, because that's what this is. Independence from guesswork. From gatekeepers. From figuring it out alone.</p>
+  <p>The world is open. That was never the problem.</p>
 
-  <p>Until then, once a week, we'll send you one email that makes import-export a little clearer.</p>
+  <p>The map isn't. We're building the map.</p>
 
-  <p>Something big is coming. You're already ahead of everyone who'll hear about it later.</p>
+  <p>We're releasing Navaro in pieces, and each piece lands on social first:</p>
 
-  <p>We make import export easy.<br>
-  — Navaro</p>
+  <p>
+    <a href="https://www.linkedin.com/company/navaro-group/" style="color: #0a66c2; text-decoration: underline;">LinkedIn</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.instagram.com/navaro.co.in/" style="color: #0a66c2; text-decoration: underline;">Instagram</a>
+  </p>
+
+  <p style="margin-top: 32px;">P.S. What are you exporting, and where to? Hit reply, I read every one myself.</p>
+
+  <p>
+    Karan<br />
+    Co-founder, Navaro<br />
+    Making import–export easy.
+  </p>
 
   <hr style="border: none; border-top: 1px solid #ddd; margin: 24px 0;" />
 
@@ -90,7 +101,7 @@ export async function sendWelcomeEmail(firstName: string, email: string): Promis
     const attachments = guide ? [guide] : []
 
     const { error } = await resend.emails.send({
-      from: 'Navaro <hello@navaro.co.in>',
+      from: 'Navaro <karan@navaro.co.in>',
       to: email,
       subject: "You're on the list! Here's what that means.",
       html: buildWelcomeHtml(firstName),
