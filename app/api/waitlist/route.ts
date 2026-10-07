@@ -4,6 +4,7 @@ import { sendWelcomeEmail } from '@/lib/email/sendWelcomeEmail'
 import { getDb } from '@/lib/db/client'
 import { waitlistSignups } from '@/lib/db/schema'
 import { addEntry } from '@/lib/waitlist/store'
+import { pushLeadToCrm } from '@/lib/crm/pushLead'
 
 // Uses Node APIs (fs for PDF attachment via Resend helper).
 // Region: pinned to Mumbai via vercel.json `"regions": ["bom1"]` (preferredRegion is deprecated).
@@ -53,6 +54,25 @@ export async function POST(request: NextRequest) {
 
   try {
     const entry = await addEntry({ firstName, lastName, email, phone })
+
+    // Mirror into the CRM's leads collection. Separate after() so it is
+    // independent of the email task; a CRM failure never fails the signup.
+    // One retry, then logged (pushLeadToCrm logs each failure itself).
+    after(async () => {
+      const lead = {
+        firstName,
+        lastName,
+        email,
+        phone,
+        source: 'website' as const,
+        createdAt: new Date(entry.createdAt),
+      }
+      if ((await pushLeadToCrm(lead)) === 'error') {
+        if ((await pushLeadToCrm(lead)) === 'error') {
+          console.error('CRM mirror gave up after retry for waitlist entry', entry.id)
+        }
+      }
+    })
 
     // Welcome email on every successful signup (including repeat emails), by design.
     // after() keeps the serverless invocation alive on Vercel until this finishes

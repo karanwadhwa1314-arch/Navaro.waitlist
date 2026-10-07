@@ -1,6 +1,7 @@
 import { findEntriesByEmail, markWelcomeEmailSent, upsertMetaLead } from '@/lib/waitlist/store'
 import { normalizeMetaLead, type MetaLead } from '@/lib/meta/normalizeLead'
 import { sendWelcomeEmail } from '@/lib/email/sendWelcomeEmail'
+import { pushLeadToCrm } from '@/lib/crm/pushLead'
 
 export type SyncOutcome = 'inserted_and_emailed' | 'emailed_existing' | 'already_welcomed'
 
@@ -12,6 +13,20 @@ export type SyncOutcome = 'inserted_and_emailed' | 'emailed_existing' | 'already
  */
 export async function syncOneLead(rawLead: MetaLead): Promise<SyncOutcome> {
   const lead = normalizeMetaLead(rawLead)
+
+  // Mirror into the CRM for EVERY lead seen, independent of the Neon outcome
+  // below. Idempotent, so each backfill run also retries any earlier CRM
+  // failure. Never throws — Neon/email flow must not depend on it.
+  await pushLeadToCrm({
+    firstName: lead.firstName,
+    lastName: lead.lastName,
+    email: lead.email,
+    phone: lead.phone,
+    source: 'meta_ads',
+    createdAt: new Date(lead.createdAt),
+    metaLeadId: lead.metaLeadId,
+  })
+
   const existing = await findEntriesByEmail(lead.email)
   const alreadyWelcomed = existing.some((entry) => entry.welcomeEmailSentAt !== null)
 
