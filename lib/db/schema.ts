@@ -8,6 +8,9 @@ export const waitlistSignups = pgTable(
     lastName: text('last_name').notNull(),
     email: text('email').notNull(),
     phone: text('phone'),
+    // Added with the second Meta campaign — nullable so older rows stay valid.
+    companyName: text('company_name'),
+    userType: text('user_type'), // answer to "Which best describes you?"
     metaLeadId: text('meta_lead_id').unique(), // nullable — only set for Meta-sourced signups
     createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
     welcomeEmailSentAt: timestamp('welcome_email_sent_at', { withTimezone: true }),

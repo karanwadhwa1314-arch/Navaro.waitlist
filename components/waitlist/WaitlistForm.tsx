@@ -4,6 +4,7 @@ import { useRef, useState } from 'react'
 import PhoneInput from 'react-phone-number-input'
 import 'react-phone-number-input/style.css'
 import './WaitlistPhoneInput.css'
+import { USER_TYPES } from '@/lib/waitlist/userTypes'
 
 const font = { fontFamily: '"TASA Orbiter Deck", sans-serif' }
 
@@ -20,6 +21,8 @@ export default function WaitlistForm() {
     lastName: '',
     email: '',
     phone: '',
+    companyName: '',
+    userType: '',
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -27,7 +30,7 @@ export default function WaitlistForm() {
 
   const firstFieldRef = useRef<HTMLInputElement>(null)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
@@ -44,6 +47,11 @@ export default function WaitlistForm() {
       return
     }
 
+    if (!formData.userType) {
+      setError('Please choose the option that best describes you.')
+      return
+    }
+
     setLoading(true)
     try {
       const res = await fetch('/api/waitlist', {
@@ -54,6 +62,8 @@ export default function WaitlistForm() {
           last_name: formData.lastName,
           email: formData.email,
           phone: formData.phone,
+          company_name: formData.companyName,
+          user_type: formData.userType,
         }),
       })
       const result = await res.json()
@@ -182,6 +192,45 @@ export default function WaitlistForm() {
                 }}
                 className="WaitlistPhoneInput"
               />
+            </div>
+
+            <div className="mt-4">
+              <label htmlFor="join-company" className={labelClass} style={font}>
+                Company Name <span className="font-normal text-[#666462]">(optional)</span>
+              </label>
+              <input
+                id="join-company"
+                name="companyName"
+                type="text"
+                value={formData.companyName}
+                onChange={handleChange}
+                autoComplete="organization"
+                className={inputClass}
+                style={font}
+              />
+            </div>
+
+            <div className="mt-4">
+              <label htmlFor="join-user-type" className={labelClass} style={font}>
+                Which best describes you?
+              </label>
+              <select
+                id="join-user-type"
+                name="userType"
+                value={formData.userType}
+                onChange={handleChange}
+                className={`${inputClass} ${formData.userType ? '' : 'text-[#AFA79D]'}`}
+                style={font}
+              >
+                <option value="" disabled>
+                  Select one
+                </option>
+                {USER_TYPES.map((type) => (
+                  <option key={type} value={type} className="text-[#054742]">
+                    {type}
+                  </option>
+                ))}
+              </select>
             </div>
 
             {error && (

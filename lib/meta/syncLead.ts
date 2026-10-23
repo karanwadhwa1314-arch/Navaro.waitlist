@@ -22,6 +22,8 @@ export async function syncOneLead(rawLead: MetaLead): Promise<SyncOutcome> {
     lastName: lead.lastName,
     email: lead.email,
     phone: lead.phone,
+    companyName: lead.companyName,
+    userType: lead.userType,
     source: 'meta_ads',
     createdAt: new Date(lead.createdAt),
     metaLeadId: lead.metaLeadId,

@@ -14,6 +14,8 @@ export type WaitlistEntry = {
   lastName: string
   email: string
   phone: string
+  companyName: string
+  userType: string
   welcomeEmailSentAt: string | null
   secondBroadcastSentAt: string | null
   metaLeadId?: string | null
@@ -21,8 +23,8 @@ export type WaitlistEntry = {
 
 export type NewWaitlistEntry = Omit<
   WaitlistEntry,
-  'id' | 'createdAt' | 'welcomeEmailSentAt' | 'secondBroadcastSentAt'
->
+  'id' | 'createdAt' | 'welcomeEmailSentAt' | 'secondBroadcastSentAt' | 'companyName' | 'userType'
+> & { companyName?: string; userType?: string }
 
 function toEntry(row: typeof waitlistSignups.$inferSelect): WaitlistEntry {
   return {
@@ -32,6 +34,8 @@ function toEntry(row: typeof waitlistSignups.$inferSelect): WaitlistEntry {
     lastName: row.lastName,
     email: row.email,
     phone: row.phone ?? '',
+    companyName: row.companyName ?? '',
+    userType: row.userType ?? '',
     welcomeEmailSentAt:
       row.welcomeEmailSentAt instanceof Date
         ? row.welcomeEmailSentAt.toISOString()
@@ -64,6 +68,8 @@ export async function addEntry(input: NewWaitlistEntry): Promise<WaitlistEntry> 
       lastName: input.lastName,
       email,
       phone: input.phone || null,
+      companyName: input.companyName || null,
+      userType: input.userType || null,
     })
     .returning()
   if (!row) throw new Error('Failed to insert waitlist signup')
@@ -77,7 +83,7 @@ function csvCell(value: string): string {
 }
 
 export function toCsv(entries: WaitlistEntry[]): string {
-  const header = ['Date', 'First Name', 'Last Name', 'Email', 'Phone', 'Welcome Email Sent']
+  const header = ['Date', 'First Name', 'Last Name', 'Email', 'Phone', 'Company', 'Describes You', 'Welcome Email Sent']
   const rows = entries.map((entry) =>
     [
       entry.createdAt,
@@ -85,6 +91,8 @@ export function toCsv(entries: WaitlistEntry[]): string {
       entry.lastName,
       entry.email,
       entry.phone,
+      entry.companyName,
+      entry.userType,
       entry.welcomeEmailSentAt ?? '',
     ]
       .map(csvCell)
@@ -134,6 +142,8 @@ export async function upsertMetaLead(lead: NormalizedMetaLead): Promise<Waitlist
       lastName: lead.lastName,
       email: lead.email,
       phone: lead.phone || null,
+      companyName: lead.companyName || null,
+      userType: lead.userType || null,
       metaLeadId: lead.metaLeadId,
       createdAt: new Date(lead.createdAt),
     })

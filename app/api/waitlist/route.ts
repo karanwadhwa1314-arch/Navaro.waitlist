@@ -5,6 +5,7 @@ import { getDb } from '@/lib/db/client'
 import { waitlistSignups } from '@/lib/db/schema'
 import { addEntry } from '@/lib/waitlist/store'
 import { pushLeadToCrm } from '@/lib/crm/pushLead'
+import { matchUserType } from '@/lib/waitlist/userTypes'
 
 // Uses Node APIs (fs for PDF attachment via Resend helper).
 // Region: pinned to Mumbai via vercel.json `"regions": ["bom1"]` (preferredRegion is deprecated).
@@ -31,10 +32,18 @@ export async function POST(request: NextRequest) {
   const lastName = asField((body as Record<string, unknown>).last_name)
   const email = asField((body as Record<string, unknown>).email)
   const phone = asField((body as Record<string, unknown>).phone)
+  const companyName = asField((body as Record<string, unknown>).company_name) // optional
+  const userType = matchUserType(asField((body as Record<string, unknown>).user_type))
 
   if (!firstName || !lastName || !email || !phone) {
     return NextResponse.json(
       { success: false, error: 'First name, last name, email and phone are required' },
+      { status: 400 },
+    )
+  }
+  if (!userType) {
+    return NextResponse.json(
+      { success: false, error: 'Please choose the option that best describes you' },
       { status: 400 },
     )
   }
@@ -53,7 +62,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const entry = await addEntry({ firstName, lastName, email, phone })
+    const entry = await addEntry({ firstName, lastName, email, phone, companyName, userType })
 
     // Mirror into the CRM's leads collection. Separate after() so it is
     // independent of the email task; a CRM failure never fails the signup.
@@ -64,6 +73,8 @@ export async function POST(request: NextRequest) {
         lastName,
         email,
         phone,
+        companyName,
+        userType,
         source: 'website' as const,
         createdAt: new Date(entry.createdAt),
       }

@@ -26,6 +26,9 @@ export type CrmLeadInput = {
   lastName: string
   email: string
   phone?: string
+  companyName?: string
+  /** Answer to "Which best describes you?" */
+  userType?: string
   source: 'website' | 'meta_ads'
   createdAt: Date
   metaLeadId?: string | null
@@ -46,6 +49,7 @@ export async function pushLeadToCrm(input: CrmLeadInput): Promise<PushLeadOutcom
   const lastName = clip(input.lastName, 50) || '-'
   const isMeta = input.source === 'meta_ads'
   const sourceDetails = isMeta ? 'Waitlist – Meta Lead Ads' : 'Waitlist – Website'
+  const userType = clip(input.userType ?? '', 200)
   const now = new Date()
 
   const doc = {
@@ -53,8 +57,12 @@ export async function pushLeadToCrm(input: CrmLeadInput): Promise<PushLeadOutcom
     lastName,
     email,
     ...(input.phone ? { phone: clip(input.phone, 50) } : {}),
-    // CRM requires company; same fallback as the CRM's CSV import.
-    company: clip(`${firstName} ${lastName === '-' ? '' : lastName}`, 120),
+    // CRM requires company: use the real one when given, else the same
+    // name fallback as the CRM's CSV import.
+    company:
+      clip(input.companyName ?? '', 120) ||
+      clip(`${firstName} ${lastName === '-' ? '' : lastName}`, 120),
+    ...(userType ? { notes: `Which best describes you? ${userType}` } : {}),
     source: isMeta ? 'advertisement' : 'website',
     sourceDetails,
     stage: 'new',
@@ -67,7 +75,14 @@ export async function pushLeadToCrm(input: CrmLeadInput): Promise<PushLeadOutcom
         _id: new ObjectId(),
         type: 'note',
         description: `Added from Navaro waitlist (${sourceDetails.replace('Waitlist – ', '')})`,
-        ...(input.metaLeadId ? { metadata: { metaLeadId: input.metaLeadId } } : {}),
+        ...(input.metaLeadId || userType
+          ? {
+              metadata: {
+                ...(input.metaLeadId ? { metaLeadId: input.metaLeadId } : {}),
+                ...(userType ? { userType } : {}),
+              },
+            }
+          : {}),
         createdAt: now,
       },
     ],
